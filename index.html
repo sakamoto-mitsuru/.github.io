@@ -949,6 +949,712 @@ body { min-height: 100vh; min-height: 100dvh; }
     position: absolute; right: 20px;
   }
 }
+
+/* === 家族との繋がり拡張 (Family tree + List view) === */
+:root {
+  --invite-amber: #BA7517;
+  --invite-amber-soft: #FAEEDA;
+  --gold: #C9A876;
+  --memorial-gold: #B5895E;
+  --memorial-bg: #F5EFE3;
+  --seven-green: #2E8B57;
+}
+
+.tree-tabs {
+  display: flex; gap: 6px;
+  margin: 16px 16px 0;
+  background: var(--accent-soft); border-radius: 10px; padding: 3px;
+}
+.tree-tab {
+  flex: 1; padding: 8px 0; text-align: center;
+  font-size: 12px; color: var(--text-muted); cursor: pointer;
+  border-radius: 8px; transition: all 0.2s ease; font-weight: 500;
+}
+.tree-tab.active { background: var(--surface); color: var(--text); box-shadow: 0 1px 2px rgba(60,50,35,0.06); }
+
+.fc-view { display: none; }
+.fc-view.active { display: block; }
+
+.status-overview {
+  margin: 16px 16px 12px;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.status-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 8px; text-align: center;
+  cursor: pointer; transition: all 0.2s ease;
+}
+.status-card:active { transform: scale(0.97); }
+.status-card.connected { border-color: rgba(6,199,85,0.3); background: rgba(6,199,85,0.05); }
+.status-card.invited { border-color: rgba(186,117,23,0.3); background: rgba(186,117,23,0.05); }
+.status-card.not-invited { border-color: var(--border-strong); background: var(--surface-warm); }
+.status-card-icon {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 6px;
+}
+.status-card-icon i { font-size: 16px; color: #FFFFFF; }
+.status-card.connected .status-card-icon { background: var(--line-green); }
+.status-card.invited .status-card-icon { background: var(--invite-amber); }
+.status-card.not-invited .status-card-icon { background: var(--text-soft); }
+.status-card-num {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 22px; font-weight: 600; line-height: 1;
+}
+.status-card-num.connected { color: var(--line-green); }
+.status-card-num.invited { color: var(--invite-amber); }
+.status-card-num.not-invited { color: var(--text-muted); }
+.status-card-label { font-size: 10px; color: var(--text-muted); margin-top: 4px; }
+
+.filter-chips {
+  display: flex; gap: 6px;
+  padding: 0 16px; margin-bottom: 12px;
+  overflow-x: auto; scrollbar-width: none;
+}
+.filter-chips::-webkit-scrollbar { display: none; }
+.filter-chip {
+  flex-shrink: 0; padding: 6px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 11px; color: var(--text-muted);
+  cursor: pointer; white-space: nowrap;
+  display: flex; align-items: center; gap: 4px;
+}
+.filter-chip.active {
+  background: var(--accent); color: #FFFFFF;
+  border-color: var(--accent);
+}
+.filter-chip-count {
+  display: inline-block; padding: 0 5px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 999px; font-size: 10px;
+}
+.filter-chip:not(.active) .filter-chip-count {
+  background: var(--accent-soft); color: var(--text-muted);
+}
+
+.list-section-header {
+  padding: 12px 16px 8px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.list-section-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 13px; color: var(--text-muted);
+  letter-spacing: 0.1em; font-weight: 500;
+  display: flex; align-items: center; gap: 6px;
+}
+.list-section-title i { font-size: 14px; }
+.list-section-count { font-size: 11px; color: var(--text-soft); font-weight: normal; }
+
+.list-card-group {
+  padding: 0 16px;
+  display: flex; flex-direction: column;
+  gap: 8px; margin-bottom: 16px;
+}
+.list-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px 14px;
+  display: flex; align-items: center; gap: 12px;
+  cursor: pointer; transition: all 0.2s ease;
+  position: relative;
+}
+.list-card:active { transform: scale(0.99); background: var(--surface-warm); }
+.list-card.self {
+  background: linear-gradient(135deg, #FBF6E5 0%, #F4E5C2 50%, #FFFFFF 100%);
+  border: 2px solid var(--gold);
+  box-shadow: 0 2px 8px rgba(201, 168, 118, 0.15);
+}
+.list-card.memorial {
+  background: var(--memorial-bg);
+  border-color: var(--memorial-gold);
+}
+.list-card-avatar {
+  width: 48px; height: 48px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px; font-weight: 500;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 1px 3px rgba(60,50,35,0.1);
+  flex-shrink: 0; position: relative;
+}
+.list-card-avatar.self {
+  background-image: url("data:image/jpeg;base64,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");
+  background-size: cover; background-position: center;
+  width: 56px; height: 56px;
+  border-color: var(--gold);
+}
+.list-card-avatar.memorial {
+  background: linear-gradient(135deg, #D8CDB8, #B5A789);
+  color: #4A3F2D; filter: sepia(0.2);
+  border-color: var(--memorial-gold);
+}
+.list-card-info { flex: 1; min-width: 0; }
+.list-card-name-row {
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+}
+.list-card-name {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 15px; font-weight: 500;
+  margin: 0; color: var(--text);
+}
+.list-card.self .list-card-name { font-size: 16px; }
+.list-card-self-badge {
+  display: inline-block; padding: 1px 6px;
+  background: var(--gold); color: #FFFFFF;
+  border-radius: 999px; font-size: 9px; font-weight: 600;
+  letter-spacing: 0.05em;
+}
+.list-card-rel {
+  font-size: 11px; color: var(--text-muted); margin-top: 2px;
+}
+.list-card-status {
+  margin-top: 6px;
+  display: flex; align-items: center; gap: 5px;
+  font-size: 11px;
+  padding: 2px 8px;
+  background: rgba(0,0,0,0.04);
+  border-radius: 999px;
+  align-self: flex-start; width: fit-content;
+}
+.list-card-status.connected {
+  background: rgba(6,199,85,0.1); color: var(--line-green);
+}
+.list-card-status.invited {
+  background: rgba(186,117,23,0.1); color: var(--invite-amber);
+}
+.list-card-status.not-invited {
+  background: rgba(163,154,138,0.15); color: var(--text-muted);
+}
+.list-card-status.memorial {
+  background: rgba(181,137,94,0.1); color: var(--memorial-gold);
+}
+.list-card-status i { font-size: 12px; }
+.list-card-cta {
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 11px; font-weight: 500;
+  cursor: pointer; border: none;
+  font-family: inherit;
+  display: flex; align-items: center; gap: 4px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+.list-card-cta i { font-size: 12px; }
+.list-card-cta.invite { background: var(--line-green); color: #FFFFFF; }
+.list-card-cta.invite:active { transform: scale(0.95); opacity: 0.9; }
+.list-card-cta.remind { background: var(--invite-amber-soft); color: var(--invite-amber); }
+.list-card-cta.view { background: var(--memorial-bg); color: var(--memorial-gold); }
+.list-card-chevron { color: var(--text-soft); font-size: 18px; }
+.list-card-line-badge {
+  width: 16px; height: 16px; border-radius: 3px;
+  background: var(--line-green); color: #FFFFFF;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 8px; font-weight: 700;
+  margin-left: 2px;
+}
+.memorial-flower {
+  position: absolute; top: 12px; right: 14px;
+  width: 18px; height: 18px;
+  display: flex; align-items: center; justify-content: center;
+}
+.memorial-flower svg { width: 14px; height: 14px; }
+
+/* Tree view styles */
+.tree-summary {
+  margin: 16px 16px 0; padding: 12px 14px;
+  background: linear-gradient(135deg, rgba(6,199,85,0.08) 0%, rgba(6,199,85,0.04) 100%);
+  border-radius: 12px;
+  border: 1px solid rgba(6,199,85,0.15);
+  display: flex; align-items: center; gap: 12px;
+}
+.tree-summary-icon {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--line-green);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.tree-summary-icon i { font-size: 20px; color: #FFFFFF; }
+.tree-summary-text { flex: 1; }
+.tree-summary-title { font-size: 13px; font-weight: 500; margin: 0; color: var(--text); }
+.tree-summary-detail { font-size: 11px; color: var(--text-muted); margin: 2px 0 0; }
+
+.tree-container { padding: 20px 12px; }
+.tree-section { margin-bottom: 18px; }
+.tree-section-label {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 11px; color: var(--text-soft);
+  letter-spacing: 0.15em; text-align: center;
+  margin: 0 0 10px; position: relative;
+}
+.tree-section-label::before, .tree-section-label::after {
+  content: ""; position: absolute; top: 50%;
+  width: 50px; height: 1px; background: var(--border);
+}
+.tree-section-label::before { left: 20px; }
+.tree-section-label::after { right: 20px; }
+
+.couple-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: 8px; position: relative; margin-bottom: 6px;
+}
+.couple-row::before {
+  content: ""; position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px; height: 2px;
+  background: var(--border-strong); z-index: 0;
+}
+
+.tree-self-card {
+  display: inline-flex; flex-direction: column; align-items: center;
+  padding: 14px 18px;
+  background: linear-gradient(135deg, #FBF6E5 0%, #F4E5C2 100%);
+  border-radius: 18px; border: 2px solid var(--gold);
+  box-shadow: 0 4px 14px rgba(201, 168, 118, 0.25);
+  position: relative;
+}
+.tree-self-badge {
+  position: absolute; top: -8px; right: -6px;
+  padding: 3px 8px; background: var(--gold); color: #FFFFFF;
+  border-radius: 999px; font-size: 10px; font-weight: 600;
+  letter-spacing: 0.1em;
+  box-shadow: 0 2px 4px rgba(201, 168, 118, 0.3);
+}
+.tree-self-avatar {
+  width: 70px; height: 70px; border-radius: 50%;
+  border: 3px solid #FFFFFF;
+  box-shadow: 0 2px 8px rgba(60,50,35,0.15);
+  background-image: url("data:image/jpeg;base64,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");
+  background-size: cover; background-position: center;
+  margin-bottom: 8px;
+}
+.tree-self-name { font-family: 'Shippori Mincho', serif; font-size: 16px; font-weight: 600; margin: 0; }
+.tree-self-meta { font-size: 11px; color: var(--text-muted); margin: 2px 0 0; }
+
+.tree-node {
+  display: flex; flex-direction: column; align-items: center;
+  cursor: pointer; transition: transform 0.2s ease;
+  width: 90px; position: relative; z-index: 1;
+}
+.tree-node:active { transform: scale(0.96); }
+
+.node-avatar {
+  width: 56px; height: 56px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Shippori Mincho', serif;
+  font-size: 22px; font-weight: 500;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 2px 6px rgba(60,50,35,0.1);
+  margin-bottom: 6px; position: relative;
+}
+.node-avatar.husband { background: linear-gradient(135deg, #B5D4F4, #85B7EB); color: #042C53; }
+.node-avatar.son1 { background: linear-gradient(135deg, #C0DD97, #97C459); color: #173404; }
+.node-avatar.son1wife { background: linear-gradient(135deg, #F4C0D1, #ED93B1); color: #4B1528; }
+.node-avatar.grand1 { background: linear-gradient(135deg, #F5C4B3, #F0997B); color: #4A1B0C; }
+.node-avatar.son2 { background: linear-gradient(135deg, #9FE1CB, #5DCAA5); color: #04342C; }
+.node-avatar.son2wife { background: linear-gradient(135deg, #CECBF6, #AFA9EC); color: #26215C; }
+.node-avatar.memorial {
+  background: linear-gradient(135deg, #D8CDB8, #B5A789);
+  color: #4A3F2D; filter: sepia(0.2);
+}
+.node-status {
+  position: absolute; bottom: -2px; right: -2px;
+  width: 20px; height: 20px;
+  border-radius: 50%; background: #FFFFFF;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.node-status.connected { background: var(--line-green); }
+.node-status.invited { background: #BA7517; }
+.node-status.not-invited { background: var(--text-soft); }
+.node-status.memorial { background: var(--memorial-gold); }
+.node-status i { font-size: 11px; color: #FFFFFF; }
+.node-name { font-family: 'Shippori Mincho', serif; font-size: 13px; font-weight: 500; margin: 0; line-height: 1.3; text-align: center; }
+.node-rel { font-size: 10px; color: var(--text-muted); margin: 1px 0 0; line-height: 1.3; text-align: center; }
+.node-status-text { font-size: 9px; margin: 3px 0 0; line-height: 1.2; }
+.node-status-text.connected { color: var(--line-green); }
+.node-status-text.invited { color: #BA7517; }
+.node-status-text.not-invited { color: var(--text-soft); }
+.node-status-text.memorial { color: var(--memorial-gold); }
+
+.tree-node.memorial .node-avatar { border-color: var(--memorial-gold); }
+.memorial-icon-overlay {
+  position: absolute; top: 0; right: 0;
+  width: 22px; height: 22px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  border: 1.5px solid var(--memorial-gold);
+}
+.memorial-icon-overlay svg { width: 12px; height: 12px; }
+
+.tree-vline { width: 2px; background: var(--border-strong); margin: 0 auto; }
+.tree-vline.short { height: 14px; }
+.tree-branch { position: relative; height: 30px; margin-bottom: 8px; }
+.tree-branch::before {
+  content: ""; position: absolute;
+  top: 0; left: 50%;
+  width: 2px; height: 14px;
+  background: var(--border-strong);
+  transform: translateX(-50%);
+}
+.tree-branch.two-children::after {
+  content: ""; position: absolute;
+  top: 14px; left: 25%; right: 25%;
+  height: 2px; background: var(--border-strong);
+}
+.tree-branch.two-children .branch-line-left,
+.tree-branch.two-children .branch-line-right {
+  position: absolute; top: 14px;
+  width: 2px; height: 16px;
+  background: var(--border-strong);
+}
+.tree-branch.two-children .branch-line-left { left: 25%; transform: translateX(-50%); }
+.tree-branch.two-children .branch-line-right { right: 25%; transform: translateX(50%); }
+
+.children-row {
+  display: flex; justify-content: space-around;
+  align-items: flex-start;
+}
+.son-family {
+  display: flex; flex-direction: column; align-items: center;
+  flex: 1;
+}
+.son-couple {
+  display: flex; align-items: flex-start;
+  gap: 4px; position: relative;
+}
+.son-couple::before {
+  content: ""; position: absolute;
+  left: 50%; top: 28px;
+  transform: translateX(-50%);
+  width: 8px; height: 2px;
+  background: var(--border-strong); z-index: 0;
+}
+.grandchild-line {
+  width: 2px; height: 16px; background: var(--border-strong);
+  margin-bottom: 4px;
+}
+
+.tree-stats {
+  display: flex; justify-content: space-around;
+  padding: 14px 16px;
+  background: var(--surface-warm);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin: 0 16px 16px;
+  border-radius: 12px;
+}
+.stat-mini { text-align: center; }
+.stat-mini-num {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 18px; font-weight: 600; line-height: 1;
+}
+.stat-mini-num.green { color: var(--line-green); }
+.stat-mini-num.gold { color: var(--memorial-gold); }
+.stat-mini-num.muted { color: var(--text-muted); }
+.stat-mini-label { font-size: 10px; color: var(--text-muted); margin-top: 4px; letter-spacing: 0.05em; }
+
+/* === Grave Map 拡張 === */
+.family-tabs {
+  display: flex; gap: 6px;
+  margin: 14px 16px 0;
+  background: var(--accent-soft); border-radius: 10px; padding: 3px;
+}
+.family-tab {
+  flex: 1; padding: 10px 0; text-align: center;
+  font-size: 13px; color: var(--text-muted); cursor: pointer;
+  border-radius: 8px; transition: all 0.2s ease; font-weight: 500;
+  font-family: 'Shippori Mincho', serif;
+  letter-spacing: 0.05em;
+}
+.family-tab.active { background: var(--surface); color: var(--text); box-shadow: 0 1px 2px rgba(60,50,35,0.06); }
+
+.fam-view { display: none; }
+.fam-view.active { display: block; }
+
+.grave-info-content {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 12px 14px;
+}
+.grave-info-icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: var(--accent); color: #FFFFFF;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.grave-info-icon i { font-size: 18px; }
+.grave-info-text { flex: 1; }
+
+.grave-stats-3col {
+  padding: 10px 14px;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  border-top: 1px solid var(--border);
+}
+.grave-stat-item {
+  text-align: center;
+  padding: 8px 4px;
+  border-radius: 8px;
+  background: var(--surface-warm);
+}
+.grave-stat-num {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 16px; font-weight: 600; line-height: 1.2;
+  color: var(--accent);
+}
+.grave-stat-label {
+  font-size: 10px; color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.status-banner {
+  margin: 0 16px 12px;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, rgba(255,124,0,0.08) 0%, rgba(46,139,87,0.05) 100%);
+  border: 1px solid rgba(255,124,0,0.2);
+  border-radius: 12px;
+  display: flex; align-items: center; gap: 10px;
+}
+.status-banner-icon {
+  width: 36px; height: 36px;
+  background: linear-gradient(180deg, var(--seven-orange) 0%, var(--seven-orange) 33%, #FFFFFF 33%, #FFFFFF 66%, var(--seven-green) 66%, var(--seven-green) 100%);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.status-banner-icon::after {
+  content: "7"; color: var(--seven-red); font-weight: 900; font-size: 14px;
+  font-family: 'Arial Black', sans-serif;
+}
+.status-banner-text { flex: 1; }
+.status-banner-title {
+  font-size: 12px; font-weight: 500; margin: 0;
+  color: var(--text);
+}
+.status-banner-detail {
+  font-size: 10px; color: var(--text-muted);
+  margin: 2px 0 0;
+}
+.status-banner-cta {
+  font-size: 11px; color: var(--seven-orange);
+  font-weight: 500; cursor: pointer;
+}
+
+.history-section {
+  background: var(--surface);
+  margin: 0 16px;
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+}
+.history-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-warm);
+}
+.history-tab {
+  flex: 1; padding: 12px 0;
+  text-align: center;
+  font-size: 13px; color: var(--text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+.history-tab.active {
+  color: var(--text);
+  border-bottom-color: var(--accent);
+  background: var(--surface);
+}
+.history-tab i {
+  font-size: 14px;
+  vertical-align: -2px;
+  margin-right: 4px;
+}
+.history-tab-count {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 1px 6px;
+  background: var(--accent-soft);
+  color: var(--text-muted);
+  border-radius: 999px;
+  font-size: 10px;
+}
+.history-tab.active .history-tab-count {
+  background: var(--accent);
+  color: #FFFFFF;
+}
+
+.timeline-view { display: none; padding: 14px 14px 8px; }
+.timeline-view.active { display: block; }
+
+.timeline-item {
+  display: flex; gap: 10px;
+  padding-bottom: 14px;
+  position: relative;
+}
+.timeline-item:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  left: 19px; top: 38px; bottom: 4px;
+  width: 2px;
+  background: var(--border);
+}
+
+.timeline-dot {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; z-index: 1;
+  position: relative;
+}
+.timeline-dot.visit-self { background: linear-gradient(135deg, #FBF6E5, #F4E5C2); border: 2px solid var(--gold); }
+.timeline-dot.visit-family { background: var(--accent-soft); }
+.timeline-dot.visit-relative { background: rgba(255,124,0,0.1); }
+.timeline-dot.flower { background: rgba(244,192,209,0.3); }
+.timeline-dot.seven {
+  background: linear-gradient(180deg, var(--seven-orange) 0%, var(--seven-orange) 33%, #FFFFFF 33%, #FFFFFF 66%, var(--seven-green) 66%, var(--seven-green) 100%);
+}
+.timeline-dot.seven::after {
+  content: "7"; color: var(--seven-red); font-weight: 900; font-size: 13px;
+  font-family: 'Arial Black', sans-serif;
+}
+.timeline-dot i { font-size: 16px; }
+.timeline-dot.visit-self i { color: var(--gold); }
+.timeline-dot.visit-family i { color: var(--accent); }
+.timeline-dot.visit-relative i { color: var(--seven-orange); }
+
+.timeline-content { flex: 1; padding-bottom: 8px; }
+.timeline-date {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+}
+.timeline-title {
+  font-size: 13px; font-weight: 500; margin: 0;
+  color: var(--text); line-height: 1.5;
+}
+.timeline-by {
+  font-size: 11px; color: var(--text-muted); margin-top: 2px;
+}
+.timeline-photo {
+  margin-top: 8px; width: 100%; height: 140px;
+  background: var(--surface-warm);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.timeline-photo.grave-pic-1 { background: linear-gradient(135deg, #C0DAC0 0%, #9DC09D 100%); }
+.timeline-photo.grave-pic-2 { background: linear-gradient(135deg, #D4E5D4 0%, #A8C8A8 100%); }
+.timeline-photo.grave-pic-3 { background: linear-gradient(135deg, #E8F0E8 0%, #C0DAC0 100%); }
+.timeline-photo-overlay {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(4px);
+}
+.timeline-photo-overlay-text {
+  font-size: 11px; color: var(--text-muted);
+  display: flex; align-items: center; gap: 4px;
+}
+.timeline-actions {
+  display: flex; gap: 6px;
+  margin-top: 8px; flex-wrap: wrap;
+}
+.timeline-action-chip {
+  display: inline-flex; align-items: center; gap: 3px;
+  padding: 3px 8px;
+  background: var(--surface-warm);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+.timeline-action-chip i { font-size: 12px; }
+.timeline-action-chip.with-flower {
+  background: rgba(244,192,209,0.15);
+  border-color: rgba(244,192,209,0.4);
+  color: #B85478;
+}
+.timeline-action-chip.with-cleaning {
+  background: rgba(255,124,0,0.08);
+  border-color: rgba(255,124,0,0.2);
+  color: #B85100;
+}
+.price-tag {
+  font-size: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 6px;
+  color: var(--text-muted);
+  margin-left: 4px;
+}
+
+.action-section {
+  padding: 14px 16px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+}
+.action-card {
+  padding: 14px 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 6px;
+}
+.action-card:active { transform: scale(0.97); background: var(--surface-warm); }
+.action-card-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+}
+.action-card-icon i { font-size: 22px; color: #FFFFFF; }
+.action-card.visit .action-card-icon { background: var(--accent); }
+.action-card.cleaning .action-card-icon {
+  background: linear-gradient(180deg, var(--seven-orange) 0%, var(--seven-orange) 33%, #FFFFFF 33%, #FFFFFF 66%, var(--seven-green) 66%, var(--seven-green) 100%);
+  border: 1px solid #DDD;
+}
+.action-card.cleaning .action-card-icon::after {
+  content: "7"; color: var(--seven-red); font-weight: 900; font-size: 16px;
+  font-family: 'Arial Black', sans-serif;
+}
+.action-card.cleaning .action-card-icon i { display: none; }
+.action-card-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 13px; font-weight: 500;
+  margin: 0; color: var(--text);
+}
+.action-card-sub { font-size: 10px; color: var(--text-muted); }
+
+.footer-note {
+  margin: 0 16px 16px;
+  padding: 12px 14px;
+  background: var(--surface-warm);
+  border-radius: 10px;
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+.footer-note i { color: var(--accent); vertical-align: -2px; margin-right: 4px; }
+
+/* Manage 拡張用カラー */
+.manage-icon.inheritance { background: #E6F1FB; color: #1E5687; }
+.manage-icon.ending-note { background: #E8F5EE; color: #237853; }
+
 </style>
 </head>
 <body>
@@ -1450,7 +2156,7 @@ body { min-height: 100vh; min-height: 100dvh; }
     <div class="page-body">
       <div class="company-card" data-goto="company">
         <div class="company-card-top">
-          <div class="logo-frame brand-blue" style="padding: 8px;">
+          <div class="logo-frame brand-blue" style="overflow: hidden; padding: 6px;">
             <img src="memoreed_logo.png" alt="メモリード" style="width: 100%; height: 100%; object-fit: contain;">
           </div>
           <div class="company-info">
@@ -1537,8 +2243,8 @@ body { min-height: 100vh; min-height: 100dvh; }
     </div>
 
     <div style="padding: 32px 20px 24px; text-align: center; background: var(--surface-warm); border-bottom: 1px solid var(--border);">
-      <div class="logo-frame brand-blue" style="width: 88px; height: 88px; margin: 0 auto 16px; padding: 12px;">
-        <img src="memoreed_logo.png" alt="メモリード" style="width: 100%; height: 100%; object-fit: contain;">
+      <div style="width: 88px; height: 88px; border-radius: 20px; background: #FFFFFF; border: 1px solid #B5D4F4; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; box-shadow: 0 4px 14px rgba(60,50,35,0.06);">
+        <img src="memoreed_logo.png" alt="メモリード" style="width: 80%; height: 80%; object-fit: contain;">
       </div>
       <p style="font-family: 'Shippori Mincho', serif; font-size: 20px; font-weight: 500; margin: 0;">株式会社メモリード</p>
       <div style="display: inline-flex; align-items: center; gap: 4px; margin-top: 10px; padding: 4px 12px; background: var(--accent-soft); border-radius: 999px;">
@@ -1716,6 +2422,28 @@ body { min-height: 100vh; min-height: 100dvh; }
           </div>
           <i class="ti ti-chevron-right chevron"></i>
         </div>
+        <div class="manage-item" data-goto="inheritance">
+          <div class="manage-icon inheritance"><i class="ti ti-file-certificate"></i></div>
+          <div class="manage-text">
+            <div class="manage-title-row">
+              <p class="manage-name">相続</p>
+              <span class="manage-badge new">NEW</span>
+            </div>
+            <p class="manage-desc">財産・遺言の整理</p>
+          </div>
+          <i class="ti ti-chevron-right chevron"></i>
+        </div>
+        <div class="manage-item" data-goto="ending-note">
+          <div class="manage-icon ending-note"><i class="ti ti-notebook"></i></div>
+          <div class="manage-text">
+            <div class="manage-title-row">
+              <p class="manage-name">エンディングノート</p>
+              <span class="manage-badge new">NEW</span>
+            </div>
+            <p class="manage-desc">大切な情報をまとめて整理</p>
+          </div>
+          <i class="ti ti-chevron-right chevron"></i>
+        </div>
       </div>
     </div>
 
@@ -1757,118 +2485,436 @@ body { min-height: 100vh; min-height: 100dvh; }
         <i class="ti ti-users" style="color: var(--line-green);"></i>
       </div>
       <h2>家族との繋がり</h2>
-      <p>LINEで繋がっていれば、<br>日記や写真を簡単に共有できます</p>
+      <p>あなたを支える、大切な家族<br>そしてご縁のあった皆さま</p>
     </div>
 
-    <div style="padding: 16px 0;">
+    <div class="tree-tabs">
+      <div class="tree-tab" id="fc-tab-tree" onclick="switchFcView('tree')">家系図</div>
+      <div class="tree-tab active" id="fc-tab-list" onclick="switchFcView('list')">リスト表示</div>
+    </div>
 
-      <div class="family-summary">
-        <div class="family-summary-icon">
-          <i class="ti ti-brand-line"></i>
+    <!-- ======== LIST VIEW ======== -->
+    <div class="fc-view active" id="fc-view-list">
+
+      <div class="status-overview">
+        <div class="status-card connected">
+          <div class="status-card-icon"><i class="ti ti-check"></i></div>
+          <div class="status-card-num connected">4</div>
+          <div class="status-card-label">連携済</div>
         </div>
-        <div class="family-summary-text">
-          <p class="family-summary-title">LINE連携済 ・ 4 / 6 人</p>
-          <p class="family-summary-detail">残り2名にも招待を送れます</p>
+        <div class="status-card invited">
+          <div class="status-card-icon"><i class="ti ti-mail"></i></div>
+          <div class="status-card-num invited">1</div>
+          <div class="status-card-label">招待中</div>
+        </div>
+        <div class="status-card not-invited">
+          <div class="status-card-icon"><i class="ti ti-circle-dashed"></i></div>
+          <div class="status-card-num not-invited">1</div>
+          <div class="status-card-label">未招待</div>
         </div>
       </div>
 
-      <div style="padding: 0 16px;">
-        <div class="family-list">
+      <div class="filter-chips">
+        <div class="filter-chip active">すべて<span class="filter-chip-count">10</span></div>
+        <div class="filter-chip">家族<span class="filter-chip-count">6</span></div>
+        <div class="filter-chip">先立たれた方<span class="filter-chip-count">4</span></div>
+        <div class="filter-chip">未招待<span class="filter-chip-count">1</span></div>
+      </div>
 
-          <div class="family-card">
-            <div class="family-avatar husband">和</div>
-            <div class="family-info">
-              <div class="family-name-row">
-                <p class="family-name">糸和 一郎</p>
-                <span class="family-relation">主人</span>
-                <span class="line-badge">L</span>
-              </div>
-              <div class="family-status connected">
-                <i class="ti ti-check"></i>LINE連携済
-              </div>
+      <div class="list-section-header">
+        <span class="list-section-title"><i class="ti ti-star"></i>本人</span>
+      </div>
+      <div class="list-card-group">
+        <div class="list-card self">
+          <div class="list-card-avatar self"></div>
+          <div class="list-card-info">
+            <div class="list-card-name-row">
+              <p class="list-card-name">糸和 花子</p>
+              <span class="list-card-self-badge">本人</span>
             </div>
-            <i class="ti ti-chevron-right chevron"></i>
+            <p class="list-card-rel">85歳・1941年4月3日生まれ</p>
           </div>
+          <i class="ti ti-chevron-right list-card-chevron"></i>
+        </div>
+      </div>
 
-          <div class="family-card">
-            <div class="family-avatar son1">健</div>
-            <div class="family-info">
-              <div class="family-name-row">
-                <p class="family-name">糸和 健一</p>
-                <span class="family-relation">長男 ・ 59歳</span>
-                <span class="line-badge">L</span>
-              </div>
-              <div class="family-status connected">
-                <i class="ti ti-check"></i>LINE連携済
-              </div>
+      <div class="list-section-header">
+        <span class="list-section-title">
+          <i class="ti ti-check" style="color: var(--line-green);"></i>連携済の家族
+        </span>
+        <span class="list-section-count">4 名</span>
+      </div>
+      <div class="list-card-group">
+        <div class="list-card">
+          <div class="list-card-avatar husband">和</div>
+          <div class="list-card-info">
+            <div class="list-card-name-row">
+              <p class="list-card-name">糸和 一郎</p>
+              <span class="list-card-line-badge">L</span>
             </div>
-            <i class="ti ti-chevron-right chevron"></i>
-          </div>
-
-          <div class="family-card">
-            <div class="family-avatar son1wife">由</div>
-            <div class="family-info">
-              <div class="family-name-row">
-                <p class="family-name">糸和 由美</p>
-                <span class="family-relation">長男の妻 ・ 57歳</span>
-              </div>
-              <div class="family-status invited">
-                <i class="ti ti-mail"></i>招待中（3日前に送信）
-              </div>
+            <p class="list-card-rel">主人</p>
+            <div class="list-card-status connected">
+              <i class="ti ti-check"></i>LINE連携済
             </div>
-            <i class="ti ti-chevron-right chevron"></i>
           </div>
-
-          <div class="family-card">
-            <div class="family-avatar grand1">桜</div>
-            <div class="family-info">
-              <div class="family-name-row">
-                <p class="family-name">糸和 さくら</p>
-                <span class="family-relation">孫（長男の娘）・ 30歳</span>
-                <span class="line-badge">L</span>
-              </div>
-              <div class="family-status connected">
-                <i class="ti ti-check"></i>LINE連携済
-              </div>
-            </div>
-            <i class="ti ti-chevron-right chevron"></i>
-          </div>
-
-          <div class="family-card">
-            <div class="family-avatar son2">隆</div>
-            <div class="family-info">
-              <div class="family-name-row">
-                <p class="family-name">糸和 隆二</p>
-                <span class="family-relation">次男 ・ 55歳</span>
-                <span class="line-badge">L</span>
-              </div>
-              <div class="family-status connected">
-                <i class="ti ti-check"></i>LINE連携済
-              </div>
-            </div>
-            <i class="ti ti-chevron-right chevron"></i>
-          </div>
-
-          <div class="family-card">
-            <div class="family-avatar son2wife">美</div>
-            <div class="family-info">
-              <div class="family-name-row">
-                <p class="family-name">糸和 美咲</p>
-                <span class="family-relation">次男の妻 ・ 53歳</span>
-              </div>
-              <div class="family-status not-invited">
-                <i class="ti ti-circle-dashed"></i>未招待
-              </div>
-            </div>
-            <i class="ti ti-chevron-right chevron"></i>
-          </div>
-
+          <i class="ti ti-chevron-right list-card-chevron"></i>
         </div>
 
+        <div class="list-card">
+          <div class="list-card-avatar son1">健</div>
+          <div class="list-card-info">
+            <div class="list-card-name-row">
+              <p class="list-card-name">糸和 健一</p>
+              <span class="list-card-line-badge">L</span>
+            </div>
+            <p class="list-card-rel">長男・59歳</p>
+            <div class="list-card-status connected">
+              <i class="ti ti-check"></i>LINE連携済 ・ 2025年12月から
+            </div>
+          </div>
+          <i class="ti ti-chevron-right list-card-chevron"></i>
+        </div>
+
+        <div class="list-card">
+          <div class="list-card-avatar grand1">桜</div>
+          <div class="list-card-info">
+            <div class="list-card-name-row">
+              <p class="list-card-name">糸和 さくら</p>
+              <span class="list-card-line-badge">L</span>
+            </div>
+            <p class="list-card-rel">孫（長男の娘）・30歳</p>
+            <div class="list-card-status connected">
+              <i class="ti ti-check"></i>LINE連携済 ・ 最も活発
+            </div>
+          </div>
+          <i class="ti ti-chevron-right list-card-chevron"></i>
+        </div>
+
+        <div class="list-card">
+          <div class="list-card-avatar son2">隆</div>
+          <div class="list-card-info">
+            <div class="list-card-name-row">
+              <p class="list-card-name">糸和 隆二</p>
+              <span class="list-card-line-badge">L</span>
+            </div>
+            <p class="list-card-rel">次男・55歳</p>
+            <div class="list-card-status connected">
+              <i class="ti ti-check"></i>LINE連携済
+            </div>
+          </div>
+          <i class="ti ti-chevron-right list-card-chevron"></i>
+        </div>
+      </div>
+
+      <div class="list-section-header">
+        <span class="list-section-title">
+          <i class="ti ti-mail" style="color: var(--invite-amber);"></i>招待中
+        </span>
+        <span class="list-section-count">1 名</span>
+      </div>
+      <div class="list-card-group">
+        <div class="list-card">
+          <div class="list-card-avatar son1wife">由</div>
+          <div class="list-card-info">
+            <div class="list-card-name-row">
+              <p class="list-card-name">糸和 由美</p>
+            </div>
+            <p class="list-card-rel">長男の妻・57歳</p>
+            <div class="list-card-status invited">
+              <i class="ti ti-mail"></i>3日前に招待済
+            </div>
+          </div>
+          <button class="list-card-cta remind">
+            <i class="ti ti-bell"></i>再送
+          </button>
+        </div>
+      </div>
+
+      <div class="list-section-header">
+        <span class="list-section-title">
+          <i class="ti ti-circle-dashed" style="color: var(--text-soft);"></i>未招待
+        </span>
+        <span class="list-section-count">1 名</span>
+      </div>
+      <div class="list-card-group">
+        <div class="list-card">
+          <div class="list-card-avatar son2wife">美</div>
+          <div class="list-card-info">
+            <div class="list-card-name-row">
+              <p class="list-card-name">糸和 美咲</p>
+            </div>
+            <p class="list-card-rel">次男の妻・53歳</p>
+            <div class="list-card-status not-invited">
+              <i class="ti ti-circle-dashed"></i>未招待
+            </div>
+          </div>
+          <button class="list-card-cta invite">
+            <i class="ti ti-send"></i>招待
+          </button>
+        </div>
+      </div>
+
+      <div class="list-section-header">
+        <span class="list-section-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#B5895E" stroke-width="1.5" style="width: 14px; height: 14px;"><path d="M12 22 C8 18 4 14 4 10 C4 7 6 5 9 5 C10 5 11 5.5 12 7 C13 5.5 14 5 15 5 C18 5 20 7 20 10 C20 14 16 18 12 22 Z"/></svg>
+          先立たれた方々
+        </span>
+        <span class="list-section-count">4 名</span>
+      </div>
+      <div class="list-card-group">
+        <div class="list-card memorial">
+          <div class="memorial-flower">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#B5895E" stroke-width="1.5"><path d="M12 22 C8 18 4 14 4 10 C4 7 6 5 9 5 C10 5 11 5.5 12 7 C13 5.5 14 5 15 5 C18 5 20 7 20 10 C20 14 16 18 12 22 Z"/></svg>
+          </div>
+          <div class="list-card-avatar memorial">茂</div>
+          <div class="list-card-info">
+            <p class="list-card-name">糸和 茂</p>
+            <p class="list-card-rel">義父（主人 一郎の父）</p>
+            <div class="list-card-status memorial">
+              <i class="ti ti-flower"></i>2015年逝去 ・ 享年85歳
+            </div>
+          </div>
+          <button class="list-card-cta view">
+            <i class="ti ti-external-link"></i>偲ぶ
+          </button>
+        </div>
+
+        <div class="list-card memorial">
+          <div class="memorial-flower">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#B5895E" stroke-width="1.5"><path d="M12 22 C8 18 4 14 4 10 C4 7 6 5 9 5 C10 5 11 5.5 12 7 C13 5.5 14 5 15 5 C18 5 20 7 20 10 C20 14 16 18 12 22 Z"/></svg>
+          </div>
+          <div class="list-card-avatar memorial">静</div>
+          <div class="list-card-info">
+            <p class="list-card-name">糸和 静子</p>
+            <p class="list-card-rel">義母（主人 一郎の母）</p>
+            <div class="list-card-status memorial">
+              <i class="ti ti-flower"></i>2020年逝去 ・ 享年88歳
+            </div>
+          </div>
+          <button class="list-card-cta view">
+            <i class="ti ti-external-link"></i>偲ぶ
+          </button>
+        </div>
+
+        <div class="list-card memorial">
+          <div class="memorial-flower">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#B5895E" stroke-width="1.5"><path d="M12 22 C8 18 4 14 4 10 C4 7 6 5 9 5 C10 5 11 5.5 12 7 C13 5.5 14 5 15 5 C18 5 20 7 20 10 C20 14 16 18 12 22 Z"/></svg>
+          </div>
+          <div class="list-card-avatar memorial">太</div>
+          <div class="list-card-info">
+            <p class="list-card-name">山田 太郎</p>
+            <p class="list-card-rel">父</p>
+            <div class="list-card-status memorial">
+              <i class="ti ti-flower"></i>2010年逝去 ・ 享年78歳
+            </div>
+          </div>
+          <button class="list-card-cta view">
+            <i class="ti ti-external-link"></i>偲ぶ
+          </button>
+        </div>
+
+        <div class="list-card memorial">
+          <div class="memorial-flower">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#B5895E" stroke-width="1.5"><path d="M12 22 C8 18 4 14 4 10 C4 7 6 5 9 5 C10 5 11 5.5 12 7 C13 5.5 14 5 15 5 C18 5 20 7 20 10 C20 14 16 18 12 22 Z"/></svg>
+          </div>
+          <div class="list-card-avatar memorial">久</div>
+          <div class="list-card-info">
+            <p class="list-card-name">山田 久子</p>
+            <p class="list-card-rel">母</p>
+            <div class="list-card-status memorial">
+              <i class="ti ti-flower"></i>2018年逝去 ・ 享年82歳
+            </div>
+          </div>
+          <button class="list-card-cta view">
+            <i class="ti ti-external-link"></i>偲ぶ
+          </button>
+        </div>
+      </div>
+
+      <div style="padding: 16px;">
         <button class="invite-button">
           <i class="ti ti-brand-line" style="font-size: 18px;"></i>LINEで家族を招待する
         </button>
+        <p style="text-align: center; font-size: 11px; color: var(--text-muted); margin: 12px 0 0;">
+          QRコード・メール・URLでも招待できます
+        </p>
+      </div>
 
+    </div>
+
+    <!-- ======== TREE VIEW ======== -->
+    <div class="fc-view" id="fc-view-tree">
+
+      <div class="tree-summary">
+        <div class="tree-summary-icon"><i class="ti ti-brand-line"></i></div>
+        <div class="tree-summary-text">
+          <p class="tree-summary-title">LINE連携済 ・ 4 / 6 人</p>
+          <p class="tree-summary-detail">残り2名にも招待を送れます</p>
+        </div>
+      </div>
+
+      <div class="tree-container">
+
+        <div class="tree-section">
+          <p class="tree-section-label">先 立 た れ た 方 々</p>
+          <div style="margin-bottom: 16px;">
+            <p style="text-align: center; font-size: 10px; color: var(--text-soft); margin: 0 0 8px;">主人 一郎の両親</p>
+            <div class="couple-row">
+              <div class="tree-node memorial">
+                <div class="node-avatar memorial">茂
+                  <div class="memorial-icon-overlay">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#B5895E" stroke-width="1.5"><path d="M12 22 C8 18 4 14 4 10 C4 7 6 5 9 5 C10 5 11 5.5 12 7 C13 5.5 14 5 15 5 C18 5 20 7 20 10 C20 14 16 18 12 22 Z"/></svg>
+                  </div>
+                  <div class="node-status memorial"><i class="ti ti-check"></i></div>
+                </div>
+                <p class="node-name">糸和 茂</p>
+                <p class="node-rel">義父</p>
+                <p class="node-status-text memorial">享年85歳・2015</p>
+              </div>
+              <div class="tree-node memorial">
+                <div class="node-avatar memorial">静
+                  <div class="memorial-icon-overlay">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#B5895E" stroke-width="1.5"><path d="M12 22 C8 18 4 14 4 10 C4 7 6 5 9 5 C10 5 11 5.5 12 7 C13 5.5 14 5 15 5 C18 5 20 7 20 10 C20 14 16 18 12 22 Z"/></svg>
+                  </div>
+                  <div class="node-status memorial"><i class="ti ti-check"></i></div>
+                </div>
+                <p class="node-name">糸和 静子</p>
+                <p class="node-rel">義母</p>
+                <p class="node-status-text memorial">享年88歳・2020</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p style="text-align: center; font-size: 10px; color: var(--text-soft); margin: 0 0 8px;">花子の両親</p>
+            <div class="couple-row">
+              <div class="tree-node memorial">
+                <div class="node-avatar memorial">太
+                  <div class="memorial-icon-overlay">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#B5895E" stroke-width="1.5"><path d="M12 22 C8 18 4 14 4 10 C4 7 6 5 9 5 C10 5 11 5.5 12 7 C13 5.5 14 5 15 5 C18 5 20 7 20 10 C20 14 16 18 12 22 Z"/></svg>
+                  </div>
+                  <div class="node-status memorial"><i class="ti ti-check"></i></div>
+                </div>
+                <p class="node-name">山田 太郎</p>
+                <p class="node-rel">父</p>
+                <p class="node-status-text memorial">享年78歳・2010</p>
+              </div>
+              <div class="tree-node memorial">
+                <div class="node-avatar memorial">久
+                  <div class="memorial-icon-overlay">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#B5895E" stroke-width="1.5"><path d="M12 22 C8 18 4 14 4 10 C4 7 6 5 9 5 C10 5 11 5.5 12 7 C13 5.5 14 5 15 5 C18 5 20 7 20 10 C20 14 16 18 12 22 Z"/></svg>
+                  </div>
+                  <div class="node-status memorial"><i class="ti ti-check"></i></div>
+                </div>
+                <p class="node-name">山田 久子</p>
+                <p class="node-rel">母</p>
+                <p class="node-status-text memorial">享年82歳・2018</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tree-section">
+          <p class="tree-section-label">わ た し と 主 人</p>
+          <div class="couple-row">
+            <div class="tree-node">
+              <div class="node-avatar husband">和
+                <div class="node-status connected"><i class="ti ti-check"></i></div>
+              </div>
+              <p class="node-name">糸和 一郎</p>
+              <p class="node-rel">主人</p>
+              <p class="node-status-text connected">LINE連携済</p>
+            </div>
+            <div style="padding: 0;">
+              <div class="tree-self-card">
+                <span class="tree-self-badge">本人</span>
+                <div class="tree-self-avatar"></div>
+                <p class="tree-self-name">糸和 花子</p>
+                <p class="tree-self-meta">85歳</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tree-section">
+          <p class="tree-section-label">子 ど も た ち</p>
+          <div class="tree-vline short"></div>
+          <div class="tree-branch two-children">
+            <div class="branch-line-left"></div>
+            <div class="branch-line-right"></div>
+          </div>
+          <div class="children-row">
+            <div class="son-family">
+              <div class="son-couple">
+                <div class="tree-node">
+                  <div class="node-avatar son1">健
+                    <div class="node-status connected"><i class="ti ti-check"></i></div>
+                  </div>
+                  <p class="node-name">糸和 健一</p>
+                  <p class="node-rel">長男・59歳</p>
+                  <p class="node-status-text connected">LINE連携済</p>
+                </div>
+                <div class="tree-node">
+                  <div class="node-avatar son1wife">由
+                    <div class="node-status invited"><i class="ti ti-mail"></i></div>
+                  </div>
+                  <p class="node-name">糸和 由美</p>
+                  <p class="node-rel">長男の妻・57歳</p>
+                  <p class="node-status-text invited">招待中</p>
+                </div>
+              </div>
+              <div class="grandchild-line"></div>
+              <div class="tree-node">
+                <div class="node-avatar grand1">桜
+                  <div class="node-status connected"><i class="ti ti-check"></i></div>
+                </div>
+                <p class="node-name">糸和 さくら</p>
+                <p class="node-rel">孫・30歳</p>
+                <p class="node-status-text connected">LINE連携済</p>
+              </div>
+            </div>
+            <div class="son-family">
+              <div class="son-couple">
+                <div class="tree-node">
+                  <div class="node-avatar son2">隆
+                    <div class="node-status connected"><i class="ti ti-check"></i></div>
+                  </div>
+                  <p class="node-name">糸和 隆二</p>
+                  <p class="node-rel">次男・55歳</p>
+                  <p class="node-status-text connected">LINE連携済</p>
+                </div>
+                <div class="tree-node">
+                  <div class="node-avatar son2wife">美
+                    <div class="node-status not-invited"><i class="ti ti-circle-dashed"></i></div>
+                  </div>
+                  <p class="node-name">糸和 美咲</p>
+                  <p class="node-rel">次男の妻・53歳</p>
+                  <p class="node-status-text not-invited">未招待</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tree-stats">
+        <div class="stat-mini">
+          <div class="stat-mini-num green">4</div>
+          <div class="stat-mini-label">連携済</div>
+        </div>
+        <div class="stat-mini">
+          <div class="stat-mini-num muted">2</div>
+          <div class="stat-mini-label">未連携</div>
+        </div>
+        <div class="stat-mini">
+          <div class="stat-mini-num gold">4</div>
+          <div class="stat-mini-label">先立たれた方</div>
+        </div>
+      </div>
+
+      <div style="padding: 0 16px 16px;">
+        <button class="invite-button">
+          <i class="ti ti-brand-line" style="font-size: 18px;"></i>LINEで家族を招待する
+        </button>
         <p style="text-align: center; font-size: 11px; color: var(--text-muted); margin: 12px 0 0;">
           QRコード・メール・URLでも招待できます
         </p>
@@ -1885,7 +2931,7 @@ body { min-height: 100vh; min-height: 100dvh; }
         <i class="ti ti-arrow-left" data-back="manage"></i>
         <span class="title-text">お墓マップ</span>
       </div>
-      <i class="ti ti-edit"></i>
+      <i class="ti ti-dots-vertical" style="color: var(--text-muted); font-size: 22px;"></i>
     </div>
 
     <div class="page-hero">
@@ -1893,98 +2939,488 @@ body { min-height: 100vh; min-height: 100dvh; }
         <i class="ti ti-map-pin" style="color: var(--seven-orange);"></i>
       </div>
       <h2>お墓マップ</h2>
-      <p>お墓参りの拠点として、<br>最寄りのセブン-イレブンをご案内</p>
+      <p>ご先祖の眠る場所を、いつでも見守る</p>
     </div>
 
-    <div class="grave-map">
-      <!-- Grave marker (center) -->
-      <div class="grave-marker">
-        <div class="grave-marker-pin">
-          <i class="ti ti-flame"></i>
+    <div class="family-tabs">
+      <div class="family-tab active" id="gv-ftab-itowa" onclick="switchGraveFamily('itowa')">糸和家</div>
+      <div class="family-tab" id="gv-ftab-yamada" onclick="switchGraveFamily('yamada')">山田家</div>
+    </div>
+
+    <!-- =========== 糸和家 =========== -->
+    <div class="fam-view active" id="gv-fam-itowa">
+
+      <div class="grave-map">
+        <div class="grave-marker">
+          <div class="grave-marker-pin">
+            <i class="ti ti-flame"></i>
+          </div>
+          <div class="grave-marker-label">糸和家のお墓</div>
         </div>
-        <div class="grave-marker-label">糸和家のお墓</div>
+        <div class="seven-marker" style="top: 28%; left: 22%;"><div class="seven-marker-icon">7</div></div>
+        <div class="seven-marker" style="top: 65%; left: 18%;"><div class="seven-marker-icon">7</div></div>
+        <div class="seven-marker" style="top: 35%; left: 78%;"><div class="seven-marker-icon">7</div></div>
       </div>
 
-      <!-- Seven-Eleven markers around -->
-      <div class="seven-marker" style="top: 28%; left: 22%;">
-        <div class="seven-marker-icon">7</div>
+      <div class="grave-info">
+        <div class="grave-info-content">
+          <div class="grave-info-icon"><i class="ti ti-flame"></i></div>
+          <div class="grave-info-text">
+            <p class="grave-info-name">糸和家のお墓</p>
+            <p class="grave-info-addr">愛知県名古屋市千種区東山元町 ◯◯霊園</p>
+          </div>
+        </div>
+        <div class="grave-stats-3col">
+          <div class="grave-stat-item">
+            <div class="grave-stat-num">12</div>
+            <div class="grave-stat-label">この1年のお参り</div>
+          </div>
+          <div class="grave-stat-item">
+            <div class="grave-stat-num">8</div>
+            <div class="grave-stat-label">セブン清掃</div>
+          </div>
+          <div class="grave-stat-item">
+            <div class="grave-stat-num">3日前</div>
+            <div class="grave-stat-label">最終訪問</div>
+          </div>
+        </div>
       </div>
-      <div class="seven-marker" style="top: 65%; left: 18%;">
-        <div class="seven-marker-icon">7</div>
+
+      <div class="status-banner">
+        <div class="status-banner-icon"></div>
+        <div class="status-banner-text">
+          <p class="status-banner-title">次回のお墓清掃 ・ 5月20日（水）予定</p>
+          <p class="status-banner-detail">セブン-イレブン名古屋東山店 ・ お花付き</p>
+        </div>
+        <div class="status-banner-cta">変更</div>
       </div>
-      <div class="seven-marker" style="top: 35%; left: 78%;">
-        <div class="seven-marker-icon">7</div>
+
+      <div class="history-section">
+        <div class="history-tabs">
+          <div class="history-tab active" id="gv-htab-itowa-visit" onclick="switchGraveHistory('itowa-visit')">
+            <i class="ti ti-walk"></i>お参り履歴
+            <span class="history-tab-count">12</span>
+          </div>
+          <div class="history-tab" id="gv-htab-itowa-clean" onclick="switchGraveHistory('itowa-clean')">
+            <i class="ti ti-sparkles"></i>清掃履歴
+            <span class="history-tab-count">8</span>
+          </div>
+        </div>
+
+        <div class="timeline-view active" id="gv-hview-itowa-visit">
+          <div class="timeline-item">
+            <div class="timeline-dot visit-family"><i class="ti ti-walk"></i></div>
+            <div class="timeline-content">
+              <div class="timeline-date">2026 年 5 月 7 日 ・ 木</div>
+              <p class="timeline-title">お参りに行きました</p>
+              <p class="timeline-by">糸和 健一（長男）・ 仕事帰りに</p>
+              <div class="timeline-photo grave-pic-1">
+                <div class="timeline-photo-overlay">
+                  <div class="timeline-photo-overlay-text"><i class="ti ti-photo"></i>お墓の写真</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot visit-self"><i class="ti ti-walk"></i></div>
+            <div class="timeline-content">
+              <div class="timeline-date">2026 年 4 月 30 日 ・ 木</div>
+              <p class="timeline-title">主人と一緒にお参り</p>
+              <p class="timeline-by">糸和 花子（あなた）・ 一郎</p>
+              <div class="timeline-actions">
+                <div class="timeline-action-chip with-flower">
+                  <i class="ti ti-flower"></i>お花を供えました
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot visit-family"><i class="ti ti-walk"></i></div>
+            <div class="timeline-content">
+              <div class="timeline-date">2026 年 4 月 5 日 ・ 日</div>
+              <p class="timeline-title">家族みんなでお参り</p>
+              <p class="timeline-by">糸和 健一・由美・さくら</p>
+              <div class="timeline-photo grave-pic-2">
+                <div class="timeline-photo-overlay">
+                  <div class="timeline-photo-overlay-text"><i class="ti ti-photo"></i>桜とお墓</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot visit-self"><i class="ti ti-walk"></i></div>
+            <div class="timeline-content">
+              <div class="timeline-date">2026 年 3 月 21 日 ・ 春分</div>
+              <p class="timeline-title">春のお彼岸</p>
+              <p class="timeline-by">糸和 花子（あなた）・ 一郎</p>
+              <div class="timeline-actions">
+                <div class="timeline-action-chip with-flower">
+                  <i class="ti ti-flower"></i>お花
+                </div>
+                <div class="timeline-action-chip with-cleaning">
+                  <i class="ti ti-sparkles"></i>セブン清掃
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot visit-family"><i class="ti ti-walk"></i></div>
+            <div class="timeline-content">
+              <div class="timeline-date">2026 年 2 月 11 日 ・ 祝</div>
+              <p class="timeline-title">隆二が命日にお参り</p>
+              <p class="timeline-by">糸和 隆二（次男）</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot visit-self"><i class="ti ti-walk"></i></div>
+            <div class="timeline-content">
+              <div class="timeline-date">2026 年 1 月 5 日 ・ 月</div>
+              <p class="timeline-title">新年のご挨拶</p>
+              <p class="timeline-by">糸和 花子（あなた）・ 一郎</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot visit-relative"><i class="ti ti-walk"></i></div>
+            <div class="timeline-content">
+              <div class="timeline-date">2025 年 8 月 15 日 ・ お盆</div>
+              <p class="timeline-title">お盆のお参り（家族集合）</p>
+              <p class="timeline-by">糸和家 一同（8名）</p>
+              <div class="timeline-photo grave-pic-3">
+                <div class="timeline-photo-overlay">
+                  <div class="timeline-photo-overlay-text"><i class="ti ti-photo"></i>お盆の集合写真</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-view" id="gv-hview-itowa-clean">
+          <div class="timeline-item">
+            <div class="timeline-dot seven"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">2026 年 5 月 1 日 ・ 月初定期</div>
+              <p class="timeline-title">お墓清掃を完了しました</p>
+              <p class="timeline-by">セブン-イレブン名古屋東山店</p>
+              <div class="timeline-photo grave-pic-1">
+                <div class="timeline-photo-overlay">
+                  <div class="timeline-photo-overlay-text"><i class="ti ti-photo"></i>清掃完了の様子</div>
+                </div>
+              </div>
+              <div class="timeline-actions">
+                <div class="timeline-action-chip">
+                  <i class="ti ti-sparkles"></i>清掃 <span class="price-tag">¥16,500</span>
+                </div>
+                <div class="timeline-action-chip with-flower">
+                  <i class="ti ti-flower"></i>お花 <span class="price-tag">¥5,000</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot seven"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">2026 年 4 月 1 日 ・ 月初定期</div>
+              <p class="timeline-title">お墓清掃を完了しました</p>
+              <p class="timeline-by">セブン-イレブン名古屋東山店</p>
+              <div class="timeline-photo grave-pic-3">
+                <div class="timeline-photo-overlay">
+                  <div class="timeline-photo-overlay-text"><i class="ti ti-photo"></i>清掃完了の様子</div>
+                </div>
+              </div>
+              <div class="timeline-actions">
+                <div class="timeline-action-chip">
+                  <i class="ti ti-sparkles"></i>清掃 <span class="price-tag">¥16,500</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot seven"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">2026 年 3 月 21 日 ・ 春のお彼岸</div>
+              <p class="timeline-title">お墓清掃＋お花お供えを完了</p>
+              <p class="timeline-by">セブン-イレブン名古屋東山店</p>
+              <div class="timeline-photo grave-pic-2">
+                <div class="timeline-photo-overlay">
+                  <div class="timeline-photo-overlay-text"><i class="ti ti-photo"></i>お彼岸の特別清掃</div>
+                </div>
+              </div>
+              <div class="timeline-actions">
+                <div class="timeline-action-chip">
+                  <i class="ti ti-sparkles"></i>清掃 <span class="price-tag">¥16,500</span>
+                </div>
+                <div class="timeline-action-chip with-flower">
+                  <i class="ti ti-flower"></i>お花 <span class="price-tag">¥5,000</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot seven"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">2026 年 3 月 1 日 ・ 月初定期</div>
+              <p class="timeline-title">お墓清掃を完了しました</p>
+              <p class="timeline-by">セブン-イレブン名古屋東山店</p>
+              <div class="timeline-actions">
+                <div class="timeline-action-chip">
+                  <i class="ti ti-sparkles"></i>清掃 <span class="price-tag">¥16,500</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot seven"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">2025 年 8 月 13 日 ・ お盆前</div>
+              <p class="timeline-title">お盆前の特別清掃を完了</p>
+              <p class="timeline-by">セブン-イレブン名古屋東山店</p>
+              <div class="timeline-photo grave-pic-1">
+                <div class="timeline-photo-overlay">
+                  <div class="timeline-photo-overlay-text"><i class="ti ti-photo"></i>お盆前の清掃</div>
+                </div>
+              </div>
+              <div class="timeline-actions">
+                <div class="timeline-action-chip">
+                  <i class="ti ti-sparkles"></i>清掃 <span class="price-tag">¥16,500</span>
+                </div>
+                <div class="timeline-action-chip with-flower">
+                  <i class="ti ti-flower"></i>お花 <span class="price-tag">¥5,000</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="seven-marker" style="top: 72%; left: 75%;">
-        <div class="seven-marker-icon">7</div>
+
+      <div class="action-section">
+        <div class="action-card visit">
+          <div class="action-card-icon"><i class="ti ti-walk"></i></div>
+          <p class="action-card-title">お参りを記録</p>
+          <p class="action-card-sub">写真と一緒に</p>
+        </div>
+        <div class="action-card cleaning">
+          <div class="action-card-icon"></div>
+          <p class="action-card-title">セブンに依頼</p>
+          <p class="action-card-sub">清掃 ¥16,500〜</p>
+        </div>
+      </div>
+
+      <div class="footer-note">
+        <i class="ti ti-info-circle"></i>
+        お墓清掃は最寄りのセブン-イレブンが代行します。お花のお供えは別途￥5,000で承ります。お参りの記録は家族にも共有されます。
       </div>
     </div>
 
-    <div class="grave-info">
-      <div class="grave-info-header">
-        <p class="grave-info-name"><i class="ti ti-flame" style="font-size:14px; vertical-align:-2px; margin-right:4px;"></i>糸和家のお墓</p>
-        <p class="grave-info-addr">愛知県名古屋市千種区東山元町 ◯◯霊園</p>
+    <!-- =========== 山田家 =========== -->
+    <div class="fam-view" id="gv-fam-yamada">
+
+      <div class="grave-map" style="background: linear-gradient(135deg, #E5E0D2 0%, #D4CCB8 50%, #C4B89A 100%);">
+        <div class="grave-marker">
+          <div class="grave-marker-pin" style="background: var(--memorial-gold);">
+            <i class="ti ti-flame"></i>
+          </div>
+          <div class="grave-marker-label">山田家のお墓</div>
+        </div>
+        <div class="seven-marker" style="top: 32%; left: 30%;"><div class="seven-marker-icon">7</div></div>
+        <div class="seven-marker" style="top: 70%; left: 75%;"><div class="seven-marker-icon">7</div></div>
       </div>
-      <div style="padding: 12px 16px; font-size: 12px; color: var(--text-muted); border-top: 1px solid var(--border);">
-        <span style="display: inline-flex; align-items: center; gap: 4px;">
-          <i class="ti ti-clock" style="font-size: 14px;"></i>開園時間 6:00 - 18:00
-        </span>
+
+      <div class="grave-info">
+        <div class="grave-info-content">
+          <div class="grave-info-icon" style="background: var(--memorial-gold);"><i class="ti ti-flame"></i></div>
+          <div class="grave-info-text">
+            <p class="grave-info-name">山田家のお墓（実家）</p>
+            <p class="grave-info-addr">岐阜県岐阜市長森◯◯町 △△霊園</p>
+          </div>
+        </div>
+        <div class="grave-stats-3col">
+          <div class="grave-stat-item">
+            <div class="grave-stat-num">3</div>
+            <div class="grave-stat-label">この1年のお参り</div>
+          </div>
+          <div class="grave-stat-item">
+            <div class="grave-stat-num">12</div>
+            <div class="grave-stat-label">セブン清掃</div>
+          </div>
+          <div class="grave-stat-item">
+            <div class="grave-stat-num">2ヶ月前</div>
+            <div class="grave-stat-label">最終訪問</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="status-banner" style="background: linear-gradient(135deg, rgba(181,137,94,0.08) 0%, rgba(46,139,87,0.05) 100%); border-color: rgba(181,137,94,0.3);">
+        <div class="status-banner-icon"></div>
+        <div class="status-banner-text">
+          <p class="status-banner-title">次回のお墓清掃 ・ 5月15日（金）予定</p>
+          <p class="status-banner-detail">セブン-イレブン岐阜長森店 ・ お花付き</p>
+        </div>
+        <div class="status-banner-cta">変更</div>
+      </div>
+
+      <div class="history-section">
+        <div class="history-tabs">
+          <div class="history-tab active" id="gv-htab-yamada-visit" onclick="switchGraveHistory('yamada-visit')">
+            <i class="ti ti-walk"></i>お参り履歴
+            <span class="history-tab-count">3</span>
+          </div>
+          <div class="history-tab" id="gv-htab-yamada-clean" onclick="switchGraveHistory('yamada-clean')">
+            <i class="ti ti-sparkles"></i>清掃履歴
+            <span class="history-tab-count">12</span>
+          </div>
+        </div>
+
+        <div class="timeline-view active" id="gv-hview-yamada-visit">
+          <div class="timeline-item">
+            <div class="timeline-dot visit-self"><i class="ti ti-walk"></i></div>
+            <div class="timeline-content">
+              <div class="timeline-date">2026 年 3 月 21 日 ・ 春彼岸</div>
+              <p class="timeline-title">春のお彼岸 ・ 主人と岐阜へ</p>
+              <p class="timeline-by">糸和 花子（あなた）・ 一郎</p>
+              <div class="timeline-photo grave-pic-2">
+                <div class="timeline-photo-overlay">
+                  <div class="timeline-photo-overlay-text"><i class="ti ti-photo"></i>実家の墓前にて</div>
+                </div>
+              </div>
+              <div class="timeline-actions">
+                <div class="timeline-action-chip with-flower">
+                  <i class="ti ti-flower"></i>お花
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot visit-relative"><i class="ti ti-walk"></i></div>
+            <div class="timeline-content">
+              <div class="timeline-date">2025 年 8 月 14 日 ・ お盆</div>
+              <p class="timeline-title">お盆のお参り</p>
+              <p class="timeline-by">糸和 花子・一郎、健一一家、隆二夫婦</p>
+              <div class="timeline-photo grave-pic-1">
+                <div class="timeline-photo-overlay">
+                  <div class="timeline-photo-overlay-text"><i class="ti ti-photo"></i>家族みんなで岐阜へ</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot visit-self"><i class="ti ti-walk"></i></div>
+            <div class="timeline-content">
+              <div class="timeline-date">2025 年 6 月 10 日 ・ 母の命日</div>
+              <p class="timeline-title">母 久子の七回忌</p>
+              <p class="timeline-by">糸和 花子（あなた）・ 一郎</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-view" id="gv-hview-yamada-clean">
+          <div class="timeline-item">
+            <div class="timeline-dot seven"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">2026 年 5 月 1 日 ・ 月初定期</div>
+              <p class="timeline-title">お墓清掃を完了しました</p>
+              <p class="timeline-by">セブン-イレブン岐阜長森店</p>
+              <div class="timeline-photo grave-pic-2">
+                <div class="timeline-photo-overlay">
+                  <div class="timeline-photo-overlay-text"><i class="ti ti-photo"></i>清掃完了の様子</div>
+                </div>
+              </div>
+              <div class="timeline-actions">
+                <div class="timeline-action-chip">
+                  <i class="ti ti-sparkles"></i>清掃 <span class="price-tag">¥16,500</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot seven"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">2026 年 4 月 1 日 ・ 月初定期</div>
+              <p class="timeline-title">お墓清掃を完了しました</p>
+              <p class="timeline-by">セブン-イレブン岐阜長森店</p>
+              <div class="timeline-actions">
+                <div class="timeline-action-chip">
+                  <i class="ti ti-sparkles"></i>清掃 <span class="price-tag">¥16,500</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot seven"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">2026 年 3 月 21 日 ・ 春のお彼岸</div>
+              <p class="timeline-title">春のお彼岸 ・ 特別清掃＋お花</p>
+              <p class="timeline-by">セブン-イレブン岐阜長森店</p>
+              <div class="timeline-photo grave-pic-3">
+                <div class="timeline-photo-overlay">
+                  <div class="timeline-photo-overlay-text"><i class="ti ti-photo"></i>お花が供えられました</div>
+                </div>
+              </div>
+              <div class="timeline-actions">
+                <div class="timeline-action-chip">
+                  <i class="ti ti-sparkles"></i>清掃 <span class="price-tag">¥16,500</span>
+                </div>
+                <div class="timeline-action-chip with-flower">
+                  <i class="ti ti-flower"></i>お花 <span class="price-tag">¥5,000</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot seven"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">2026 年 3 月 1 日 ・ 月初定期</div>
+              <p class="timeline-title">お墓清掃を完了しました</p>
+              <p class="timeline-by">セブン-イレブン岐阜長森店</p>
+              <div class="timeline-actions">
+                <div class="timeline-action-chip">
+                  <i class="ti ti-sparkles"></i>清掃 <span class="price-tag">¥16,500</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot seven"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">2025 年 8 月 12 日 ・ お盆前</div>
+              <p class="timeline-title">お盆前の特別清掃を完了</p>
+              <p class="timeline-by">セブン-イレブン岐阜長森店</p>
+              <div class="timeline-photo grave-pic-1">
+                <div class="timeline-photo-overlay">
+                  <div class="timeline-photo-overlay-text"><i class="ti ti-photo"></i>お盆前の清掃</div>
+                </div>
+              </div>
+              <div class="timeline-actions">
+                <div class="timeline-action-chip">
+                  <i class="ti ti-sparkles"></i>清掃 <span class="price-tag">¥16,500</span>
+                </div>
+                <div class="timeline-action-chip with-flower">
+                  <i class="ti ti-flower"></i>お花 <span class="price-tag">¥5,000</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-section">
+        <div class="action-card visit">
+          <div class="action-card-icon"><i class="ti ti-walk"></i></div>
+          <p class="action-card-title">お参りを記録</p>
+          <p class="action-card-sub">写真と一緒に</p>
+        </div>
+        <div class="action-card cleaning">
+          <div class="action-card-icon"></div>
+          <p class="action-card-title">セブンに依頼</p>
+          <p class="action-card-sub">清掃 ¥16,500〜</p>
+        </div>
+      </div>
+
+      <div class="footer-note">
+        <i class="ti ti-info-circle"></i>
+        遠方のお墓も、最寄りのセブン-イレブンが代行清掃。離れていても、ご先祖をお守りできます。
       </div>
     </div>
 
-    <div class="seven-list-section">
-      <div class="seven-section-title">
-        <div class="seven-logo-mini"></div>
-        <h3>お墓周辺のセブン-イレブン</h3>
-      </div>
-
-      <div class="seven-store-card">
-        <div class="seven-store-icon"></div>
-        <div class="seven-store-info">
-          <p class="seven-store-name">セブン-イレブン 名古屋東山店</p>
-          <p class="seven-store-meta">愛知県名古屋市千種区東山元町</p>
-        </div>
-        <div>
-          <div class="seven-store-distance"><i class="ti ti-walk"></i>180m</div>
-        </div>
-      </div>
-
-      <div class="seven-store-card">
-        <div class="seven-store-icon"></div>
-        <div class="seven-store-info">
-          <p class="seven-store-name">セブン-イレブン 千種星ヶ丘店</p>
-          <p class="seven-store-meta">愛知県名古屋市千種区星ヶ丘</p>
-        </div>
-        <div>
-          <div class="seven-store-distance"><i class="ti ti-car"></i>650m</div>
-        </div>
-      </div>
-
-      <div class="seven-store-card">
-        <div class="seven-store-icon"></div>
-        <div class="seven-store-info">
-          <p class="seven-store-name">セブン-イレブン 名古屋猫洞通店</p>
-          <p class="seven-store-meta">愛知県名古屋市千種区猫洞通</p>
-        </div>
-        <div>
-          <div class="seven-store-distance"><i class="ti ti-car"></i>1.2km</div>
-        </div>
-      </div>
-    </div>
-
-    <div style="margin: 16px;">
-      <p style="font-size: 11px; color: var(--text-muted); line-height: 1.7; margin: 0 0 12px; padding: 12px 14px; background: var(--surface-warm); border-radius: 10px;">
-        <i class="ti ti-info-circle" style="font-size: 13px; vertical-align: -2px; margin-right: 4px; color: var(--accent);"></i>
-        セブン-イレブンでは、お供えのお花・お線香・お水・トイレなど、お墓参りに必要なものが揃います。
-      </p>
-    </div>
-
-    <div class="share-section">
-      <button class="share-button">
-        <i class="ti ti-share-2"></i>家族へ共有する
-      </button>
-      <p class="share-help">お墓の場所と周辺情報を、ご家族にお伝えします</p>
-    </div>
   </div>
 
   <!-- ============ Sticky Bottom Nav ============ -->
@@ -2152,6 +3588,47 @@ body { min-height: 100vh; min-height: 100dvh; }
       chatInput.style.height = Math.min(chatInput.scrollHeight, 100) + 'px';
     });
   }
+
+  // === 家族との繋がり：表示切替 ===
+  function switchFcView(name) {
+    document.querySelectorAll('.tree-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.fc-view').forEach(v => v.classList.remove('active'));
+    const tab = document.getElementById('fc-tab-' + name);
+    const view = document.getElementById('fc-view-' + name);
+    if (tab) tab.classList.add('active');
+    if (view) view.classList.add('active');
+  }
+
+  // === お墓マップ：家切替 ===
+  function switchGraveFamily(name) {
+    document.querySelectorAll('.family-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.fam-view').forEach(v => v.classList.remove('active'));
+    const tab = document.getElementById('gv-ftab-' + name);
+    const view = document.getElementById('gv-fam-' + name);
+    if (tab) tab.classList.add('active');
+    if (view) view.classList.add('active');
+  }
+
+  // === お墓マップ：履歴タブ切替 ===
+  function switchGraveHistory(name) {
+    const family = name.split('-')[0];
+    const familyContainer = document.getElementById('gv-fam-' + family);
+    if (!familyContainer) return;
+    familyContainer.querySelectorAll('.history-tab').forEach(t => t.classList.remove('active'));
+    familyContainer.querySelectorAll('.timeline-view').forEach(v => v.classList.remove('active'));
+    const tab = document.getElementById('gv-htab-' + name);
+    const view = document.getElementById('gv-hview-' + name);
+    if (tab) tab.classList.add('active');
+    if (view) view.classList.add('active');
+  }
+
+  // フィルターチップの動作
+  document.querySelectorAll('.filter-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+    });
+  });
 </script>
 </body>
 </html>
