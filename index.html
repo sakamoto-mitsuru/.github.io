@@ -2154,30 +2154,7 @@ body { min-height: 100vh; min-height: 100dvh; }
     </div>
 
     <div class="page-body">
-      <div class="company-card" data-goto="company">
-        <div class="company-card-top">
-          <div class="logo-frame brand-blue" style="overflow: hidden; padding: 6px;">
-            <img src="memoreed_logo.png" alt="メモリード" style="width: 100%; height: 100%; object-fit: contain;">
-          </div>
-          <div class="company-info">
-            <p class="company-name">株式会社メモリード</p>
-            <p class="company-category">葬儀社・長崎</p>
-          </div>
-          <i class="ti ti-chevron-right chevron"></i>
-        </div>
-        <div class="company-detail-rows">
-          <div class="detail-row">
-            <span class="label"><i class="ti ti-phone"></i>電話番号</span>
-            <span class="value tel">0120-XXX-XXX</span>
-          </div>
-          <div class="detail-row">
-            <span class="label"><i class="ti ti-id"></i>会員番号</span>
-            <span class="value code">M-0123-4567</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="company-card">
+      <div class="company-card" data-goto="company-aiplan">
         <div class="company-card-top">
           <div class="logo-frame brand-green" style="overflow: hidden; padding: 4px;">
             <img src="aiplan_logo.png" alt="あいプラングループ" style="width: 100%; height: 100%; object-fit: contain;">
@@ -2191,11 +2168,34 @@ body { min-height: 100vh; min-height: 100dvh; }
         <div class="company-detail-rows">
           <div class="detail-row">
             <span class="label"><i class="ti ti-phone"></i>電話番号</span>
-            <span class="value tel">0120-YYY-YYY</span>
+            <a href="tel:0120600300" class="value tel" style="color: var(--link); text-decoration: none;">0120-600-300</a>
           </div>
           <div class="detail-row">
             <span class="label"><i class="ti ti-id"></i>会員番号</span>
             <span class="value unset">未登録</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="company-card" data-goto="company-memoreed">
+        <div class="company-card-top">
+          <div class="logo-frame brand-blue" style="overflow: hidden; padding: 6px;">
+            <img src="memoreed_logo.png" alt="メモリード" style="width: 100%; height: 100%; object-fit: contain;">
+          </div>
+          <div class="company-info">
+            <p class="company-name">株式会社メモリード</p>
+            <p class="company-category">葬儀社・長崎</p>
+          </div>
+          <i class="ti ti-chevron-right chevron"></i>
+        </div>
+        <div class="company-detail-rows">
+          <div class="detail-row">
+            <span class="label"><i class="ti ti-phone"></i>電話番号</span>
+            <a href="tel:0958571777" class="value tel" style="color: var(--link); text-decoration: none;">095-857-1777</a>
+          </div>
+          <div class="detail-row">
+            <span class="label"><i class="ti ti-id"></i>会員番号</span>
+            <span class="value code">M-0123-4567</span>
           </div>
         </div>
       </div>
@@ -2233,7 +2233,7 @@ body { min-height: 100vh; min-height: 100dvh; }
   </div>
 
   <!-- ============ COMPANY DETAIL PAGE ============ -->
-  <div class="page" id="page-company">
+  <div class="page" id="page-company-memoreed">
     <div class="page-bar">
       <div class="left">
         <i class="ti ti-arrow-left" data-back="goen"></i>
@@ -2261,7 +2261,7 @@ body { min-height: 100vh; min-height: 100dvh; }
       <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden;">
         <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; font-size: 13px; border-bottom: 1px solid var(--border);">
           <span style="color: var(--text-muted); display: flex; align-items: center; gap: 5px;"><i class="ti ti-phone" style="font-size: 14px;"></i>電話番号</span>
-          <span style="color: var(--link);">0120-XXX-XXX</span>
+          <a href="tel:0958571777" style="color: var(--link); text-decoration: none;">095-857-1777</a>
         </div>
         <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; font-size: 13px; border-bottom: 1px solid var(--border);">
           <span style="color: var(--text-muted); display: flex; align-items: center; gap: 5px;"><i class="ti ti-id" style="font-size: 14px;"></i>会員番号</span>
@@ -2272,6 +2272,21 @@ body { min-height: 100vh; min-height: 100dvh; }
           <span>山田 太郎 様</span>
         </div>
       </div>
+      <p style="font-size: 11px; color: var(--text-muted); margin: 8px 4px 0; line-height: 1.6; display: flex; align-items: flex-start; gap: 5px;">
+        <i class="ti ti-info-circle" style="font-size: 13px; color: var(--accent); margin-top: 1px; flex-shrink: 0;"></i>
+        <span>お問い合わせや緊急時は会員番号をお伝えください。</span>
+      </p>
+    </div>
+
+    <div style="padding: 16px 16px 0;">
+      <a href="https://osoushiki.memolead.co.jp/" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--surface); border: 1px solid var(--border-strong); border-radius: 12px; text-decoration: none; color: var(--text); transition: all 0.2s ease;">
+        <span style="display: flex; align-items: center; gap: 10px;">
+          <i class="ti ti-world" style="font-size: 18px; color: var(--link);"></i>
+          <span style="font-size: 13px; font-weight: 500;">公式サイトを見る</span>
+        </span>
+        <i class="ti ti-external-link" style="font-size: 16px; color: var(--text-soft);"></i>
+      </a>
+      <p style="font-size: 11px; color: var(--text-soft); margin: 6px 4px 0;">osoushiki.memolead.co.jp</p>
     </div>
 
     <div style="padding: 20px 16px 0;">
@@ -2297,6 +2312,87 @@ body { min-height: 100vh; min-height: 100dvh; }
     </div>
   </div>
 
+  <!-- ============ COMPANY DETAIL PAGE: AIPLAN ============ -->
+  <div class="page" id="page-company-aiplan">
+    <div class="page-bar">
+      <div class="left">
+        <i class="ti ti-arrow-left" data-back="goen"></i>
+        <span class="title-text">ご縁</span>
+      </div>
+      <i class="ti ti-edit"></i>
+    </div>
+
+    <div style="padding: 32px 20px 24px; text-align: center; background: var(--surface-warm); border-bottom: 1px solid var(--border);">
+      <div style="width: 88px; height: 88px; border-radius: 20px; background: #FFFFFF; border: 1px solid #9FE1CB; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; box-shadow: 0 4px 14px rgba(60,50,35,0.06); overflow: hidden; padding: 8px;">
+        <img src="aiplan_logo.png" alt="あいプラングループ" style="width: 100%; height: 100%; object-fit: contain;">
+      </div>
+      <p style="font-family: 'Shippori Mincho', serif; font-size: 20px; font-weight: 500; margin: 0;">株式会社アイプラン</p>
+      <div style="display: inline-flex; align-items: center; gap: 4px; margin-top: 10px; padding: 4px 12px; background: var(--accent-soft); border-radius: 999px;">
+        <i class="ti ti-check" style="font-size: 12px; color: var(--accent);"></i>
+        <span style="font-size: 11px; color: var(--accent); font-weight: 500;">メモリーノート提携</span>
+      </div>
+      <p style="font-size: 12px; color: var(--text-muted); margin: 10px 0 0;">葬儀社・北海道</p>
+    </div>
+
+    <div style="padding: 20px 16px 0;">
+      <p style="font-size: 12px; color: var(--text-muted); margin: 0 0 10px; font-weight: 500; letter-spacing: 0.1em; display: flex; align-items: center; gap: 4px;">
+        <i class="ti ti-info-circle" style="font-size: 14px;"></i>基本情報
+      </p>
+      <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden;">
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; font-size: 13px; border-bottom: 1px solid var(--border);">
+          <span style="color: var(--text-muted); display: flex; align-items: center; gap: 5px;"><i class="ti ti-phone" style="font-size: 14px;"></i>電話番号</span>
+          <a href="tel:0120600300" style="color: var(--link); text-decoration: none;">0120-600-300</a>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; font-size: 13px; border-bottom: 1px solid var(--border);">
+          <span style="color: var(--text-muted); display: flex; align-items: center; gap: 5px;"><i class="ti ti-id" style="font-size: 14px;"></i>会員番号</span>
+          <span style="color: var(--text-soft); font-size: 12px;">未登録</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; font-size: 13px;">
+          <span style="color: var(--text-muted); display: flex; align-items: center; gap: 5px;"><i class="ti ti-user" style="font-size: 14px;"></i>担当者</span>
+          <span>田中 一郎 様</span>
+        </div>
+      </div>
+      <p style="font-size: 11px; color: var(--text-muted); margin: 8px 4px 0; line-height: 1.6; display: flex; align-items: flex-start; gap: 5px;">
+        <i class="ti ti-info-circle" style="font-size: 13px; color: var(--accent); margin-top: 1px; flex-shrink: 0;"></i>
+        <span>お問い合わせや緊急時は会員番号をお伝えください。</span>
+      </p>
+    </div>
+
+    <div style="padding: 16px 16px 0;">
+      <a href="https://www.apg-aiplan.com/" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--surface); border: 1px solid var(--border-strong); border-radius: 12px; text-decoration: none; color: var(--text); transition: all 0.2s ease;">
+        <span style="display: flex; align-items: center; gap: 10px;">
+          <i class="ti ti-world" style="font-size: 18px; color: var(--link);"></i>
+          <span style="font-size: 13px; font-weight: 500;">公式サイトを見る</span>
+        </span>
+        <i class="ti ti-external-link" style="font-size: 16px; color: var(--text-soft);"></i>
+      </a>
+      <p style="font-size: 11px; color: var(--text-soft); margin: 6px 4px 0;">www.apg-aiplan.com</p>
+    </div>
+
+    <div style="padding: 20px 16px 0;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 10px;">
+        <p style="font-size: 12px; color: var(--text-muted); margin: 0; font-weight: 500; letter-spacing: 0.1em; display: flex; align-items: center; gap: 4px;">
+          <i class="ti ti-notes" style="font-size: 14px;"></i>繋がり・メモ
+        </p>
+        <span style="font-size: 11px; color: var(--text-soft);">家族にも共有されます</span>
+      </div>
+      <div style="background: var(--note-bg); border-radius: 0 12px 12px 0; padding: 16px 18px; border-left: 3px solid var(--note-border);">
+        <p style="font-size: 14px; line-height: 1.85; margin: 0; color: var(--note-text);">北海道在住の親戚から教えてもらった葬儀社。やわらぎ斎場ブランドで地域に根ざした丁寧な対応が評判と聞いている。万一の時に備えて情報を残しておく。</p>
+      </div>
+      <button style="margin-top: 12px; padding: 8px 14px; border: 1px solid var(--border-strong); background: transparent; border-radius: 8px; color: var(--text-muted); font-size: 12px; cursor: pointer; font-family: inherit; display: inline-flex; align-items: center; gap: 4px;">
+        <i class="ti ti-edit" style="font-size: 13px;"></i>編集する
+      </button>
+    </div>
+
+    <div class="share-section" style="margin-top: 24px;">
+      <button class="share-button">
+        <i class="ti ti-share-2"></i>家族へ共有する
+      </button>
+      <p class="share-help">この企業の情報とメモを、ご家族に伝えます</p>
+    </div>
+  </div>
+
+  
   <!-- ============ LISTEN (AI CHAT) PAGE ============ -->
   <div class="page" id="page-listen">
     <div class="page-bar">
@@ -3503,6 +3599,8 @@ body { min-height: 100vh; min-height: 100dvh; }
       'timeline': 'diary',
       'goen': 'manage',
       'company': 'manage',
+      'company-memoreed': 'manage',
+      'company-aiplan': 'manage',
       'family': 'manage',
       'grave': 'manage',
       'manage': 'manage',
