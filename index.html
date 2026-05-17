@@ -2379,6 +2379,309 @@ body { min-height: 100vh; min-height: 100dvh; }
   display: flex; align-items: center; justify-content: center; gap: 6px;
 }
 .reg-demo-banner i { font-size: 13px; }
+
+/* === Company Detail History Section === */
+.co-history-section {
+  margin: 20px 16px 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.co-history-section-label {
+  font-size: 12px; color: var(--text-muted);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  margin: 0 0 10px 4px;
+  display: flex; align-items: center; gap: 4px;
+}
+.co-history-section-label i { font-size: 14px; }
+
+.co-history-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-warm);
+}
+.co-history-tab {
+  flex: 1; padding: 12px 0;
+  text-align: center;
+  font-size: 13px; color: var(--text-muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+.co-history-tab.active {
+  color: var(--text);
+  border-bottom-color: var(--accent);
+  background: var(--surface);
+}
+.co-history-tab i { font-size: 14px; vertical-align: -2px; margin-right: 4px; }
+.co-history-tab-count {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 1px 6px;
+  background: var(--accent-soft);
+  color: var(--text-muted);
+  border-radius: 999px;
+  font-size: 10px;
+}
+.co-history-tab.active .co-history-tab-count {
+  background: var(--accent);
+  color: #FFFFFF;
+}
+
+.co-timeline-view { display: none; padding: 14px 14px 8px; }
+.co-timeline-view.active { display: block; }
+
+.co-timeline-item {
+  display: flex; gap: 10px;
+  padding-bottom: 14px;
+  position: relative;
+}
+.co-timeline-item:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  left: 19px; top: 38px; bottom: 4px;
+  width: 2px;
+  background: var(--border);
+}
+
+.co-timeline-dot {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; z-index: 1;
+  position: relative;
+}
+.co-timeline-dot.event { background: #FBE5EC; }
+.co-timeline-dot.event i { color: #C46E8E; }
+.co-timeline-dot.consult { background: #E6F1FB; }
+.co-timeline-dot.consult i { color: #1E5687; }
+.co-timeline-dot.visit { background: var(--accent-soft); }
+.co-timeline-dot.visit i { color: var(--accent); }
+.co-timeline-dot.gift { background: #FAEEDA; }
+.co-timeline-dot.gift i { color: #854F0B; }
+.co-timeline-dot.contract { background: #E8F5EE; }
+.co-timeline-dot.contract i { color: #237853; }
+.co-timeline-dot.service { background: rgba(181,137,94,0.15); }
+.co-timeline-dot.service i { color: var(--memorial-gold); }
+.co-timeline-dot.dm { background: #F0E9DA; }
+.co-timeline-dot.dm i { color: var(--accent); }
+.co-timeline-dot.season { background: rgba(244,192,209,0.3); }
+.co-timeline-dot.season i { color: #B85478; }
+.co-timeline-dot i { font-size: 16px; }
+
+.co-timeline-content { flex: 1; padding-bottom: 8px; }
+.co-timeline-date {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+}
+.co-timeline-title {
+  font-size: 13px; font-weight: 500;
+  margin: 0;
+  color: var(--text);
+  line-height: 1.5;
+}
+.co-timeline-by {
+  font-size: 11px; color: var(--text-muted);
+  margin-top: 2px;
+  line-height: 1.6;
+}
+.co-timeline-note {
+  margin-top: 6px;
+  padding: 8px 10px;
+  background: var(--note-bg);
+  border-left: 2px solid var(--accent);
+  border-radius: 0 6px 6px 0;
+  font-size: 11px;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.co-timeline-actions {
+  display: flex; gap: 6px;
+  margin-top: 8px; flex-wrap: wrap;
+}
+.co-timeline-chip {
+  display: inline-flex; align-items: center; gap: 3px;
+  padding: 2px 8px;
+  background: var(--surface-warm);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+.co-timeline-chip i { font-size: 11px; }
+.co-timeline-chip.important {
+  background: rgba(186,117,23,0.08);
+  border-color: rgba(186,117,23,0.3);
+  color: #BA7517;
+}
+
+.co-add-button {
+  margin: 14px 16px;
+  display: flex; align-items: center; justify-content: center;
+  gap: 6px;
+  padding: 12px;
+  background: var(--surface);
+  border: 1.5px dashed var(--border-strong);
+  border-radius: 12px;
+  font-size: 13px;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+.co-add-button:active { transform: scale(0.99); background: var(--surface-warm); }
+.co-add-button i { font-size: 16px; }
+
+.co-history-header {
+  padding: 14px 16px;
+  background: var(--surface-warm);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 8px;
+}
+.co-history-header i { font-size: 16px; color: var(--accent); }
+.co-history-header-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 13px; font-weight: 500;
+  margin: 0;
+}
+.co-history-header-detail {
+  font-size: 11px; color: var(--text-muted);
+  margin-left: auto;
+}
+
+/* === Company Detail: Receive Info Banner === */
+.co-receive-banner {
+  margin: 20px 16px 0;
+  padding: 16px 18px;
+  background: linear-gradient(135deg, #FBF6E5 0%, #F4E5C2 100%);
+  border: 1px solid var(--gold);
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.co-receive-banner:active { transform: scale(0.99); }
+.co-receive-banner::before {
+  content: "";
+  position: absolute;
+  top: -20px; right: -20px;
+  width: 80px; height: 80px;
+  background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.co-receive-banner-header {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 8px;
+}
+.co-receive-banner-icon {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--gold); color: #FFFFFF;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  animation: bannerPulse 2.5s ease-in-out infinite;
+}
+@keyframes bannerPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(201,168,118,0.6); }
+  50% { transform: scale(1.05); box-shadow: 0 0 0 8px rgba(201,168,118,0); }
+}
+.co-receive-banner-icon i { font-size: 18px; }
+.co-receive-banner-badge {
+  position: absolute;
+  top: -2px; right: -2px;
+  width: 14px; height: 14px;
+  background: #E24B4A;
+  color: #FFFFFF;
+  border-radius: 50%;
+  font-size: 9px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid #FFFFFF;
+}
+.co-receive-banner-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 13px; font-weight: 500;
+  margin: 0;
+  color: #854F0B;
+  letter-spacing: 0.05em;
+}
+.co-receive-banner-content {
+  font-size: 13px;
+  color: var(--text);
+  margin: 0 0 8px;
+  line-height: 1.6;
+  font-weight: 500;
+}
+.co-receive-banner-meta {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+.co-receive-banner-cta {
+  display: inline-flex; align-items: center; gap: 4px;
+  color: #854F0B;
+  font-weight: 500;
+  font-size: 11px;
+  margin-top: 8px;
+}
+
+/* === LINE Connect Card === */
+.co-line-card {
+  margin: 16px 16px 0;
+  padding: 16px 18px;
+  background: linear-gradient(135deg, rgba(6,199,85,0.06) 0%, rgba(6,199,85,0.12) 100%);
+  border: 1px solid rgba(6,199,85,0.3);
+  border-radius: 14px;
+  display: flex; align-items: center; gap: 14px;
+}
+.co-line-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  background: var(--line-green);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(6,199,85,0.3);
+}
+.co-line-icon i { font-size: 28px; color: #FFFFFF; }
+.co-line-text { flex: 1; min-width: 0; }
+.co-line-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 14px; font-weight: 500;
+  margin: 0 0 2px;
+  color: var(--text);
+}
+.co-line-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+.co-line-button {
+  flex-shrink: 0;
+  padding: 8px 14px;
+  background: var(--line-green);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex; align-items: center; gap: 4px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.co-line-button:active { transform: scale(0.97); opacity: 0.95; }
+.co-line-button i { font-size: 13px; }
 </style>
 </head>
 <body>
@@ -3028,6 +3331,203 @@ body { min-height: 100vh; min-height: 100dvh; }
       </button>
     </div>
 
+    
+    <!-- 情報受信バナー -->
+    <div class="co-receive-banner">
+      <div class="co-receive-banner-header">
+        <div class="co-receive-banner-icon">
+          <i class="ti ti-mail-heart"></i>
+          <span class="co-receive-banner-badge">1</span>
+        </div>
+        <p class="co-receive-banner-title">メモリードからお便り</p>
+      </div>
+      <p class="co-receive-banner-content">夏のセミナーのご案内が届いています</p>
+      <div class="co-receive-banner-meta">
+        <i class="ti ti-clock"></i>
+        <span>2026年4月25日 ・ 5月8日開催</span>
+      </div>
+      <p class="co-receive-banner-cta">
+        詳しく見る
+        <i class="ti ti-arrow-right"></i>
+      </p>
+    </div>
+
+    <!-- LINE連携カード -->
+    <div class="co-line-card">
+      <div class="co-line-icon">
+        <i class="ti ti-brand-line"></i>
+      </div>
+      <div class="co-line-text">
+        <p class="co-line-title">LINEで繋がる</p>
+        <p class="co-line-desc">公式LINEで気軽にやりとりできます</p>
+      </div>
+      <a href="https://line.me/R/ti/p/@335lnnap" target="_blank" rel="noopener noreferrer" class="co-line-button">
+        <i class="ti ti-plus"></i>友だち追加
+      </a>
+    </div>
+
+<!-- やりとり履歴 -->
+    <div style="padding: 20px 16px 0;">
+      <p class="co-history-section-label"><i class="ti ti-history"></i>やりとり履歴</p>
+      <div class="co-history-section">
+        <div class="co-history-header">
+          <i class="ti ti-calendar-heart"></i>
+          <p class="co-history-header-title">これまでの繋がり</p>
+          <span class="co-history-header-detail">2003年〜・約23年</span>
+        </div>
+
+        <div class="co-history-tabs">
+          <div class="co-history-tab active" id="memo-htab-self" onclick="switchCoHistory('memoreed', 'self')">
+            <i class="ti ti-walk"></i>やりとり履歴
+            <span class="co-history-tab-count">8</span>
+          </div>
+          <div class="co-history-tab" id="memo-htab-news" onclick="switchCoHistory('memoreed', 'news')">
+            <i class="ti ti-mail"></i>お知らせ
+            <span class="co-history-tab-count">5</span>
+          </div>
+        </div>
+
+        <!-- やりとり履歴：メモリード -->
+        <div class="co-timeline-view active" id="memo-hview-self">
+
+          <div class="co-timeline-item">
+            <div class="co-timeline-dot event"><i class="ti ti-confetti"></i></div>
+            <div class="co-timeline-content">
+              <div class="co-timeline-date">2026 年 5 月 8 日 ・ 木</div>
+              <p class="co-timeline-title">終活セミナー参加（家族葬の選び方）</p>
+              <p class="co-timeline-by">主人と一緒に参加 ・ 場所：メモリードホール長崎</p>
+              <div class="co-timeline-note">家族葬とは何か、参列者の選び方など、とても分かりやすかった。</div>
+            </div>
+          </div>
+
+          <div class="co-timeline-item">
+            <div class="co-timeline-dot visit"><i class="ti ti-user-check"></i></div>
+            <div class="co-timeline-content">
+              <div class="co-timeline-date">2026 年 4 月 12 日 ・ 日</div>
+              <p class="co-timeline-title">担当者からの定期訪問</p>
+              <p class="co-timeline-by">山田太郎 様 ・ 自宅にて</p>
+            </div>
+          </div>
+
+          <div class="co-timeline-item">
+            <div class="co-timeline-dot season"><i class="ti ti-mail-opened"></i></div>
+            <div class="co-timeline-content">
+              <div class="co-timeline-date">2026 年 1 月 7 日 ・ 水</div>
+              <p class="co-timeline-title">年初のご挨拶</p>
+              <p class="co-timeline-by">カレンダーを頂戴しました</p>
+            </div>
+          </div>
+
+          <div class="co-timeline-item">
+            <div class="co-timeline-dot event"><i class="ti ti-confetti"></i></div>
+            <div class="co-timeline-content">
+              <div class="co-timeline-date">2025 年 11 月 23 日 ・ 日</div>
+              <p class="co-timeline-title">会員様限定 感謝祭に参加</p>
+              <p class="co-timeline-by">家族3名で参加 ・ ノベルティ受領</p>
+            </div>
+          </div>
+
+          <div class="co-timeline-item">
+            <div class="co-timeline-dot service"><i class="ti ti-flower"></i></div>
+            <div class="co-timeline-content">
+              <div class="co-timeline-date">2025 年 9 月 15 日 ・ 月</div>
+              <p class="co-timeline-title">義父 茂の七回忌をお願いしました</p>
+              <p class="co-timeline-by">司会・進行のお手配まで丁寧に対応</p>
+              <div class="co-timeline-actions">
+                <div class="co-timeline-chip important"><i class="ti ti-star"></i>大切な節目</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="co-timeline-item">
+            <div class="co-timeline-dot event"><i class="ti ti-confetti"></i></div>
+            <div class="co-timeline-content">
+              <div class="co-timeline-date">2025 年 5 月 10 日 ・ 土</div>
+              <p class="co-timeline-title">終活セミナー参加（エンディングノートの書き方）</p>
+              <p class="co-timeline-by">一人で参加 ・ 講師：◯◯さん</p>
+            </div>
+          </div>
+
+          <div class="co-timeline-item">
+            <div class="co-timeline-dot consult"><i class="ti ti-message-circle"></i></div>
+            <div class="co-timeline-content">
+              <div class="co-timeline-date">2025 年 3 月 2 日 ・ 日</div>
+              <p class="co-timeline-title">互助会プラン変更のご相談</p>
+              <p class="co-timeline-by">最寄りの支社にて ・ 担当：山田太郎 様</p>
+            </div>
+          </div>
+
+          <div class="co-timeline-item">
+            <div class="co-timeline-dot contract"><i class="ti ti-file-certificate"></i></div>
+            <div class="co-timeline-content">
+              <div class="co-timeline-date">2003 年 4 月 ・ 互助会加入</div>
+              <p class="co-timeline-title">互助会員として加入しました</p>
+              <p class="co-timeline-by">紹介：近所の◯◯さん</p>
+              <div class="co-timeline-actions">
+                <div class="co-timeline-chip important"><i class="ti ti-flag"></i>すべての始まり</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- お知らせ：メモリード -->
+        <div class="co-timeline-view" id="memo-hview-news">
+
+          <div class="co-timeline-item">
+            <div class="co-timeline-dot dm"><i class="ti ti-mail"></i></div>
+            <div class="co-timeline-content">
+              <div class="co-timeline-date">2026 年 4 月 25 日 ・ 金</div>
+              <p class="co-timeline-title">夏のセミナーのご案内が届きました</p>
+              <p class="co-timeline-by">5月開催 ・ 家族葬の選び方セミナー</p>
+            </div>
+          </div>
+
+          <div class="co-timeline-item">
+            <div class="co-timeline-dot gift"><i class="ti ti-gift"></i></div>
+            <div class="co-timeline-content">
+              <div class="co-timeline-date">2025 年 12 月 18 日 ・ 木</div>
+              <p class="co-timeline-title">お歳暮を頂戴しました</p>
+              <p class="co-timeline-by">いつものお茶セット ・ 心遣いに感謝</p>
+            </div>
+          </div>
+
+          <div class="co-timeline-item">
+            <div class="co-timeline-dot dm"><i class="ti ti-news"></i></div>
+            <div class="co-timeline-content">
+              <div class="co-timeline-date">2025 年 10 月 5 日 ・ 日</div>
+              <p class="co-timeline-title">会員様限定 感謝祭のご案内</p>
+              <p class="co-timeline-by">11月開催・家族でご参加いただけます</p>
+            </div>
+          </div>
+
+          <div class="co-timeline-item">
+            <div class="co-timeline-dot gift"><i class="ti ti-gift"></i></div>
+            <div class="co-timeline-content">
+              <div class="co-timeline-date">2024 年 5 月 ・ 互助会加入20周年</div>
+              <p class="co-timeline-title">20周年記念品を頂きました</p>
+              <p class="co-timeline-by">長年のご縁、ありがとうございます</p>
+            </div>
+          </div>
+
+          <div class="co-timeline-item">
+            <div class="co-timeline-dot season"><i class="ti ti-flower"></i></div>
+            <div class="co-timeline-content">
+              <div class="co-timeline-date">2024 年 8 月 13 日 ・ お盆</div>
+              <p class="co-timeline-title">お盆の見守り訪問</p>
+              <p class="co-timeline-by">担当者よりお声がけいただきました</p>
+            </div>
+          </div>
+
+        </div>
+
+        <button class="co-add-button">
+          <i class="ti ti-plus"></i>
+          やりとりを記録する
+        </button>
+      </div>
+    </div>
+
     <div class="share-section" style="margin-top: 24px;">
       <button class="share-button">
         <i class="ti ti-share-2"></i>家族へ共有する
@@ -3106,6 +3606,203 @@ body { min-height: 100vh; min-height: 100dvh; }
       <button style="margin-top: 12px; padding: 8px 14px; border: 1px solid var(--border-strong); background: transparent; border-radius: 8px; color: var(--text-muted); font-size: 12px; cursor: pointer; font-family: inherit; display: inline-flex; align-items: center; gap: 4px;">
         <i class="ti ti-edit" style="font-size: 13px;"></i>編集する
       </button>
+    </div>
+
+    
+    <!-- 情報受信バナー -->
+    <div class="co-receive-banner">
+      <div class="co-receive-banner-header">
+        <div class="co-receive-banner-icon">
+          <i class="ti ti-mail-heart"></i>
+          <span class="co-receive-banner-badge">1</span>
+        </div>
+        <p class="co-receive-banner-title">あいプランからお便り</p>
+      </div>
+      <p class="co-receive-banner-content">夏のセミナーのご案内が届いています</p>
+      <div class="co-receive-banner-meta">
+        <i class="ti ti-clock"></i>
+        <span>2026年4月27日 ・ 5月9日開催</span>
+      </div>
+      <p class="co-receive-banner-cta">
+        詳しく見る
+        <i class="ti ti-arrow-right"></i>
+      </p>
+    </div>
+
+    <!-- LINE連携カード -->
+    <div class="co-line-card">
+      <div class="co-line-icon">
+        <i class="ti ti-brand-line"></i>
+      </div>
+      <div class="co-line-text">
+        <p class="co-line-title">LINEで繋がる</p>
+        <p class="co-line-desc">公式LINEで気軽にやりとりできます</p>
+      </div>
+      <a href="https://line.me/R/ti/p/@dfr2546u" target="_blank" rel="noopener noreferrer" class="co-line-button">
+        <i class="ti ti-plus"></i>友だち追加
+      </a>
+    </div>
+
+<!-- やりとり履歴 -->
+    <div style="padding: 20px 16px 0;">
+      <p class="co-history-section-label"><i class="ti ti-history"></i>やりとり履歴</p>
+      <div class="co-history-section">
+        <div class="co-history-header">
+          <i class="ti ti-calendar-heart"></i>
+          <p class="co-history-header-title">これまでの繋がり</p>
+          <span class="co-history-header-detail">2003年〜・約23年</span>
+        </div>
+
+        <div class="co-history-tabs">
+          <div class="co-history-tab active" id="aip-htab-self" onclick="switchCoHistory('aiplan', 'self')">
+            <i class="ti ti-walk"></i>やりとり履歴
+            <span class="co-history-tab-count">8</span>
+          </div>
+          <div class="co-history-tab" id="aip-htab-news" onclick="switchCoHistory('aiplan', 'news')">
+            <i class="ti ti-mail"></i>お知らせ
+            <span class="co-history-tab-count">5</span>
+          </div>
+        </div>
+
+        <!-- やりとり履歴：あいプラン -->
+        <div class="co-timeline-view active" id="aip-hview-self">
+
+          <div class="co-timeline-item">
+            <div class="co-timeline-dot event"><i class="ti ti-confetti"></i></div>
+            <div class="co-timeline-content">
+              <div class="co-timeline-date">2026 年 5 月 9 日 ・ 金</div>
+              <p class="co-timeline-title">終活セミナー参加（家族葬の選び方）</p>
+              <p class="co-timeline-by">主人と一緒に参加 ・ 場所：やわらぎ斎場 札幌</p>
+              <div class="co-timeline-note">家族葬の進め方、参列者のおもてなしなど、丁寧に教えていただいた。</div>
+            </div>
+          </div>
+
+          <div class="co-timeline-item">
+            <div class="co-timeline-dot visit"><i class="ti ti-user-check"></i></div>
+            <div class="co-timeline-content">
+              <div class="co-timeline-date">2026 年 4 月 14 日 ・ 火</div>
+              <p class="co-timeline-title">担当者からの定期訪問</p>
+              <p class="co-timeline-by">田中一郎 様 ・ 自宅にて</p>
+            </div>
+          </div>
+
+          <div class="co-timeline-item">
+            <div class="co-timeline-dot season"><i class="ti ti-mail-opened"></i></div>
+            <div class="co-timeline-content">
+              <div class="co-timeline-date">2026 年 1 月 9 日 ・ 金</div>
+              <p class="co-timeline-title">年初のご挨拶</p>
+              <p class="co-timeline-by">カレンダーを頂戴しました</p>
+            </div>
+          </div>
+
+          <div class="co-timeline-item">
+            <div class="co-timeline-dot event"><i class="ti ti-confetti"></i></div>
+            <div class="co-timeline-content">
+              <div class="co-timeline-date">2025 年 11 月 22 日 ・ 土</div>
+              <p class="co-timeline-title">会員様限定 感謝祭に参加</p>
+              <p class="co-timeline-by">家族3名で参加 ・ ノベルティ受領</p>
+            </div>
+          </div>
+
+          <div class="co-timeline-item">
+            <div class="co-timeline-dot service"><i class="ti ti-flower"></i></div>
+            <div class="co-timeline-content">
+              <div class="co-timeline-date">2025 年 9 月 17 日 ・ 水</div>
+              <p class="co-timeline-title">義父 茂の七回忌をお願いしました</p>
+              <p class="co-timeline-by">司会・進行のお手配まで丁寧に対応</p>
+              <div class="co-timeline-actions">
+                <div class="co-timeline-chip important"><i class="ti ti-star"></i>大切な節目</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="co-timeline-item">
+            <div class="co-timeline-dot event"><i class="ti ti-confetti"></i></div>
+            <div class="co-timeline-content">
+              <div class="co-timeline-date">2025 年 5 月 11 日 ・ 日</div>
+              <p class="co-timeline-title">終活セミナー参加（エンディングノートの書き方）</p>
+              <p class="co-timeline-by">一人で参加 ・ 講師：△△さん</p>
+            </div>
+          </div>
+
+          <div class="co-timeline-item">
+            <div class="co-timeline-dot consult"><i class="ti ti-message-circle"></i></div>
+            <div class="co-timeline-content">
+              <div class="co-timeline-date">2025 年 3 月 5 日 ・ 水</div>
+              <p class="co-timeline-title">互助会プラン変更のご相談</p>
+              <p class="co-timeline-by">最寄りの支社にて ・ 担当：田中一郎 様</p>
+            </div>
+          </div>
+
+          <div class="co-timeline-item">
+            <div class="co-timeline-dot contract"><i class="ti ti-file-certificate"></i></div>
+            <div class="co-timeline-content">
+              <div class="co-timeline-date">2003 年 4 月 ・ 互助会加入</div>
+              <p class="co-timeline-title">互助会員として加入しました</p>
+              <p class="co-timeline-by">紹介：北海道の親戚</p>
+              <div class="co-timeline-actions">
+                <div class="co-timeline-chip important"><i class="ti ti-flag"></i>すべての始まり</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- お知らせ：あいプラン -->
+        <div class="co-timeline-view" id="aip-hview-news">
+
+          <div class="co-timeline-item">
+            <div class="co-timeline-dot dm"><i class="ti ti-mail"></i></div>
+            <div class="co-timeline-content">
+              <div class="co-timeline-date">2026 年 4 月 27 日 ・ 日</div>
+              <p class="co-timeline-title">夏のセミナーのご案内が届きました</p>
+              <p class="co-timeline-by">5月開催 ・ 家族葬の選び方セミナー</p>
+            </div>
+          </div>
+
+          <div class="co-timeline-item">
+            <div class="co-timeline-dot gift"><i class="ti ti-gift"></i></div>
+            <div class="co-timeline-content">
+              <div class="co-timeline-date">2025 年 12 月 20 日 ・ 土</div>
+              <p class="co-timeline-title">お歳暮を頂戴しました</p>
+              <p class="co-timeline-by">道産の海苔セット ・ 心遣いに感謝</p>
+            </div>
+          </div>
+
+          <div class="co-timeline-item">
+            <div class="co-timeline-dot dm"><i class="ti ti-news"></i></div>
+            <div class="co-timeline-content">
+              <div class="co-timeline-date">2025 年 10 月 7 日 ・ 火</div>
+              <p class="co-timeline-title">会員様限定 感謝祭のご案内</p>
+              <p class="co-timeline-by">11月開催・家族でご参加いただけます</p>
+            </div>
+          </div>
+
+          <div class="co-timeline-item">
+            <div class="co-timeline-dot gift"><i class="ti ti-gift"></i></div>
+            <div class="co-timeline-content">
+              <div class="co-timeline-date">2024 年 5 月 ・ 互助会加入20周年</div>
+              <p class="co-timeline-title">20周年記念品を頂きました</p>
+              <p class="co-timeline-by">長年のご縁、ありがとうございます</p>
+            </div>
+          </div>
+
+          <div class="co-timeline-item">
+            <div class="co-timeline-dot season"><i class="ti ti-flower"></i></div>
+            <div class="co-timeline-content">
+              <div class="co-timeline-date">2024 年 8 月 14 日 ・ お盆</div>
+              <p class="co-timeline-title">お盆の見守り訪問</p>
+              <p class="co-timeline-by">担当者よりお声がけいただきました</p>
+            </div>
+          </div>
+
+        </div>
+
+        <button class="co-add-button">
+          <i class="ti ti-plus"></i>
+          やりとりを記録する
+        </button>
+      </div>
     </div>
 
     <div class="share-section" style="margin-top: 24px;">
@@ -5162,6 +5859,20 @@ body { min-height: 100vh; min-height: 100dvh; }
     document.getElementById('reg-btn-step2').classList.add('disabled');
     document.getElementById('reg-btn-step3').classList.add('disabled');
     regShowStep(0);
+  }
+
+
+  // === Company Detail: やりとり履歴タブ切替 ===
+  function switchCoHistory(company, view) {
+    const prefix = company === 'memoreed' ? 'memo' : 'aip';
+    // タブ
+    document.querySelectorAll(`#${prefix}-htab-self, #${prefix}-htab-news`).forEach(t => t.classList.remove('active'));
+    const tab = document.getElementById(`${prefix}-htab-${view}`);
+    if (tab) tab.classList.add('active');
+    // ビュー
+    document.querySelectorAll(`#${prefix}-hview-self, #${prefix}-hview-news`).forEach(v => v.classList.remove('active'));
+    const v = document.getElementById(`${prefix}-hview-${view}`);
+    if (v) v.classList.add('active');
   }
 </script>
 </body>
