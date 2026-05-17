@@ -3510,6 +3510,228 @@ body { min-height: 100vh; min-height: 100dvh; }
 }
 .ref-empty-cta-button:active { transform: scale(0.98); }
 .ref-empty-cta-button i { font-size: 14px; }
+
+/* === Welcome Partner Display === */
+.reg-partner-intro {
+  margin: 16px 0 24px;
+  padding: 18px;
+  background: linear-gradient(135deg, #FBF8F1 0%, #F0E9DA 100%);
+  border: 1.5px solid var(--gold);
+  border-radius: 14px;
+  animation: regSlideUp 0.8s ease 0.6s both;
+}
+.reg-partner-intro-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: center;
+  margin: 0 0 10px;
+  letter-spacing: 0.1em;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.reg-partner-intro-label i { font-size: 13px; color: var(--gold); }
+
+.reg-partner-logos {
+  display: flex; align-items: center; justify-content: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.reg-partner-logo-frame {
+  width: 88px; height: 56px;
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 6px;
+  box-shadow: 0 2px 6px rgba(60,50,35,0.06);
+}
+.reg-partner-logo-frame img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.reg-partner-divider {
+  font-family: 'Shippori Mincho', serif;
+  color: var(--gold);
+  font-size: 14px;
+}
+
+.reg-partner-message {
+  text-align: center;
+  font-family: 'Shippori Mincho', serif;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.7;
+  margin: 0 0 12px;
+}
+.reg-partner-message strong {
+  color: #854F0B;
+}
+
+.reg-partner-privacy {
+  display: flex; align-items: flex-start; gap: 8px;
+  padding: 10px 12px;
+  background: rgba(35,120,83,0.08);
+  border: 1px solid rgba(35,120,83,0.2);
+  border-radius: 8px;
+}
+.reg-partner-privacy i {
+  color: #237853;
+  font-size: 16px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.reg-partner-privacy-text {
+  font-size: 11px;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.7;
+}
+.reg-partner-privacy-text strong {
+  color: #237853;
+  font-family: 'Shippori Mincho', serif;
+}
+
+/* === Service Provider (itowa) Display === */
+.reg-service-provider {
+  margin: 14px 0 0;
+  padding: 12px;
+  background: var(--surface-warm);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: flex; align-items: center; gap: 12px;
+}
+.reg-sp-logo-frame {
+  width: 48px; height: 48px;
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 4px;
+  flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(60,50,35,0.06);
+}
+.reg-sp-logo-frame img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+}
+.reg-sp-text {
+  flex: 1; min-width: 0;
+}
+.reg-sp-label {
+  font-size: 9px;
+  color: var(--text-soft);
+  letter-spacing: 0.1em;
+  margin: 0 0 2px;
+}
+.reg-sp-name {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 13px; font-weight: 500;
+  color: var(--text);
+  margin: 0;
+}
+.reg-sp-detail {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin: 2px 0 0;
+  line-height: 1.5;
+}
+
+/* Connecting line between partner and service provider */
+.reg-partner-connector {
+  text-align: center;
+  margin: 10px 0 4px;
+  position: relative;
+}
+.reg-partner-connector::before,
+.reg-partner-connector::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 30%;
+  height: 1px;
+  background: var(--border);
+}
+.reg-partner-connector::before { left: 5%; }
+.reg-partner-connector::after { right: 5%; }
+.reg-partner-connector-text {
+  display: inline-block;
+  padding: 0 8px;
+  font-size: 10px;
+  color: var(--text-soft);
+  background: linear-gradient(135deg, #FBF8F1 0%, #F0E9DA 100%);
+  letter-spacing: 0.1em;
+}
+
+/* === Single Partner Display (URL parameter based) === */
+.reg-partner-single-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: 14px;
+  margin: 12px 0 16px;
+}
+.reg-partner-single-logo {
+  flex: 1;
+  max-width: 130px;
+  height: 64px;
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  padding: 8px;
+  box-shadow: 0 2px 6px rgba(60,50,35,0.06);
+}
+.reg-partner-single-logo.itowa {
+  background: #FBF8F1;
+  border: 1px solid var(--gold);
+}
+.reg-partner-single-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.reg-partner-x {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 18px;
+  color: var(--gold);
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.reg-partner-detail-list {
+  margin: 12px 0;
+  padding: 12px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 10px;
+  display: flex; flex-direction: column;
+  gap: 10px;
+}
+.reg-partner-detail-item {
+  display: flex; align-items: center; gap: 10px;
+}
+.reg-partner-detail-icon {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.reg-partner-detail-icon i {
+  font-size: 16px; color: var(--gold);
+}
+.reg-partner-detail-text {
+  flex: 1;
+}
+.reg-partner-detail-label {
+  font-size: 9px;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  margin: 0 0 2px;
+}
+.reg-partner-detail-value {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 13px; font-weight: 500;
+  color: var(--text);
+  margin: 0;
+}
 </style>
 </head>
 <body>
@@ -6120,6 +6342,51 @@ body { min-height: 100vh; min-height: 100dvh; }
           日々を綴り、家族と分かち合う。<br>
           あなただけの、メモリーノートへ。
         </p>
+
+        <!-- 提携先紹介（URLパラメータから取得した1社のみ表示）-->
+        <div class="reg-partner-intro">
+          <p class="reg-partner-intro-label">
+            <i class="ti ti-handshake"></i>
+            itowaと連携している企業
+          </p>
+          <div class="reg-partner-single-row">
+            <div class="reg-partner-single-logo">
+              <img src="sample_partner_logo.png" alt="株式会社○○">
+            </div>
+            <span class="reg-partner-x">×</span>
+            <div class="reg-partner-single-logo itowa">
+              <img src="itowa_logo.png" alt="株式会社itowa">
+            </div>
+          </div>
+          <p class="reg-partner-message">
+            <strong>株式会社○○</strong> と <strong>株式会社 itowa</strong> の連携で、<br>
+            あなたのメモリーノートを作成します。
+          </p>
+          <div class="reg-partner-detail-list">
+            <div class="reg-partner-detail-item">
+              <div class="reg-partner-detail-icon"><i class="ti ti-building"></i></div>
+              <div class="reg-partner-detail-text">
+                <p class="reg-partner-detail-label">連携企業</p>
+                <p class="reg-partner-detail-value">株式会社○○</p>
+              </div>
+            </div>
+            <div class="reg-partner-detail-item">
+              <div class="reg-partner-detail-icon"><i class="ti ti-sparkles"></i></div>
+              <div class="reg-partner-detail-text">
+                <p class="reg-partner-detail-label">サービス提供・データ管理</p>
+                <p class="reg-partner-detail-value">株式会社 itowa</p>
+              </div>
+            </div>
+          </div>
+          <div class="reg-partner-privacy">
+            <i class="ti ti-shield-check"></i>
+            <p class="reg-partner-privacy-text">
+              <strong>プライバシーの保護</strong>：
+              連携企業は、あなたのメモリーノートの中身を見ることはできません。
+              日記・ご家族の情報・お気持ちなど、すべて厳重に保護されます。
+            </p>
+          </div>
+        </div>
 
         <div class="reg-welcome-features">
           <div class="reg-welcome-feature">
