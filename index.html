@@ -1655,6 +1655,730 @@ body { min-height: 100vh; min-height: 100dvh; }
 .manage-icon.inheritance { background: #E6F1FB; color: #1E5687; }
 .manage-icon.ending-note { background: #E8F5EE; color: #237853; }
 
+
+/* === Ending Note Styles === */
+.en-hero {
+  padding: 24px 20px 18px; text-align: center;
+  background: linear-gradient(135deg, #FBF8F1 0%, #E8F5EE 100%);
+  border-bottom: 1px solid var(--border);
+}
+.en-hero-icon {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #E8F5EE;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 10px;
+}
+.en-hero-icon i { font-size: 26px; color: #237853; }
+.en-hero h2 { font-family: 'Shippori Mincho', serif; font-size: 20px; font-weight: 500; margin: 0 0 4px; letter-spacing: 0.1em; }
+.en-hero p { font-size: 12px; color: var(--text-muted); margin: 0; line-height: 1.6; }
+
+.privacy-card {
+  margin: 14px 16px;
+  padding: 14px;
+  background: #E8F5EE;
+  border: 1px solid rgba(35,120,83,0.2);
+  border-radius: 12px;
+}
+.privacy-card-header {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 10px;
+}
+.privacy-card-icon {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: #237853;
+  display: flex; align-items: center; justify-content: center;
+}
+.privacy-card-icon i { font-size: 16px; color: #FFFFFF; }
+.privacy-card-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 13px; font-weight: 500;
+  color: #237853;
+  margin: 0;
+}
+.privacy-card-body {
+  font-size: 11px; color: var(--text);
+  line-height: 1.7;
+  margin: 0 0 10px;
+}
+.privacy-rules { display: flex; gap: 10px; }
+.privacy-rule {
+  flex: 1;
+  background: rgba(255,255,255,0.7);
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 10px;
+}
+.privacy-rule-label {
+  display: flex; align-items: center; gap: 4px;
+  font-weight: 500;
+  margin-bottom: 3px;
+}
+.privacy-rule-label.yes { color: #237853; }
+.privacy-rule-label.no { color: #B85478; }
+.privacy-rule-label i { font-size: 12px; }
+.privacy-rule-text { color: var(--text-muted); line-height: 1.5; }
+
+.en-progress-section {
+  padding: 16px;
+  background: var(--surface);
+  margin: 0 16px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+.en-progress-row {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 8px;
+}
+.en-progress-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 13px; font-weight: 500;
+  color: var(--text);
+}
+.en-progress-count { font-size: 11px; color: var(--text-muted); }
+.en-progress-bar {
+  height: 8px;
+  background: var(--accent-soft);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+.en-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #237853 0%, #56A07B 100%);
+  border-radius: 999px;
+}
+.en-progress-pct {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 11px; color: #237853;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.en-section {
+  padding: 0 16px;
+  margin-bottom: 14px;
+}
+.en-section-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin: 0 4px 8px;
+}
+.en-section-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 13px; color: var(--text);
+  letter-spacing: 0.05em;
+  font-weight: 500;
+  display: flex; align-items: center; gap: 6px;
+}
+.en-section-title i { font-size: 16px; color: var(--accent); }
+.en-section-status { font-size: 11px; display: flex; align-items: center; gap: 3px; }
+.en-section-status.done { color: #237853; }
+.en-section-status.in-progress { color: #BA7517; }
+.en-section-status.pending { color: var(--text-soft); }
+.en-section-status i { font-size: 13px; }
+
+.en-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.en-row {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.en-row:last-child { border-bottom: none; }
+.en-row:active { background: var(--surface-warm); }
+
+.en-row-icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.en-row-icon i { font-size: 16px; }
+.en-row-icon.finance { background: #E6F1FB; color: #1E5687; }
+.en-row-icon.insurance { background: #FCEBEB; color: #A32D2D; }
+.en-row-icon.realestate { background: #FAEEDA; color: #854F0B; }
+.en-row-icon.subscription { background: #EEEDFE; color: #534AB7; }
+.en-row-icon.expert { background: #E8F5EE; color: #237853; }
+.en-row-icon.other { background: #F1EFE8; color: var(--text-muted); }
+.en-row-icon.wish { background: #FBE5EC; color: #B85478; }
+.en-row-icon.message { background: #FAEEDA; color: #BA7517; }
+.en-row-icon.basic { background: #F0E9DA; color: var(--accent); }
+
+.en-row-text { flex: 1; min-width: 0; }
+.en-row-name {
+  font-size: 14px; font-weight: 500;
+  margin: 0; color: var(--text);
+  display: flex; align-items: center; gap: 6px;
+}
+.en-row-count {
+  font-size: 10px;
+  padding: 1px 7px;
+  background: var(--accent-soft);
+  color: var(--text-muted);
+  border-radius: 999px;
+}
+.en-row-count.has-items {
+  background: #E8F5EE;
+  color: #237853;
+}
+.en-row-desc {
+  font-size: 11px; color: var(--text-muted);
+  margin: 3px 0 0; line-height: 1.5;
+}
+.en-row-chevron { color: var(--text-soft); font-size: 18px; }
+
+.en-row-status {
+  display: inline-flex; align-items: center; gap: 3px;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 999px;
+}
+.en-row-status.done { background: rgba(35,120,83,0.1); color: #237853; }
+.en-row-status.empty { background: rgba(163,154,138,0.15); color: var(--text-muted); }
+.en-row-status i { font-size: 11px; }
+
+.en-tip-card {
+  margin: 14px 16px;
+  padding: 14px;
+  background: var(--surface-warm);
+  border-radius: 10px;
+  border-left: 3px solid var(--accent);
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+.en-tip-card-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 12px;
+  color: var(--text);
+  font-weight: 500;
+  margin: 0 0 6px;
+  display: flex; align-items: center; gap: 4px;
+}
+.en-tip-card-title i { color: var(--accent); }
+
+.en-ai-button {
+  margin: 16px;
+  width: calc(100% - 32px);
+  padding: 14px;
+  background: linear-gradient(135deg, #237853 0%, #56A07B 100%);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  transition: all 0.2s ease;
+}
+.en-ai-button:active { transform: scale(0.99); opacity: 0.9; }
+.en-ai-button i { font-size: 18px; }
+
+/* === Registration / Onboarding Styles === */
+.reg-container { padding: 0; }
+
+.reg-step {
+  display: none;
+  animation: regStepFadeIn 0.5s ease forwards;
+  padding: 0 24px 100px;
+  position: relative;
+}
+.reg-step.active { display: block; }
+
+@keyframes regStepFadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reg-progress-dots {
+  display: flex; justify-content: center; gap: 8px;
+  padding: 24px 0 8px;
+}
+.reg-progress-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--border-strong);
+  transition: all 0.4s ease;
+}
+.reg-progress-dot.active {
+  background: var(--gold);
+  width: 24px;
+  border-radius: 999px;
+}
+.reg-progress-dot.done { background: var(--gold); }
+
+/* Welcome */
+.reg-welcome-illustration {
+  position: relative;
+  width: 200px; height: 200px;
+  margin: 40px auto 24px;
+  animation: regFloatY 4s ease-in-out infinite;
+}
+@keyframes regFloatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+.reg-welcome-circle {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #FBF6E5 0%, #F4E5C2 50%, #FFFFFF 100%);
+  border-radius: 50%;
+  border: 3px solid var(--gold);
+  box-shadow: 0 8px 32px rgba(201, 168, 118, 0.25);
+  display: flex; align-items: center; justify-content: center;
+}
+.reg-welcome-icon-main {
+  font-size: 80px;
+  color: var(--gold);
+}
+
+.reg-sparkle {
+  position: absolute;
+  color: var(--gold);
+  opacity: 0;
+  animation: regSparkleAnim 2.5s ease-in-out infinite;
+}
+.reg-sparkle:nth-child(2) { top: 10%; left: 10%; font-size: 16px; animation-delay: 0s; }
+.reg-sparkle:nth-child(3) { top: 20%; right: 5%; font-size: 14px; animation-delay: 0.5s; }
+.reg-sparkle:nth-child(4) { bottom: 15%; left: 5%; font-size: 18px; animation-delay: 1s; }
+.reg-sparkle:nth-child(5) { bottom: 25%; right: 12%; font-size: 12px; animation-delay: 1.5s; }
+.reg-sparkle:nth-child(6) { top: 50%; left: -5%; font-size: 14px; animation-delay: 2s; }
+
+@keyframes regSparkleAnim {
+  0%, 100% { opacity: 0; transform: scale(0.5) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+
+.reg-welcome-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 28px; font-weight: 500;
+  text-align: center;
+  margin: 0 0 12px;
+  letter-spacing: 0.15em;
+  animation: regSlideUp 0.8s ease 0.3s both;
+}
+.reg-welcome-subtitle {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 14px; color: var(--text-muted);
+  text-align: center;
+  margin: 0 0 32px;
+  line-height: 1.8;
+  animation: regSlideUp 0.8s ease 0.5s both;
+}
+@keyframes regSlideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reg-welcome-features {
+  display: flex; flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+  animation: regSlideUp 0.8s ease 0.7s both;
+}
+.reg-welcome-feature {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 16px;
+  background: var(--surface-warm);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+}
+.reg-welcome-feature-icon {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.reg-welcome-feature-icon i { font-size: 20px; color: var(--accent); }
+.reg-welcome-feature-text { flex: 1; }
+.reg-welcome-feature-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 13px; font-weight: 500;
+  margin: 0;
+}
+.reg-welcome-feature-desc {
+  font-size: 11px; color: var(--text-muted);
+  margin: 2px 0 0; line-height: 1.5;
+}
+
+/* Step Header */
+.reg-step-header {
+  text-align: center;
+  margin: 30px 0 32px;
+}
+.reg-step-number {
+  display: inline-flex;
+  align-items: center; justify-content: center;
+  gap: 4px;
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.reg-step-number i { font-size: 13px; }
+.reg-step-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 22px; font-weight: 500;
+  margin: 0 0 8px;
+  letter-spacing: 0.1em;
+}
+.reg-step-desc {
+  font-size: 12px; color: var(--text-muted);
+  margin: 0; line-height: 1.7;
+}
+
+/* Form */
+.reg-form-group { margin-bottom: 20px; }
+.reg-form-label {
+  display: block;
+  font-size: 12px; color: var(--text);
+  font-weight: 500;
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+}
+.reg-form-label .reg-required {
+  display: inline-block;
+  padding: 1px 6px;
+  background: var(--gold);
+  color: #FFFFFF;
+  border-radius: 999px;
+  font-size: 9px;
+  margin-left: 6px;
+  vertical-align: 1px;
+}
+.reg-form-label .reg-optional {
+  display: inline-block;
+  padding: 1px 6px;
+  background: var(--accent-soft);
+  color: var(--text-muted);
+  border-radius: 999px;
+  font-size: 9px;
+  margin-left: 6px;
+  vertical-align: 1px;
+  font-weight: 400;
+}
+
+.reg-form-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 12px;
+  font-size: 16px;
+  font-family: inherit;
+  background: var(--surface);
+  transition: all 0.2s ease;
+  color: var(--text);
+}
+.reg-form-input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201, 168, 118, 0.15);
+}
+
+.reg-form-row { display: flex; gap: 10px; }
+.reg-form-row .reg-form-group { flex: 1; }
+
+.reg-form-furigana {
+  font-size: 10px;
+  color: var(--text-soft);
+  margin-top: 4px;
+  letter-spacing: 0.05em;
+}
+
+/* Date selector */
+.reg-date-selector {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 8px;
+}
+.reg-date-field { position: relative; }
+.reg-date-field-suffix {
+  position: absolute;
+  right: 14px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 13px;
+  pointer-events: none;
+}
+.reg-date-field input {
+  padding-right: 32px;
+  text-align: center;
+}
+
+/* Postal code */
+.reg-postal-wrapper { position: relative; }
+.reg-postal-prefix {
+  position: absolute;
+  left: 16px; top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 16px;
+  font-weight: 500;
+  pointer-events: none;
+}
+.reg-postal-input {
+  padding-left: 32px;
+  letter-spacing: 0.1em;
+}
+
+.reg-address-display {
+  margin-top: 12px;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, var(--surface-warm) 0%, var(--gold-soft) 100%);
+  border-radius: 12px;
+  border: 1px solid var(--gold);
+  animation: regAddressFadeIn 0.5s ease;
+  display: none;
+}
+.reg-address-display.show { display: block; }
+@keyframes regAddressFadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reg-address-label {
+  font-size: 10px; color: var(--text-muted);
+  margin: 0 0 4px;
+  display: flex; align-items: center; gap: 4px;
+}
+.reg-address-label i { color: var(--gold); font-size: 12px; }
+.reg-address-value {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 15px; font-weight: 500;
+  margin: 0; color: var(--text);
+}
+.reg-address-note {
+  font-size: 10px; color: var(--text-soft);
+  margin: 4px 0 0; line-height: 1.5;
+}
+
+/* Gender */
+.reg-gender-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.reg-gender-option {
+  padding: 14px 8px;
+  background: var(--surface);
+  border: 1.5px solid var(--border-strong);
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 13px;
+  font-family: inherit;
+}
+.reg-gender-option:active { transform: scale(0.97); }
+.reg-gender-option.selected {
+  background: var(--gold-soft);
+  border-color: var(--gold);
+  color: var(--text);
+  font-weight: 500;
+}
+.reg-gender-option i {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 4px;
+  color: var(--text-muted);
+}
+.reg-gender-option.selected i { color: var(--gold); }
+
+/* Privacy note */
+.reg-privacy-note {
+  margin-top: 24px;
+  padding: 12px 14px;
+  background: rgba(35,120,83,0.05);
+  border: 1px solid rgba(35,120,83,0.15);
+  border-radius: 10px;
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  display: flex; gap: 8px;
+}
+.reg-privacy-note i {
+  color: #237853;
+  font-size: 14px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Buttons */
+.reg-nav-buttons {
+  margin-top: 24px;
+  display: flex; gap: 10px;
+}
+.reg-btn-back {
+  flex: 0 0 auto;
+  padding: 14px 20px;
+  background: var(--surface);
+  border: 1.5px solid var(--border-strong);
+  border-radius: 12px;
+  font-size: 14px;
+  color: var(--text-muted);
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex; align-items: center; gap: 4px;
+}
+.reg-btn-back:active { transform: scale(0.98); }
+.reg-btn-back i { font-size: 16px; }
+
+.reg-btn-next {
+  flex: 1;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #C9A876 0%, #B5895E 100%);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  box-shadow: 0 4px 12px rgba(201, 168, 118, 0.3);
+}
+.reg-btn-next:active { transform: scale(0.98); }
+.reg-btn-next i { font-size: 16px; }
+.reg-btn-next.disabled {
+  background: var(--border-strong);
+  box-shadow: none;
+  pointer-events: none;
+}
+
+/* Complete */
+.reg-complete-container {
+  text-align: center;
+  padding: 40px 20px 20px;
+}
+.reg-complete-circle {
+  width: 140px; height: 140px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold-soft) 0%, var(--gold) 100%);
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  animation: regCompleteBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  opacity: 0;
+  transform: scale(0.3);
+}
+.reg-complete-container.active .reg-complete-circle { animation-delay: 0.2s; }
+@keyframes regCompleteBounce {
+  0% { opacity: 0; transform: scale(0.3); }
+  50% { opacity: 1; transform: scale(1.1); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.reg-complete-icon {
+  font-size: 64px;
+  color: #FFFFFF;
+  animation: regIconScale 0.5s ease 0.7s both;
+}
+@keyframes regIconScale {
+  from { opacity: 0; transform: scale(0); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.reg-complete-burst {
+  position: absolute;
+  width: 200%; height: 200%;
+  pointer-events: none;
+}
+.reg-burst-particle {
+  position: absolute;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  opacity: 0;
+}
+.reg-complete-container.active .reg-burst-particle {
+  animation: regBurst 1s ease 0.5s forwards;
+}
+.reg-burst-particle:nth-child(1) { background: var(--gold); top: 50%; left: 50%; --tx: -60px; --ty: -50px; }
+.reg-burst-particle:nth-child(2) { background: #E5A4B4; top: 50%; left: 50%; --tx: 60px; --ty: -50px; }
+.reg-burst-particle:nth-child(3) { background: var(--gold); top: 50%; left: 50%; --tx: -50px; --ty: 60px; }
+.reg-burst-particle:nth-child(4) { background: #E5A4B4; top: 50%; left: 50%; --tx: 50px; --ty: 60px; }
+.reg-burst-particle:nth-child(5) { background: var(--gold); top: 50%; left: 50%; --tx: -80px; --ty: 20px; }
+.reg-burst-particle:nth-child(6) { background: #E5A4B4; top: 50%; left: 50%; --tx: 80px; --ty: 20px; }
+.reg-burst-particle:nth-child(7) { background: var(--gold); top: 50%; left: 50%; --tx: 0; --ty: -80px; }
+.reg-burst-particle:nth-child(8) { background: #E5A4B4; top: 50%; left: 50%; --tx: 0; --ty: 80px; }
+@keyframes regBurst {
+  0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(0); }
+}
+
+.reg-complete-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 24px; font-weight: 500;
+  margin: 0 0 8px;
+  letter-spacing: 0.1em;
+  animation: regSlideUp 0.6s ease 0.8s both;
+  opacity: 0;
+}
+.reg-complete-container.active .reg-complete-title { opacity: 1; }
+
+.reg-complete-name {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 32px; font-weight: 600;
+  background: linear-gradient(135deg, #C9A876, #B5895E);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 16px 0 24px;
+  animation: regSlideUp 0.6s ease 1s both;
+  opacity: 0;
+}
+.reg-complete-container.active .reg-complete-name { opacity: 1; }
+
+.reg-complete-desc {
+  font-size: 13px; color: var(--text-muted);
+  line-height: 1.8;
+  margin: 0 0 32px;
+  animation: regSlideUp 0.6s ease 1.2s both;
+  opacity: 0;
+}
+.reg-complete-container.active .reg-complete-desc { opacity: 1; }
+
+.reg-complete-features {
+  display: flex; gap: 12px;
+  justify-content: center;
+  margin-bottom: 24px;
+  animation: regSlideUp 0.6s ease 1.4s both;
+  opacity: 0;
+}
+.reg-complete-container.active .reg-complete-features { opacity: 1; }
+.reg-complete-feature {
+  width: 70px;
+  text-align: center;
+}
+.reg-complete-feature-icon {
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 4px;
+}
+.reg-complete-feature-icon i { font-size: 24px; color: var(--accent); }
+.reg-complete-feature-label {
+  font-size: 10px; color: var(--text-muted);
+}
+
+/* Demo banner */
+.reg-demo-banner {
+  background: linear-gradient(135deg, #FBF6E5 0%, #F4E5C2 100%);
+  padding: 10px 16px;
+  text-align: center;
+  font-size: 11px;
+  color: #854F0B;
+  border-bottom: 1px solid var(--gold);
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.reg-demo-banner i { font-size: 13px; }
 </style>
 </head>
 <body>
@@ -2559,6 +3283,23 @@ body { min-height: 100vh; min-height: 100dvh; }
           <div class="manage-text">
             <p class="manage-name">メモリーノートについて</p>
             <p class="manage-desc">バージョン・利用規約</p>
+          </div>
+          <i class="ti ti-chevron-right chevron"></i>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding: 20px 16px;">
+      <p class="manage-section-label">デモ・プレビュー</p>
+      <div class="manage-list">
+        <div class="manage-item" data-goto="register">
+          <div class="manage-icon" style="background: linear-gradient(135deg, #FBF6E5 0%, #F4E5C2 100%); color: #B5895E;"><i class="ti ti-sparkles"></i></div>
+          <div class="manage-text">
+            <div class="manage-title-row">
+              <p class="manage-name">登録イメージ</p>
+              <span class="manage-badge" style="background: #C9A876; color: #FFFFFF;">DEMO</span>
+            </div>
+            <p class="manage-desc">新規ご利用開始時の登録画面のイメージ</p>
           </div>
           <i class="ti ti-chevron-right chevron"></i>
         </div>
@@ -3519,6 +4260,566 @@ body { min-height: 100vh; min-height: 100dvh; }
 
   </div>
 
+  
+  <!-- ============ ENDING NOTE PAGE ============ -->
+  <div class="page" id="page-ending-note">
+    <div class="page-bar">
+      <div class="left">
+        <i class="ti ti-arrow-left" data-back="manage"></i>
+        <span class="title-text">エンディングノート</span>
+      </div>
+      <i class="ti ti-help"></i>
+    </div>
+
+    <div class="en-hero">
+      <div class="en-hero-icon"><i class="ti ti-notebook"></i></div>
+      <h2>エンディングノート</h2>
+      <p>大切な情報をまとめて整理<br>ご家族の道しるべとして残します</p>
+    </div>
+
+    <!-- セキュリティ案内カード -->
+    <div class="privacy-card">
+      <div class="privacy-card-header">
+        <div class="privacy-card-icon"><i class="ti ti-shield-check"></i></div>
+        <p class="privacy-card-title">安心の設計</p>
+      </div>
+      <p class="privacy-card-body">
+        メモリーノートは、口座番号やパスワードを<strong>預かりません</strong>。<br>
+        「どこに問い合わせればよいか」だけを残せば、ご家族が必要な情報を取り出せます。
+      </p>
+      <div class="privacy-rules">
+        <div class="privacy-rule">
+          <div class="privacy-rule-label yes">
+            <i class="ti ti-check"></i>記録するもの
+          </div>
+          <div class="privacy-rule-text">事業者名・サービス名</div>
+        </div>
+        <div class="privacy-rule">
+          <div class="privacy-rule-label no">
+            <i class="ti ti-x"></i>記録しないもの
+          </div>
+          <div class="privacy-rule-text">口座番号・パスワード</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 進捗 -->
+    <div class="en-progress-section">
+      <div class="en-progress-row">
+        <span class="en-progress-title">あなたの記録</span>
+        <span class="en-progress-count">8 / 24 項目</span>
+      </div>
+      <div class="en-progress-bar">
+        <div class="en-progress-fill" style="width: 33%;"></div>
+      </div>
+      <div class="en-progress-pct">33% 完了 ・ 焦らず少しずつでも大丈夫</div>
+    </div>
+
+    <!-- 1. 基本情報 -->
+    <div class="en-section">
+      <div class="en-section-header">
+        <span class="en-section-title"><i class="ti ti-user"></i>1. 基本情報</span>
+        <span class="en-section-status done"><i class="ti ti-check"></i>記入済</span>
+      </div>
+      <div class="en-card">
+        <div class="en-row">
+          <div class="en-row-icon basic"><i class="ti ti-id"></i></div>
+          <div class="en-row-text">
+            <p class="en-row-name">氏名</p>
+            <p class="en-row-desc">糸和 花子</p>
+          </div>
+          <span class="en-row-status done"><i class="ti ti-check"></i>記入済</span>
+        </div>
+        <div class="en-row">
+          <div class="en-row-icon basic"><i class="ti ti-cake"></i></div>
+          <div class="en-row-text">
+            <p class="en-row-name">生年月日</p>
+            <p class="en-row-desc">1941年4月3日</p>
+          </div>
+          <span class="en-row-status done"><i class="ti ti-check"></i>記入済</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 関係する事業者・サービス -->
+    <div class="en-section">
+      <div class="en-section-header">
+        <span class="en-section-title"><i class="ti ti-building"></i>2. 関係する事業者・サービス</span>
+        <span class="en-section-status in-progress"><i class="ti ti-progress"></i>4 件登録</span>
+      </div>
+      <div class="en-card">
+        <div class="en-row">
+          <div class="en-row-icon finance"><i class="ti ti-building-bank"></i></div>
+          <div class="en-row-text">
+            <p class="en-row-name">金融機関<span class="en-row-count has-items">2件</span></p>
+            <p class="en-row-desc">三菱UFJ銀行、ゆうちょ銀行</p>
+          </div>
+          <i class="ti ti-chevron-right en-row-chevron"></i>
+        </div>
+        <div class="en-row">
+          <div class="en-row-icon insurance"><i class="ti ti-shield"></i></div>
+          <div class="en-row-text">
+            <p class="en-row-name">保険<span class="en-row-count has-items">1件</span></p>
+            <p class="en-row-desc">日本生命（終身保険）</p>
+          </div>
+          <i class="ti ti-chevron-right en-row-chevron"></i>
+        </div>
+        <div class="en-row">
+          <div class="en-row-icon realestate"><i class="ti ti-home"></i></div>
+          <div class="en-row-text">
+            <p class="en-row-name">不動産<span class="en-row-count">0件</span></p>
+            <p class="en-row-desc">未登録</p>
+          </div>
+          <i class="ti ti-chevron-right en-row-chevron"></i>
+        </div>
+        <div class="en-row">
+          <div class="en-row-icon subscription"><i class="ti ti-device-mobile"></i></div>
+          <div class="en-row-text">
+            <p class="en-row-name">サブスクリプション<span class="en-row-count">0件</span></p>
+            <p class="en-row-desc">Apple ID、LINE などのサービス</p>
+          </div>
+          <i class="ti ti-chevron-right en-row-chevron"></i>
+        </div>
+        <div class="en-row">
+          <div class="en-row-icon expert"><i class="ti ti-briefcase"></i></div>
+          <div class="en-row-text">
+            <p class="en-row-name">専門家<span class="en-row-count has-items">1件</span></p>
+            <p class="en-row-desc">山田太郎税理士事務所</p>
+          </div>
+          <i class="ti ti-chevron-right en-row-chevron"></i>
+        </div>
+        <div class="en-row">
+          <div class="en-row-icon other"><i class="ti ti-dots"></i></div>
+          <div class="en-row-text">
+            <p class="en-row-name">その他<span class="en-row-count">0件</span></p>
+            <p class="en-row-desc">習い事、定期購読など</p>
+          </div>
+          <i class="ti ti-chevron-right en-row-chevron"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- 「ご縁」連携 案内 -->
+    <div class="en-tip-card">
+      <p class="en-tip-card-title"><i class="ti ti-link"></i>「ご縁」と自動で連携しています</p>
+      ご縁に登録した企業（メモリード、あいプランなど）は、エンディングノートにも自動で反映されます。
+    </div>
+
+    <!-- 3. もしもの時の希望 -->
+    <div class="en-section">
+      <div class="en-section-header">
+        <span class="en-section-title"><i class="ti ti-heart"></i>3. もしもの時の希望</span>
+        <span class="en-section-status in-progress"><i class="ti ti-progress"></i>2 / 5</span>
+      </div>
+      <div class="en-card">
+        <div class="en-row">
+          <div class="en-row-icon wish"><i class="ti ti-heartbeat"></i></div>
+          <div class="en-row-text">
+            <p class="en-row-name">延命治療の希望</p>
+            <p class="en-row-desc">希望しない ・ 自然な看取りを望む</p>
+          </div>
+          <span class="en-row-status done"><i class="ti ti-check"></i>記入済</span>
+        </div>
+        <div class="en-row">
+          <div class="en-row-icon wish"><i class="ti ti-home-2"></i></div>
+          <div class="en-row-text">
+            <p class="en-row-name">介護の希望</p>
+            <p class="en-row-desc">可能な限り在宅で</p>
+          </div>
+          <span class="en-row-status done"><i class="ti ti-check"></i>記入済</span>
+        </div>
+        <div class="en-row">
+          <div class="en-row-icon wish"><i class="ti ti-flower"></i></div>
+          <div class="en-row-text">
+            <p class="en-row-name">葬儀の希望</p>
+            <p class="en-row-desc">家族葬を希望、メモリードに依頼</p>
+          </div>
+          <span class="en-row-status empty">未記入</span>
+        </div>
+        <div class="en-row">
+          <div class="en-row-icon wish"><i class="ti ti-user-check"></i></div>
+          <div class="en-row-text">
+            <p class="en-row-name">喪主の希望</p>
+            <p class="en-row-desc">未記入</p>
+          </div>
+          <span class="en-row-status empty">未記入</span>
+        </div>
+        <div class="en-row">
+          <div class="en-row-icon wish"><i class="ti ti-brain"></i></div>
+          <div class="en-row-text">
+            <p class="en-row-name">認知症になった時の希望</p>
+            <p class="en-row-desc">未記入</p>
+          </div>
+          <span class="en-row-status empty">未記入</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. お墓・供養 -->
+    <div class="en-section">
+      <div class="en-section-header">
+        <span class="en-section-title"><i class="ti ti-map-pin"></i>4. お墓・供養</span>
+        <span class="en-section-status done"><i class="ti ti-check"></i>連携済</span>
+      </div>
+      <div class="en-card">
+        <div class="en-row" data-goto="grave">
+          <div class="en-row-icon other"><i class="ti ti-flame"></i></div>
+          <div class="en-row-text">
+            <p class="en-row-name">お墓マップ</p>
+            <p class="en-row-desc">糸和家・山田家の両方を登録済</p>
+          </div>
+          <i class="ti ti-chevron-right en-row-chevron"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. 家族への伝言 -->
+    <div class="en-section">
+      <div class="en-section-header">
+        <span class="en-section-title"><i class="ti ti-message-circle"></i>5. 家族への伝言</span>
+        <span class="en-section-status pending">未着手</span>
+      </div>
+      <div class="en-card">
+        <div class="en-row">
+          <div class="en-row-icon message"><i class="ti ti-mail"></i></div>
+          <div class="en-row-text">
+            <p class="en-row-name">家族全体へのメッセージ</p>
+            <p class="en-row-desc">いつか必ず読まれる、最後のお手紙</p>
+          </div>
+          <span class="en-row-status empty">未記入</span>
+        </div>
+        <div class="en-row">
+          <div class="en-row-icon message"><i class="ti ti-mail-heart"></i></div>
+          <div class="en-row-text">
+            <p class="en-row-name">個別のお手紙</p>
+            <p class="en-row-desc">主人、長男、次男、孫さくらへ など</p>
+          </div>
+          <span class="en-row-status empty">0件</span>
+        </div>
+        <div class="en-row">
+          <div class="en-row-icon message"><i class="ti ti-bell"></i></div>
+          <div class="en-row-text">
+            <p class="en-row-name">訃報を知らせたい方</p>
+            <p class="en-row-desc">家族との繋がり・ご縁から選択</p>
+          </div>
+          <span class="en-row-status empty">未設定</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- AIサポート -->
+    <button class="en-ai-button" data-goto="listen">
+      <i class="ti ti-sparkles"></i>
+      コンシェルジュに相談しながら書く
+    </button>
+
+    <!-- 補足案内 -->
+    <div class="en-tip-card">
+      <p class="en-tip-card-title"><i class="ti ti-info-circle"></i>少しずつ、ご自身のペースで</p>
+      エンディングノートは、一度に書き上げる必要はありません。
+      気が向いた時に、お話するように追加していけます。コンシェルジュがやさしくお手伝いします。
+    </div>
+
+    <div style="height: 24px;"></div>
+  </div>
+
+
+  
+  <!-- ============ REGISTER (Onboarding Demo) PAGE ============ -->
+  <div class="page" id="page-register">
+    <div class="page-bar">
+      <div class="left">
+        <i class="ti ti-arrow-left" data-back="manage"></i>
+        <span class="title-text">登録イメージ</span>
+      </div>
+      <i class="ti ti-info-circle"></i>
+    </div>
+
+    <div class="reg-demo-banner">
+      <i class="ti ti-sparkles"></i>
+      <span>新規ご利用開始時の画面イメージです</span>
+    </div>
+
+    <div class="reg-container">
+
+      <!-- 進捗ドット -->
+      <div class="reg-progress-dots" id="reg-progress-dots">
+        <div class="reg-progress-dot active"></div>
+        <div class="reg-progress-dot"></div>
+        <div class="reg-progress-dot"></div>
+        <div class="reg-progress-dot"></div>
+        <div class="reg-progress-dot"></div>
+      </div>
+
+      <!-- Step 0: Welcome -->
+      <div class="reg-step active" id="reg-step-0">
+        <div class="reg-welcome-illustration">
+          <i class="ti ti-sparkles reg-sparkle"></i>
+          <i class="ti ti-sparkles reg-sparkle"></i>
+          <i class="ti ti-sparkles reg-sparkle"></i>
+          <i class="ti ti-sparkles reg-sparkle"></i>
+          <i class="ti ti-sparkles reg-sparkle"></i>
+          <div class="reg-welcome-circle">
+            <i class="ti ti-notebook reg-welcome-icon-main"></i>
+          </div>
+        </div>
+
+        <h1 class="reg-welcome-title">ようこそ</h1>
+        <p class="reg-welcome-subtitle">
+          日々を綴り、家族と分かち合う。<br>
+          あなただけの、メモリーノートへ。
+        </p>
+
+        <div class="reg-welcome-features">
+          <div class="reg-welcome-feature">
+            <div class="reg-welcome-feature-icon"><i class="ti ti-book"></i></div>
+            <div class="reg-welcome-feature-text">
+              <p class="reg-welcome-feature-title">日々を綴る</p>
+              <p class="reg-welcome-feature-desc">何気ない日常も、大切な思い出になります</p>
+            </div>
+          </div>
+          <div class="reg-welcome-feature">
+            <div class="reg-welcome-feature-icon"><i class="ti ti-users"></i></div>
+            <div class="reg-welcome-feature-text">
+              <p class="reg-welcome-feature-title">家族と分かち合う</p>
+              <p class="reg-welcome-feature-desc">大切な人と、思い出を共有できます</p>
+            </div>
+          </div>
+          <div class="reg-welcome-feature">
+            <div class="reg-welcome-feature-icon"><i class="ti ti-heart"></i></div>
+            <div class="reg-welcome-feature-text">
+              <p class="reg-welcome-feature-title">いつまでも、続く</p>
+              <p class="reg-welcome-feature-desc">あなたの人生が、ご家族に受け継がれます</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reg-nav-buttons">
+          <button class="reg-btn-next" onclick="regNextStep()">
+            はじめましょう
+            <i class="ti ti-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 1: 名前 -->
+      <div class="reg-step" id="reg-step-1">
+        <div class="reg-step-header">
+          <div class="reg-step-number"><i class="ti ti-user"></i>STEP 1 / 4</div>
+          <h2 class="reg-step-title">お名前を教えてください</h2>
+          <p class="reg-step-desc">ご家族との繋がりに使われる、大切な情報です</p>
+        </div>
+
+        <div class="reg-form-row">
+          <div class="reg-form-group">
+            <label class="reg-form-label">姓<span class="reg-required">必須</span></label>
+            <input type="text" class="reg-form-input" id="reg-name-sei" placeholder="糸和" onkeyup="regValidateName()">
+            <p class="reg-form-furigana">セイ ・ 例：糸和（いとわ）</p>
+          </div>
+          <div class="reg-form-group">
+            <label class="reg-form-label">名<span class="reg-required">必須</span></label>
+            <input type="text" class="reg-form-input" id="reg-name-mei" placeholder="花子" onkeyup="regValidateName()">
+            <p class="reg-form-furigana">メイ ・ 例：花子（はなこ）</p>
+          </div>
+        </div>
+
+        <div class="reg-privacy-note">
+          <i class="ti ti-shield-check"></i>
+          <span>お名前は、ご家族との繋がり、メモリアルページなどに使用されます。第三者には公開されません。</span>
+        </div>
+
+        <div class="reg-nav-buttons">
+          <button class="reg-btn-back" onclick="regPrevStep()"><i class="ti ti-arrow-left"></i>戻る</button>
+          <button class="reg-btn-next disabled" id="reg-btn-step1" onclick="regNextStep()">
+            次へ
+            <i class="ti ti-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: 生年月日 -->
+      <div class="reg-step" id="reg-step-2">
+        <div class="reg-step-header">
+          <div class="reg-step-number"><i class="ti ti-cake"></i>STEP 2 / 4</div>
+          <h2 class="reg-step-title">生年月日を教えてください</h2>
+          <p class="reg-step-desc">人生の節目を、優しくお知らせします</p>
+        </div>
+
+        <div class="reg-form-group">
+          <label class="reg-form-label">生年月日<span class="reg-required">必須</span></label>
+          <div class="reg-date-selector">
+            <div class="reg-date-field">
+              <input type="number" class="reg-form-input" id="reg-date-year" placeholder="1941" min="1900" max="2026" onkeyup="regValidateDate()">
+              <span class="reg-date-field-suffix">年</span>
+            </div>
+            <div class="reg-date-field">
+              <input type="number" class="reg-form-input" id="reg-date-month" placeholder="4" min="1" max="12" onkeyup="regValidateDate()">
+              <span class="reg-date-field-suffix">月</span>
+            </div>
+            <div class="reg-date-field">
+              <input type="number" class="reg-form-input" id="reg-date-day" placeholder="3" min="1" max="31" onkeyup="regValidateDate()">
+              <span class="reg-date-field-suffix">日</span>
+            </div>
+          </div>
+          <p class="reg-form-furigana">西暦でご入力ください</p>
+        </div>
+
+        <div class="reg-privacy-note">
+          <i class="ti ti-cake"></i>
+          <span>お誕生日にメモリーノートからお祝いのメッセージが届きます。ご家族にもお知らせできます。</span>
+        </div>
+
+        <div class="reg-nav-buttons">
+          <button class="reg-btn-back" onclick="regPrevStep()"><i class="ti ti-arrow-left"></i>戻る</button>
+          <button class="reg-btn-next disabled" id="reg-btn-step2" onclick="regNextStep()">
+            次へ
+            <i class="ti ti-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 3: 郵便番号 -->
+      <div class="reg-step" id="reg-step-3">
+        <div class="reg-step-header">
+          <div class="reg-step-number"><i class="ti ti-map-pin"></i>STEP 3 / 4</div>
+          <h2 class="reg-step-title">郵便番号を教えてください</h2>
+          <p class="reg-step-desc">お近くの葬儀社情報をご案内する際に使います</p>
+        </div>
+
+        <div class="reg-form-group">
+          <label class="reg-form-label">郵便番号<span class="reg-required">必須</span></label>
+          <div class="reg-postal-wrapper">
+            <span class="reg-postal-prefix">〒</span>
+            <input type="text" class="reg-form-input reg-postal-input" id="reg-postal-code" placeholder="466-0064" maxlength="8" onkeyup="regCheckPostalCode()">
+          </div>
+          <p class="reg-form-furigana">ハイフン付き ・ 例：466-0064</p>
+
+          <div class="reg-address-display" id="reg-address-display">
+            <p class="reg-address-label"><i class="ti ti-check"></i>確認</p>
+            <p class="reg-address-value" id="reg-address-text">愛知県名古屋市昭和区鶴舞</p>
+            <p class="reg-address-note">※ 住所そのものはメモリーノートには保存されません</p>
+          </div>
+        </div>
+
+        <div class="reg-privacy-note">
+          <i class="ti ti-shield-check"></i>
+          <span>郵便番号のみ記録し、住所そのものは保存しません。お住まいの地域に応じた情報をご案内するために使用します。</span>
+        </div>
+
+        <div class="reg-nav-buttons">
+          <button class="reg-btn-back" onclick="regPrevStep()"><i class="ti ti-arrow-left"></i>戻る</button>
+          <button class="reg-btn-next disabled" id="reg-btn-step3" onclick="regNextStep()">
+            次へ
+            <i class="ti ti-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 4: 任意項目 -->
+      <div class="reg-step" id="reg-step-4">
+        <div class="reg-step-header">
+          <div class="reg-step-number"><i class="ti ti-plus"></i>STEP 4 / 4</div>
+          <h2 class="reg-step-title">任意でご入力ください</h2>
+          <p class="reg-step-desc">スキップしても問題ありません。後から追加できます。</p>
+        </div>
+
+        <div class="reg-form-group">
+          <label class="reg-form-label">性別<span class="reg-optional">任意</span></label>
+          <div class="reg-gender-options">
+            <button class="reg-gender-option" onclick="regSelectGender(this, 'female')">
+              <i class="ti ti-gender-female"></i>
+              女性
+            </button>
+            <button class="reg-gender-option" onclick="regSelectGender(this, 'male')">
+              <i class="ti ti-gender-male"></i>
+              男性
+            </button>
+            <button class="reg-gender-option" onclick="regSelectGender(this, 'no-answer')">
+              <i class="ti ti-dots"></i>
+              回答しない
+            </button>
+          </div>
+        </div>
+
+        <div class="reg-form-group">
+          <label class="reg-form-label">電話番号<span class="reg-optional">任意</span></label>
+          <input type="tel" class="reg-form-input" id="reg-phone" placeholder="090-1234-5678">
+          <p class="reg-form-furigana">緊急時にご家族へお伝えする番号です</p>
+        </div>
+
+        <div class="reg-privacy-note">
+          <i class="ti ti-info-circle"></i>
+          <span>任意項目は、よりパーソナライズされたサービスのために使用します。いつでも変更・削除できます。</span>
+        </div>
+
+        <div class="reg-nav-buttons">
+          <button class="reg-btn-back" onclick="regPrevStep()"><i class="ti ti-arrow-left"></i>戻る</button>
+          <button class="reg-btn-next" onclick="regCompleteRegistration()">
+            登録する
+            <i class="ti ti-sparkles"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 5: Complete -->
+      <div class="reg-step" id="reg-step-5">
+        <div class="reg-complete-container" id="reg-complete-container">
+          <div class="reg-complete-circle">
+            <div class="reg-complete-burst">
+              <div class="reg-burst-particle"></div>
+              <div class="reg-burst-particle"></div>
+              <div class="reg-burst-particle"></div>
+              <div class="reg-burst-particle"></div>
+              <div class="reg-burst-particle"></div>
+              <div class="reg-burst-particle"></div>
+              <div class="reg-burst-particle"></div>
+              <div class="reg-burst-particle"></div>
+            </div>
+            <i class="ti ti-check reg-complete-icon"></i>
+          </div>
+
+          <h2 class="reg-complete-title">ようこそ、メモリーノートへ</h2>
+          <p class="reg-complete-name" id="reg-complete-name">糸和 花子 さま</p>
+          <p class="reg-complete-desc">
+            あなただけのノートが完成しました。<br>
+            さあ、最初の一行を綴ってみましょう。
+          </p>
+
+          <div class="reg-complete-features">
+            <div class="reg-complete-feature">
+              <div class="reg-complete-feature-icon"><i class="ti ti-book"></i></div>
+              <p class="reg-complete-feature-label">日記</p>
+            </div>
+            <div class="reg-complete-feature">
+              <div class="reg-complete-feature-icon"><i class="ti ti-photo"></i></div>
+              <p class="reg-complete-feature-label">アルバム</p>
+            </div>
+            <div class="reg-complete-feature">
+              <div class="reg-complete-feature-icon"><i class="ti ti-users"></i></div>
+              <p class="reg-complete-feature-label">繋がり</p>
+            </div>
+            <div class="reg-complete-feature">
+              <div class="reg-complete-feature-icon"><i class="ti ti-sparkles"></i></div>
+              <p class="reg-complete-feature-label">コンシェルジュ</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reg-nav-buttons">
+          <button class="reg-btn-back" onclick="regResetFlow()"><i class="ti ti-refresh"></i>もう一度見る</button>
+          <button class="reg-btn-next" onclick="showPage('home')">
+            ホームへ
+            <i class="ti ti-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="height: 24px;"></div>
+  </div>
+
+
   <!-- ============ Sticky Bottom Nav ============ -->
   <nav class="bottom-nav">
     <div class="nav-item active" data-tab="home">
@@ -3604,6 +4905,9 @@ body { min-height: 100vh; min-height: 100dvh; }
       'family': 'manage',
       'grave': 'manage',
       'manage': 'manage',
+      'ending-note': 'manage',
+      'inheritance': 'manage',
+      'register': 'manage',
       'listen': 'listen'
     };
     const navTab = navTabMap[tabId] || 'home';
@@ -3727,6 +5031,138 @@ body { min-height: 100vh; min-height: 100dvh; }
       chip.classList.add('active');
     });
   });
+
+
+  // === Registration / Onboarding Logic ===
+  let regCurrentStep = 0;
+  const regTotalSteps = 5;
+
+  function regUpdateProgress() {
+    const dots = document.querySelectorAll('.reg-progress-dot');
+    dots.forEach((dot, i) => {
+      dot.classList.remove('active', 'done');
+      if (i < regCurrentStep) dot.classList.add('done');
+      if (i === regCurrentStep) dot.classList.add('active');
+    });
+  }
+
+  function regShowStep(n) {
+    document.querySelectorAll('.reg-step').forEach(s => s.classList.remove('active'));
+    document.getElementById('reg-step-' + n).classList.add('active');
+    regCurrentStep = n;
+    if (n < 5) regUpdateProgress();
+
+    if (n === 5) {
+      setTimeout(() => {
+        const c = document.getElementById('reg-complete-container');
+        if (c) c.classList.add('active');
+      }, 100);
+    }
+  }
+
+  function regNextStep() {
+    if (regCurrentStep < regTotalSteps - 1) {
+      regShowStep(regCurrentStep + 1);
+    }
+  }
+
+  function regPrevStep() {
+    if (regCurrentStep > 0) {
+      regShowStep(regCurrentStep - 1);
+    }
+  }
+
+  function regValidateName() {
+    const sei = document.getElementById('reg-name-sei').value.trim();
+    const mei = document.getElementById('reg-name-mei').value.trim();
+    const btn = document.getElementById('reg-btn-step1');
+    if (sei && mei) {
+      btn.classList.remove('disabled');
+    } else {
+      btn.classList.add('disabled');
+    }
+  }
+
+  function regValidateDate() {
+    const y = document.getElementById('reg-date-year').value;
+    const m = document.getElementById('reg-date-month').value;
+    const d = document.getElementById('reg-date-day').value;
+    const btn = document.getElementById('reg-btn-step2');
+    if (y && m && d && y >= 1900 && y <= 2026 && m >= 1 && m <= 12 && d >= 1 && d <= 31) {
+      btn.classList.remove('disabled');
+    } else {
+      btn.classList.add('disabled');
+    }
+  }
+
+  const regPostalMap = {
+    '466-0064': '愛知県名古屋市昭和区鶴舞',
+    '4660064': '愛知県名古屋市昭和区鶴舞',
+    '100-0001': '東京都千代田区千代田',
+    '530-0001': '大阪府大阪市北区梅田',
+    '060-0001': '北海道札幌市中央区北一条西',
+    '850-0035': '長崎県長崎市元船町',
+    '500-8101': '岐阜県岐阜市長森',
+  };
+
+  function regCheckPostalCode() {
+    const input = document.getElementById('reg-postal-code').value.trim();
+    const display = document.getElementById('reg-address-display');
+    const text = document.getElementById('reg-address-text');
+    const btn = document.getElementById('reg-btn-step3');
+
+    const normalized = input.replace(/[^\d-]/g, '');
+
+    let formatted = normalized;
+    if (normalized.length === 7 && !normalized.includes('-')) {
+      formatted = normalized.slice(0, 3) + '-' + normalized.slice(3);
+      document.getElementById('reg-postal-code').value = formatted;
+    }
+
+    if (formatted.length >= 7 && /^\d{3}-?\d{4}$/.test(formatted)) {
+      const addr = regPostalMap[formatted];
+      if (addr) {
+        text.textContent = addr;
+      } else {
+        text.textContent = '住所を取得しました';
+      }
+      display.classList.add('show');
+      btn.classList.remove('disabled');
+    } else {
+      display.classList.remove('show');
+      btn.classList.add('disabled');
+    }
+  }
+
+  function regSelectGender(el, value) {
+    document.querySelectorAll('.reg-gender-option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+
+  function regCompleteRegistration() {
+    const sei = document.getElementById('reg-name-sei').value.trim();
+    const mei = document.getElementById('reg-name-mei').value.trim();
+    document.getElementById('reg-complete-name').textContent = sei + ' ' + mei + ' さま';
+    regShowStep(5);
+  }
+
+  function regResetFlow() {
+    // 入力をクリアして最初に戻る
+    document.getElementById('reg-name-sei').value = '';
+    document.getElementById('reg-name-mei').value = '';
+    document.getElementById('reg-date-year').value = '';
+    document.getElementById('reg-date-month').value = '';
+    document.getElementById('reg-date-day').value = '';
+    document.getElementById('reg-postal-code').value = '';
+    document.getElementById('reg-phone').value = '';
+    document.getElementById('reg-address-display').classList.remove('show');
+    document.getElementById('reg-complete-container').classList.remove('active');
+    document.querySelectorAll('.reg-gender-option').forEach(o => o.classList.remove('selected'));
+    document.getElementById('reg-btn-step1').classList.add('disabled');
+    document.getElementById('reg-btn-step2').classList.add('disabled');
+    document.getElementById('reg-btn-step3').classList.add('disabled');
+    regShowStep(0);
+  }
 </script>
 </body>
 </html>
