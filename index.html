@@ -1754,6 +1754,88 @@ body { min-height: 100vh; min-height: 100dvh; }
   margin-top: 4px;
 }
 
+/* === 終活の足跡（エンディングノート＝ビュー） === */
+.en-trail {
+  margin: 0 16px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.en-trail-head {
+  padding: 16px 16px 12px;
+  background: linear-gradient(135deg, #FBF8F1 0%, #F3EEE2 100%);
+  border-bottom: 1px solid var(--border);
+}
+.en-trail-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 14px; font-weight: 600;
+  color: var(--text);
+  margin: 0 0 3px;
+  letter-spacing: 0.06em;
+  display: flex; align-items: center; gap: 6px;
+}
+.en-trail-title i { font-size: 16px; color: #237853; }
+.en-trail-sub {
+  font-size: 11px; color: var(--text-muted);
+  margin: 0; line-height: 1.6;
+}
+.en-trail-list {
+  padding: 8px 16px 12px;
+}
+.en-trail-item {
+  display: flex; align-items: flex-start; gap: 11px;
+  padding: 10px 0;
+  position: relative;
+}
+.en-trail-item:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  left: 10px; top: 30px; bottom: -2px;
+  width: 2px;
+  background: var(--border);
+}
+.en-trail-mark {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1;
+}
+.en-trail-mark.done {
+  background: #237853;
+}
+.en-trail-mark.done i { font-size: 13px; color: #FFFFFF; }
+.en-trail-mark.yet {
+  background: var(--surface);
+  border: 1.5px dashed var(--border-strong);
+}
+.en-trail-body { flex: 1; min-width: 0; padding-top: 1px; }
+.en-trail-act {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 13px; font-weight: 500;
+  color: var(--text);
+  margin: 0; line-height: 1.5;
+}
+.en-trail-item.is-yet .en-trail-act { color: var(--text-soft); }
+.en-trail-note {
+  font-size: 11px; color: var(--text-muted);
+  margin: 2px 0 0; line-height: 1.5;
+}
+.en-trail-when {
+  font-size: 10px; color: var(--text-soft);
+  white-space: nowrap;
+  padding-top: 2px;
+}
+.en-trail-foot {
+  padding: 11px 16px;
+  background: var(--surface-warm);
+  border-top: 1px solid var(--border);
+  font-size: 11px; color: var(--text-muted);
+  line-height: 1.7;
+  text-align: center;
+}
+
 .en-section {
   padding: 0 16px;
   margin-bottom: 14px;
@@ -2538,6 +2620,150 @@ body { min-height: 100vh; min-height: 100dvh; }
 }
 .co-add-button:active { transform: scale(0.99); background: var(--surface-warm); }
 .co-add-button i { font-size: 16px; }
+
+/* === イベント記録（葬儀社ごと・QR読込） === */
+.co-evt-view { display: none; padding: 14px 14px 4px; }
+.co-evt-view.active { display: block; }
+
+.co-evt-intro {
+  display: flex; gap: 8px;
+  padding: 11px 12px;
+  background: rgba(35,120,83,0.05);
+  border: 1px solid rgba(35,120,83,0.18);
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+.co-evt-intro i {
+  color: #237853; font-size: 15px;
+  flex-shrink: 0; margin-top: 1px;
+}
+.co-evt-intro p {
+  font-size: 11px; color: var(--text);
+  line-height: 1.6; margin: 0;
+}
+.co-evt-intro strong { color: #237853; }
+
+.co-evt-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+.co-evt-card-head {
+  padding: 12px 14px;
+  background: var(--surface-warm);
+  border-bottom: 1px solid var(--border);
+}
+.co-evt-card-date {
+  font-size: 10px; color: var(--text-soft);
+  letter-spacing: 0.05em;
+  margin: 0 0 3px;
+}
+.co-evt-card-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 14px; font-weight: 500;
+  color: var(--text);
+  margin: 0;
+  display: flex; align-items: center; gap: 6px;
+}
+.co-evt-card-title i { font-size: 15px; color: var(--gold); }
+.co-evt-card-body { padding: 12px 14px; }
+
+.co-evt-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #EDE6D6 0%, #E2D8C0 100%);
+  border: 1px solid var(--border);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 6px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+.co-evt-image i { font-size: 32px; color: var(--gold); }
+.co-evt-image img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.co-evt-image-label {
+  font-size: 10px; color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+
+.co-evt-section-label {
+  font-size: 10px; color: var(--text-muted);
+  letter-spacing: 0.08em;
+  margin: 0 0 6px;
+  display: flex; align-items: center; gap: 4px;
+}
+.co-evt-section-label i { font-size: 12px; color: var(--accent); }
+
+.co-evt-choices {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-bottom: 12px;
+}
+.co-evt-choice {
+  font-size: 11px;
+  padding: 4px 10px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border-radius: 999px;
+}
+
+.co-evt-text {
+  font-size: 12px; color: var(--text);
+  line-height: 1.7;
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  background: var(--note-bg);
+  border-left: 2px solid var(--accent);
+  border-radius: 0 6px 6px 0;
+}
+
+.co-evt-link {
+  display: flex; align-items: center; gap: 6px;
+  padding: 10px 12px;
+  background: var(--surface-warm);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 12px;
+  color: var(--link);
+  text-decoration: none;
+}
+.co-evt-link i { font-size: 14px; }
+.co-evt-link .co-evt-link-arrow {
+  margin-left: auto;
+  color: var(--text-soft);
+}
+
+.co-evt-qr-button {
+  margin: 4px 0 10px;
+  display: flex; align-items: center; justify-content: center;
+  gap: 7px;
+  padding: 13px;
+  width: 100%;
+  background: linear-gradient(135deg, var(--gold) 0%, #B5895E 100%);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 12px;
+  font-size: 13px; font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 3px 10px rgba(201,168,118,0.3);
+}
+.co-evt-qr-button:active { transform: scale(0.99); }
+.co-evt-qr-button i { font-size: 18px; }
+
+.co-evt-private {
+  text-align: center;
+  font-size: 10px; color: var(--text-soft);
+  line-height: 1.6;
+  margin: 0 4px 6px;
+}
 
 .co-history-header {
   padding: 14px 16px;
@@ -3732,6 +3958,330 @@ body { min-height: 100vh; min-height: 100dvh; }
   color: var(--text);
   margin: 0;
 }
+/* === 葬儀社管理画面イメージ === */
+.adm-demo-banner {
+  background: linear-gradient(135deg, #E6F1FB 0%, #D3E5F5 100%);
+  padding: 10px 16px;
+  text-align: center;
+  font-size: 11px;
+  color: #1E5687;
+  border-bottom: 1px solid #B8D4EC;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.adm-demo-banner i { font-size: 13px; }
+
+.adm-head {
+  padding: 18px 16px 16px;
+  background: linear-gradient(135deg, #1E5687 0%, #2C6BA0 100%);
+  color: #FFFFFF;
+}
+.adm-head-org {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 10px;
+}
+.adm-head-org-logo {
+  width: 34px; height: 34px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.adm-head-org-logo i { font-size: 18px; color: #FFFFFF; }
+.adm-head-org-name {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 14px; font-weight: 500;
+  margin: 0;
+}
+.adm-head-org-sub {
+  font-size: 10px; opacity: 0.85;
+  margin: 1px 0 0;
+}
+.adm-head-title {
+  font-size: 12px;
+  opacity: 0.9;
+  margin: 0;
+}
+
+.adm-section-label {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 12px; color: var(--text-muted);
+  letter-spacing: 0.08em;
+  margin: 18px 20px 8px;
+  font-weight: 500;
+  display: flex; align-items: center; gap: 5px;
+}
+.adm-section-label i { font-size: 14px; color: #1E5687; }
+
+/* 登録者数サマリー */
+.adm-stat-grid {
+  margin: 0 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.adm-stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+}
+.adm-stat-card.primary {
+  background: linear-gradient(135deg, #E6F1FB 0%, #F4F9FE 100%);
+  border-color: #B8D4EC;
+}
+.adm-stat-card.total {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, #1E5687 0%, #2C6BA0 100%);
+  border: none;
+}
+.adm-stat-label {
+  font-size: 10px; color: var(--text-muted);
+  margin: 0 0 4px;
+  display: flex; align-items: center; justify-content: center; gap: 3px;
+}
+.adm-stat-label i { font-size: 11px; }
+.adm-stat-card.total .adm-stat-label { color: rgba(255,255,255,0.85); }
+.adm-stat-num {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 28px; font-weight: 600;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.1;
+}
+.adm-stat-card.primary .adm-stat-num { color: #1E5687; }
+.adm-stat-card.total .adm-stat-num { color: #FFFFFF; font-size: 32px; }
+.adm-stat-unit {
+  font-size: 11px; font-weight: 400;
+  color: var(--text-muted);
+}
+.adm-stat-card.total .adm-stat-unit { color: rgba(255,255,255,0.85); }
+.adm-stat-note {
+  font-size: 9px; color: var(--text-soft);
+  margin: 4px 0 0;
+  line-height: 1.4;
+}
+.adm-stat-card.total .adm-stat-note { color: rgba(255,255,255,0.75); }
+
+.adm-stat-caption {
+  margin: 10px 16px 0;
+  padding: 10px 12px;
+  background: rgba(30,86,135,0.05);
+  border: 1px solid rgba(30,86,135,0.15);
+  border-radius: 8px;
+  font-size: 10px; color: var(--text-muted);
+  line-height: 1.7;
+  display: flex; gap: 6px;
+}
+.adm-stat-caption i {
+  color: #1E5687; font-size: 13px;
+  flex-shrink: 0; margin-top: 1px;
+}
+.adm-stat-caption strong { color: #1E5687; }
+
+/* イベント別参加者数 */
+.adm-evt-list {
+  margin: 0 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.adm-evt-row {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.adm-evt-row:last-child { border-bottom: none; }
+.adm-evt-icon {
+  width: 36px; height: 36px;
+  border-radius: 9px;
+  background: #E6F1FB;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.adm-evt-icon i { font-size: 17px; color: #1E5687; }
+.adm-evt-info { flex: 1; min-width: 0; }
+.adm-evt-name {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 13px; font-weight: 500;
+  color: var(--text);
+  margin: 0;
+}
+.adm-evt-meta {
+  font-size: 10px; color: var(--text-muted);
+  margin: 2px 0 0;
+}
+.adm-evt-count {
+  text-align: right;
+  flex-shrink: 0;
+}
+.adm-evt-count-num {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 19px; font-weight: 600;
+  color: #1E5687;
+  margin: 0;
+  line-height: 1;
+}
+.adm-evt-count-unit {
+  font-size: 9px; color: var(--text-soft);
+}
+
+/* QR生成フォーム */
+.adm-qr-card {
+  margin: 0 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+}
+.adm-qr-field { margin-bottom: 12px; }
+.adm-qr-label {
+  font-size: 11px; color: var(--text);
+  font-weight: 500;
+  margin: 0 0 6px;
+  display: block;
+}
+.adm-qr-label .adm-qr-tag {
+  display: inline-block;
+  font-size: 9px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  margin-left: 5px;
+  font-weight: 400;
+  vertical-align: 1px;
+}
+.adm-qr-tag.free { background: #E8F5EE; color: #237853; }
+.adm-qr-tag.select { background: #E6F1FB; color: #1E5687; }
+.adm-qr-tag.auto { background: var(--accent-soft); color: var(--text-muted); }
+.adm-qr-input, .adm-qr-select {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 9px;
+  font-size: 14px;
+  font-family: inherit;
+  background: var(--surface);
+  color: var(--text);
+}
+.adm-qr-select { appearance: none; -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B6359' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+}
+.adm-qr-auto-value {
+  padding: 11px 12px;
+  background: var(--surface-warm);
+  border: 1.5px solid var(--border);
+  border-radius: 9px;
+  font-size: 13px;
+  color: var(--text-muted);
+  display: flex; align-items: center; gap: 6px;
+}
+.adm-qr-auto-value i { font-size: 14px; }
+.adm-qr-generate {
+  width: 100%;
+  margin-top: 4px;
+  padding: 13px;
+  background: linear-gradient(135deg, #1E5687 0%, #2C6BA0 100%);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  font-size: 13px; font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  transition: all 0.2s ease;
+  box-shadow: 0 3px 10px rgba(30,86,135,0.25);
+}
+.adm-qr-generate:active { transform: scale(0.99); }
+.adm-qr-generate i { font-size: 17px; }
+
+.adm-qr-result {
+  margin: 12px 16px 0;
+  padding: 18px;
+  background: var(--surface);
+  border: 1.5px dashed #1E5687;
+  border-radius: 12px;
+  text-align: center;
+}
+.adm-qr-result-code {
+  width: 120px; height: 120px;
+  margin: 0 auto 10px;
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+}
+.adm-qr-result-code i { font-size: 76px; color: #1E5687; }
+.adm-qr-result-name {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 13px; font-weight: 500;
+  color: var(--text);
+  margin: 0 0 2px;
+}
+.adm-qr-result-meta {
+  font-size: 10px; color: var(--text-muted);
+  margin: 0;
+}
+
+.adm-foot-note {
+  margin: 18px 16px 8px;
+  padding: 12px 14px;
+  background: var(--surface-warm);
+  border-radius: 10px;
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  border-left: 3px solid #1E5687;
+}
+.adm-foot-note strong {
+  display: block;
+  margin-bottom: 3px;
+  color: var(--text);
+  font-family: 'Shippori Mincho', serif;
+  font-size: 12px;
+}
+
+/* 管理画面トップ メニュー */
+.adm-menu {
+  margin: 16px;
+  display: flex; flex-direction: column;
+  gap: 10px;
+}
+.adm-menu-item {
+  display: flex; align-items: center; gap: 13px;
+  padding: 16px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.adm-menu-item:active { transform: scale(0.99); background: var(--surface-warm); }
+.adm-menu-icon {
+  width: 44px; height: 44px;
+  border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.adm-menu-icon i { font-size: 22px; }
+.adm-menu-text { flex: 1; min-width: 0; }
+.adm-menu-name {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 14px; font-weight: 500;
+  color: var(--text);
+  margin: 0;
+}
+.adm-menu-desc {
+  font-size: 11px; color: var(--text-muted);
+  margin: 3px 0 0; line-height: 1.5;
+}
+.adm-menu-item .chevron {
+  color: var(--text-soft); font-size: 18px;
+}
+
 </style>
 </head>
 <body>
@@ -4435,6 +4985,10 @@ body { min-height: 100vh; min-height: 100dvh; }
             <i class="ti ti-mail"></i>お知らせ
             <span class="co-history-tab-count">5</span>
           </div>
+          <div class="co-history-tab" id="memo-htab-evt" onclick="switchCoHistory('memoreed', 'evt')">
+            <i class="ti ti-sparkles"></i>イベント記録
+            <span class="co-history-tab-count">1</span>
+          </div>
         </div>
 
         <!-- やりとり履歴：メモリード -->
@@ -4569,6 +5123,40 @@ body { min-height: 100vh; min-height: 100dvh; }
             </div>
           </div>
 
+        </div>
+
+        <!-- イベント記録：メモリード -->
+        <div class="co-evt-view" id="memo-hview-evt">
+
+          <div class="co-evt-intro">
+            <i class="ti ti-shield-lock"></i>
+            <p>イベント会場のQRコードを読み込むと、その日の記録がここに残ります。<strong>この記録は、メモリードのページにのみ保管されます。</strong></p>
+          </div>
+
+          <div class="co-evt-card">
+            <div class="co-evt-card-head">
+              <p class="co-evt-card-date">2026 年 2 月 15 日 ・ 日</p>
+              <p class="co-evt-card-title"><i class="ti ti-building"></i>メモリードホール 会場見学会</p>
+            </div>
+            <div class="co-evt-card-body">
+              <div class="co-evt-image">
+                <img src="saidan2.png" alt="会場見学の写真">
+              </div>
+              <p class="co-evt-section-label"><i class="ti ti-note"></i>メモ</p>
+              <p class="co-evt-text">第一ホールを見学。和室の落ち着いた雰囲気が主人も気に入った様子。担当の山田さんが控室や駐車場まで案内してくださった。</p>
+              <a href="https://osoushiki.memolead.co.jp/" target="_blank" rel="noopener noreferrer" class="co-evt-link">
+                <i class="ti ti-link"></i>
+                見学した式場の詳細を見る
+                <i class="ti ti-external-link co-evt-link-arrow"></i>
+              </a>
+            </div>
+          </div>
+
+          <button class="co-evt-qr-button">
+            <i class="ti ti-qrcode"></i>
+            イベントのQRコードを読み込む
+          </button>
+          <p class="co-evt-private">イベント記録は、この葬儀社のページにのみ残ります。<br>他の葬儀社のページには表示されません。</p>
         </div>
 
         <button class="co-add-button">
@@ -4712,6 +5300,10 @@ body { min-height: 100vh; min-height: 100dvh; }
             <i class="ti ti-mail"></i>お知らせ
             <span class="co-history-tab-count">5</span>
           </div>
+          <div class="co-history-tab" id="aip-htab-evt" onclick="switchCoHistory('aiplan', 'evt')">
+            <i class="ti ti-sparkles"></i>イベント記録
+            <span class="co-history-tab-count">1</span>
+          </div>
         </div>
 
         <!-- やりとり履歴：あいプラン -->
@@ -4846,6 +5438,40 @@ body { min-height: 100vh; min-height: 100dvh; }
             </div>
           </div>
 
+        </div>
+
+        <!-- イベント記録：あいプラン -->
+        <div class="co-evt-view" id="aip-hview-evt">
+
+          <div class="co-evt-intro">
+            <i class="ti ti-shield-lock"></i>
+            <p>イベント会場のQRコードを読み込むと、その日の記録がここに残ります。<strong>この記録は、あいプランのページにのみ保管されます。</strong></p>
+          </div>
+
+          <div class="co-evt-card">
+            <div class="co-evt-card-head">
+              <p class="co-evt-card-date">2026 年 5 月 9 日 ・ 金</p>
+              <p class="co-evt-card-title"><i class="ti ti-sparkles"></i>葬儀会場イメージを作成しました</p>
+            </div>
+            <div class="co-evt-card-body">
+              <div class="co-evt-image">
+                <img src="saidan1.png" alt="AIが生成した葬儀会場イメージ">
+              </div>
+              <p class="co-evt-section-label"><i class="ti ti-note"></i>メモ</p>
+              <p class="co-evt-text">やわらぎ斎場のイベントで、希望を選んでいくとAIが会場のイメージ画像を作ってくれた。主人と相談しながら、白い生花の祭壇に決めた。当日の画像を持ち帰り。</p>
+              <a href="https://www.apg-aiplan.com/" target="_blank" rel="noopener noreferrer" class="co-evt-link">
+                <i class="ti ti-link"></i>
+                作成したプランの詳細を見る
+                <i class="ti ti-external-link co-evt-link-arrow"></i>
+              </a>
+            </div>
+          </div>
+
+          <button class="co-evt-qr-button">
+            <i class="ti ti-qrcode"></i>
+            イベントのQRコードを読み込む
+          </button>
+          <p class="co-evt-private">イベント記録は、この葬儀社のページにのみ残ります。<br>他の葬儀社のページには表示されません。</p>
         </div>
 
         <button class="co-add-button">
@@ -5047,6 +5673,17 @@ body { min-height: 100vh; min-height: 100dvh; }
               <span class="manage-badge" style="background: #C9A876; color: #FFFFFF;">DEMO</span>
             </div>
             <p class="manage-desc">新規ご利用開始時の登録画面のイメージ</p>
+          </div>
+          <i class="ti ti-chevron-right chevron"></i>
+        </div>
+        <div class="manage-item" data-goto="admin">
+          <div class="manage-icon" style="background: linear-gradient(135deg, #E6F1FB 0%, #D3E5F5 100%); color: #1E5687;"><i class="ti ti-device-desktop"></i></div>
+          <div class="manage-text">
+            <div class="manage-title-row">
+              <p class="manage-name">葬儀社管理画面イメージ</p>
+              <span class="manage-badge" style="background: #1E5687; color: #FFFFFF;">DEMO</span>
+            </div>
+            <p class="manage-desc">提携葬儀社向け 管理画面のイメージ</p>
           </div>
           <i class="ti ti-chevron-right chevron"></i>
         </div>
@@ -6021,7 +6658,7 @@ body { min-height: 100vh; min-height: 100dvh; }
     <div class="en-hero">
       <div class="en-hero-icon"><i class="ti ti-notebook"></i></div>
       <h2>エンディングノート</h2>
-      <p>大切な情報をまとめて整理<br>ご家族の道しるべとして残します</p>
+      <p>終活は、書くためではなく生きるための時間。<br>その歩みが、ご家族の道しるべになります。</p>
     </div>
 
     <!-- セキュリティ案内カード -->
@@ -6050,17 +6687,92 @@ body { min-height: 100vh; min-height: 100dvh; }
       </div>
     </div>
 
-    <!-- 進捗 -->
-    <div class="en-progress-section">
-      <div class="en-progress-row">
-        <span class="en-progress-title">あなたの記録</span>
-        <span class="en-progress-count">8 / 24 項目</span>
+    <!-- 終活の足跡（ビュー） -->
+    <div class="en-trail">
+      <div class="en-trail-head">
+        <p class="en-trail-title"><i class="ti ti-walk"></i>あなたの足跡</p>
+        <p class="en-trail-sub">これは「埋める」ノートではありません。<br>日々を綴り、考え、家族と話す ── その歩みが、ここに残ります。</p>
       </div>
-      <div class="en-progress-bar">
-        <div class="en-progress-fill" style="width: 33%;"></div>
+      <div class="en-trail-list">
+
+        <div class="en-trail-item">
+          <div class="en-trail-mark done"><i class="ti ti-check"></i></div>
+          <div class="en-trail-body">
+            <p class="en-trail-act">日記を綴りはじめました</p>
+            <p class="en-trail-note">これまで28日ぶん</p>
+          </div>
+          <span class="en-trail-when">継続中</span>
+        </div>
+
+        <div class="en-trail-item">
+          <div class="en-trail-mark done"><i class="ti ti-check"></i></div>
+          <div class="en-trail-body">
+            <p class="en-trail-act">お墓のことを記録しました</p>
+            <p class="en-trail-note">糸和家・山田家の両方</p>
+          </div>
+          <span class="en-trail-when">4月</span>
+        </div>
+
+        <div class="en-trail-item">
+          <div class="en-trail-mark done"><i class="ti ti-check"></i></div>
+          <div class="en-trail-body">
+            <p class="en-trail-act">お世話になった企業を残しました</p>
+            <p class="en-trail-note">ご縁に3社 ・ メモリード、あいプランなど</p>
+          </div>
+          <span class="en-trail-when">4月</span>
+        </div>
+
+        <div class="en-trail-item">
+          <div class="en-trail-mark done"><i class="ti ti-check"></i></div>
+          <div class="en-trail-body">
+            <p class="en-trail-act">もしもの時の希望を書きました</p>
+            <p class="en-trail-note">延命治療・介護のことなど</p>
+          </div>
+          <span class="en-trail-when">4月</span>
+        </div>
+
+        <div class="en-trail-item">
+          <div class="en-trail-mark done"><i class="ti ti-check"></i></div>
+          <div class="en-trail-body">
+            <p class="en-trail-act">遺言書のことを記録しました</p>
+            <p class="en-trail-note">作成済 ・ 保管場所も残しました</p>
+          </div>
+          <span class="en-trail-when">4月</span>
+        </div>
+
+        <div class="en-trail-item">
+          <div class="en-trail-mark done"><i class="ti ti-check"></i></div>
+          <div class="en-trail-body">
+            <p class="en-trail-act">お知らせしたい方々を残しました</p>
+            <p class="en-trail-note">11名のお名前と関係性</p>
+          </div>
+          <span class="en-trail-when">5月</span>
+        </div>
+
+        <div class="en-trail-item is-yet">
+          <div class="en-trail-mark yet"></div>
+          <div class="en-trail-body">
+            <p class="en-trail-act">家族への手紙</p>
+            <p class="en-trail-note">いつか、書きたくなった時に</p>
+          </div>
+          <span class="en-trail-when">まだ</span>
+        </div>
+
+        <div class="en-trail-item is-yet">
+          <div class="en-trail-mark yet"></div>
+          <div class="en-trail-body">
+            <p class="en-trail-act">大切な書類の保管場所</p>
+            <p class="en-trail-note">紙のノートや印鑑の在りか</p>
+          </div>
+          <span class="en-trail-when">まだ</span>
+        </div>
+
       </div>
-      <div class="en-progress-pct">33% 完了 ・ 焦らず少しずつでも大丈夫</div>
+      <div class="en-trail-foot">
+        終わりはありません。気が向いた時に、一歩ずつ。
+      </div>
     </div>
+
 
     <!-- 1. 基本情報 -->
     <div class="en-section">
@@ -6296,6 +7008,245 @@ body { min-height: 100vh; min-height: 100dvh; }
     <div style="height: 24px;"></div>
   </div>
 
+
+  
+  <!-- ============ ADMIN SCREEN DEMO ============ -->
+
+  <!-- 管理画面トップ -->
+  <div class="page" id="page-admin">
+    <div class="page-bar">
+      <div class="left">
+        <i class="ti ti-arrow-left" data-back="manage"></i>
+        <span class="title-text">葬儀社管理画面イメージ</span>
+      </div>
+      <i class="ti ti-info-circle"></i>
+    </div>
+
+    <div class="adm-demo-banner">
+      <i class="ti ti-device-desktop"></i>
+      <span>提携葬儀社さま向け 管理画面のイメージです</span>
+    </div>
+
+    <div class="adm-head">
+      <div class="adm-head-org">
+        <div class="adm-head-org-logo"><i class="ti ti-building"></i></div>
+        <div>
+          <p class="adm-head-org-name">○○葉儀社</p>
+          <p class="adm-head-org-sub">メモリーノート提携 ・ 管理者ログイン中</p>
+        </div>
+      </div>
+      <p class="adm-head-title">メモリーノート 葬儀社ダッシュボード</p>
+    </div>
+
+    <div class="adm-menu">
+      <div class="adm-menu-item" data-goto="admin-members">
+        <div class="adm-menu-icon" style="background: #E6F1FB; color: #1E5687;"><i class="ti ti-users"></i></div>
+        <div class="adm-menu-text">
+          <p class="adm-menu-name">メモリーノート登録者数</p>
+          <p class="adm-menu-desc">一番手・それ以降の登録者数を確認</p>
+        </div>
+        <i class="ti ti-chevron-right chevron"></i>
+      </div>
+      <div class="adm-menu-item" data-goto="admin-events">
+        <div class="adm-menu-icon" style="background: #FBF6E5; color: #B5895E;"><i class="ti ti-calendar"></i></div>
+        <div class="adm-menu-text">
+          <p class="adm-menu-name">イベント参加状況</p>
+          <p class="adm-menu-desc">イベント別の参加者数を確認</p>
+        </div>
+        <i class="ti ti-chevron-right chevron"></i>
+      </div>
+      <div class="adm-menu-item" data-goto="admin-qr">
+        <div class="adm-menu-icon" style="background: #E8F5EE; color: #237853;"><i class="ti ti-qrcode"></i></div>
+        <div class="adm-menu-text">
+          <p class="adm-menu-name">イベントQRコード生成</p>
+          <p class="adm-menu-desc">会場で掲示するQRコードを作成</p>
+        </div>
+        <i class="ti ti-chevron-right chevron"></i>
+      </div>
+    </div>
+
+    <div class="adm-foot-note">
+      <strong>この画面について</strong>
+      提携葬儀社さまが、メモリーノートの登録状況とイベントを管理する画面のイメージです。利用者さまの日記やご家族の情報など、メモリーノートの中身を見ることはできません。
+    </div>
+
+    <div style="height: 24px;"></div>
+  </div>
+
+  <!-- 管理画面 ① 登録者数 -->
+  <div class="page" id="page-admin-members">
+    <div class="page-bar">
+      <div class="left">
+        <i class="ti ti-arrow-left" data-back="admin"></i>
+        <span class="title-text">メモリーノート登録者数</span>
+      </div>
+      <i class="ti ti-info-circle"></i>
+    </div>
+
+    <div class="adm-demo-banner">
+      <i class="ti ti-device-desktop"></i>
+      <span>提携葬儀社さま向け 管理画面のイメージです</span>
+    </div>
+
+    <p class="adm-section-label"><i class="ti ti-users"></i>メモリーノート登録者数</p>
+    <div class="adm-stat-grid">
+      <div class="adm-stat-card total">
+        <p class="adm-stat-label"><i class="ti ti-user-check"></i>御社経由の登録者 合計</p>
+        <p class="adm-stat-num">142<span class="adm-stat-unit"> 名</span></p>
+        <p class="adm-stat-note">2026年5月時点</p>
+      </div>
+      <div class="adm-stat-card primary">
+        <p class="adm-stat-label"><i class="ti ti-flag"></i>一番手</p>
+        <p class="adm-stat-num">98<span class="adm-stat-unit"> 名</span></p>
+        <p class="adm-stat-note">御社が最初に<br>ご紹介した方</p>
+      </div>
+      <div class="adm-stat-card">
+        <p class="adm-stat-label"><i class="ti ti-users"></i>それ以降</p>
+        <p class="adm-stat-num">44<span class="adm-stat-unit"> 名</span></p>
+        <p class="adm-stat-note">他社が初回登録 ・<br>御社は2社目以降</p>
+      </div>
+    </div>
+    <div class="adm-stat-caption">
+      <i class="ti ti-info-circle"></i>
+      <span><strong>「一番手」</strong>は、その利用者さまをメモリーノートに最初にご登録いただいた葬儀社さまです。<strong>「それ以降」</strong>は、すでに他社経由で登録済みの利用者さまが、御社のご縁にも登録された場合です。</span>
+    </div>
+
+    <div class="adm-foot-note">
+      <strong>今後の拡張について</strong>
+      「一番手」と「それ以降」を区別して記録することで、初回登録をした葬儀社さまへのインセンティブ設計が可能になります。
+    </div>
+
+    <div style="height: 24px;"></div>
+  </div>
+
+  <!-- 管理画面 ② イベント参加状況 -->
+  <div class="page" id="page-admin-events">
+    <div class="page-bar">
+      <div class="left">
+        <i class="ti ti-arrow-left" data-back="admin"></i>
+        <span class="title-text">イベント参加状況</span>
+      </div>
+      <i class="ti ti-info-circle"></i>
+    </div>
+
+    <div class="adm-demo-banner">
+      <i class="ti ti-device-desktop"></i>
+      <span>提携葬儀社さま向け 管理画面のイメージです</span>
+    </div>
+
+    <p class="adm-section-label"><i class="ti ti-calendar"></i>イベント別 参加者数</p>
+    <div class="adm-evt-list">
+      <div class="adm-evt-row">
+        <div class="adm-evt-icon"><i class="ti ti-sparkles"></i></div>
+        <div class="adm-evt-info">
+          <p class="adm-evt-name">葬儀会場イメージ作成会</p>
+          <p class="adm-evt-meta">○○斎場 本館 ・ 2026/5/9</p>
+        </div>
+        <div class="adm-evt-count">
+          <p class="adm-evt-count-num">38</p>
+          <span class="adm-evt-count-unit">名 参加</span>
+        </div>
+      </div>
+      <div class="adm-evt-row">
+        <div class="adm-evt-icon"><i class="ti ti-school"></i></div>
+        <div class="adm-evt-info">
+          <p class="adm-evt-name">終活セミナー（家族葬の選び方）</p>
+          <p class="adm-evt-meta">○○斎場 別館ホール ・ 2026/5/9</p>
+        </div>
+        <div class="adm-evt-count">
+          <p class="adm-evt-count-num">25</p>
+          <span class="adm-evt-count-unit">名 参加</span>
+        </div>
+      </div>
+      <div class="adm-evt-row">
+        <div class="adm-evt-icon"><i class="ti ti-building"></i></div>
+        <div class="adm-evt-info">
+          <p class="adm-evt-name">会場見学会</p>
+          <p class="adm-evt-meta">○○斎場 本館 ・ 2026/4/20</p>
+        </div>
+        <div class="adm-evt-count">
+          <p class="adm-evt-count-num">19</p>
+          <span class="adm-evt-count-unit">名 参加</span>
+        </div>
+      </div>
+      <div class="adm-evt-row">
+        <div class="adm-evt-icon"><i class="ti ti-confetti"></i></div>
+        <div class="adm-evt-info">
+          <p class="adm-evt-name">会員様 感謝祭</p>
+          <p class="adm-evt-meta">○○ホール ・ 2026/3/15</p>
+        </div>
+        <div class="adm-evt-count">
+          <p class="adm-evt-count-num">60</p>
+          <span class="adm-evt-count-unit">名 参加</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="adm-foot-note">
+      <strong>参加者数について</strong>
+      参加者数は、イベント会場のQRコードを読み込んだ人数です。どのイベントが効果的かを、御社で把握していただけます。
+    </div>
+
+    <div style="height: 24px;"></div>
+  </div>
+
+  <!-- 管理画面 ③ QRコード生成 -->
+  <div class="page" id="page-admin-qr">
+    <div class="page-bar">
+      <div class="left">
+        <i class="ti ti-arrow-left" data-back="admin"></i>
+        <span class="title-text">イベントQRコード生成</span>
+      </div>
+      <i class="ti ti-info-circle"></i>
+    </div>
+
+    <div class="adm-demo-banner">
+      <i class="ti ti-device-desktop"></i>
+      <span>提携葬儀社さま向け 管理画面のイメージです</span>
+    </div>
+
+    <p class="adm-section-label"><i class="ti ti-qrcode"></i>イベントQRコードの生成</p>
+    <div class="adm-qr-card">
+      <div class="adm-qr-field">
+        <label class="adm-qr-label">イベント名<span class="adm-qr-tag free">自由入力</span></label>
+        <input type="text" class="adm-qr-input" id="adm-evt-name" placeholder="例：葬儀会場イメージ作成会" value="葬儀会場イメージ作成会">
+      </div>
+      <div class="adm-qr-field">
+        <label class="adm-qr-label">会場名<span class="adm-qr-tag select">任意</span></label>
+        <select class="adm-qr-select" id="adm-evt-venue">
+          <option>（指定なし）</option>
+          <option>○○斎場 本館</option>
+          <option>○○斎場 別館ホール</option>
+          <option>○○ホール</option>
+          <option>○○メモリアルセンター</option>
+        </select>
+      </div>
+      <div class="adm-qr-field">
+        <label class="adm-qr-label">日付<span class="adm-qr-tag auto">自動</span></label>
+        <div class="adm-qr-auto-value">
+          <i class="ti ti-clock"></i>
+          利用者さまの読み込み日時を自動で記録します
+        </div>
+      </div>
+      <button class="adm-qr-generate" onclick="document.getElementById('adm-qr-result').style.display='block';">
+        <i class="ti ti-qrcode"></i>
+        QRコードを生成する
+      </button>
+    </div>
+
+    <div class="adm-qr-result" id="adm-qr-result" style="display:none;">
+      <div class="adm-qr-result-code"><i class="ti ti-qrcode"></i></div>
+      <p class="adm-qr-result-name">葬儀会場イメージ作成会</p>
+      <p class="adm-qr-result-meta">印刷して会場に掲示できます</p>
+    </div>
+
+    <div class="adm-foot-note">
+      <strong>QRコードについて</strong>
+      生成したQRコードをイベント会場に掲示します。利用者さまが読み込むと、その日の記録がメモリーノートに残ります。日付は読み込み日時を自動で反映します。
+    </div>
+
+    <div style="height: 24px;"></div>
+  </div>
 
   
   <!-- ============ REGISTER (Onboarding Demo) PAGE ============ -->
@@ -7760,6 +8711,10 @@ body { min-height: 100vh; min-height: 100dvh; }
       'expert-list': 'manage',
       'realestate-list': 'manage',
       'register': 'manage',
+      'admin': 'manage',
+      'admin-members': 'manage',
+      'admin-events': 'manage',
+      'admin-qr': 'manage',
       'listen': 'listen'
     };
     const navTab = navTabMap[tabId] || 'home';
@@ -8021,11 +8976,11 @@ body { min-height: 100vh; min-height: 100dvh; }
   function switchCoHistory(company, view) {
     const prefix = company === 'memoreed' ? 'memo' : 'aip';
     // タブ
-    document.querySelectorAll(`#${prefix}-htab-self, #${prefix}-htab-news`).forEach(t => t.classList.remove('active'));
+    document.querySelectorAll(`#${prefix}-htab-self, #${prefix}-htab-news, #${prefix}-htab-evt`).forEach(t => t.classList.remove('active'));
     const tab = document.getElementById(`${prefix}-htab-${view}`);
     if (tab) tab.classList.add('active');
     // ビュー
-    document.querySelectorAll(`#${prefix}-hview-self, #${prefix}-hview-news`).forEach(v => v.classList.remove('active'));
+    document.querySelectorAll(`#${prefix}-hview-self, #${prefix}-hview-news, #${prefix}-hview-evt`).forEach(v => v.classList.remove('active'));
     const v = document.getElementById(`${prefix}-hview-${view}`);
     if (v) v.classList.add('active');
   }
