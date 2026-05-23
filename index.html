@@ -2765,6 +2765,180 @@ body { min-height: 100vh; min-height: 100dvh; }
   margin: 0 4px 6px;
 }
 
+/* タイムライン項目の画像 */
+.co-timeline-photo {
+  margin-top: 8px;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface-warm);
+}
+.co-timeline-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+
+/* === やりとり記録 作成ページ === */
+.rec-hero {
+  padding: 22px 20px 16px; text-align: center;
+  background: linear-gradient(135deg, #FBF8F1 0%, #F0E9DA 100%);
+  border-bottom: 1px solid var(--border);
+}
+.rec-hero-icon {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--accent-soft);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 8px;
+}
+.rec-hero-icon i { font-size: 24px; color: var(--accent); }
+.rec-hero h2 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 19px; font-weight: 500;
+  margin: 0 0 4px; letter-spacing: 0.08em;
+}
+.rec-hero p {
+  font-size: 12px; color: var(--text-muted);
+  margin: 0; line-height: 1.6;
+}
+
+.rec-section-label {
+  font-size: 11px; color: var(--text-muted);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  margin: 18px 20px 7px;
+  display: flex; align-items: center; gap: 5px;
+}
+.rec-section-label i { font-size: 13px; color: var(--accent); }
+.rec-section-label .rec-opt {
+  font-size: 9px; font-weight: 400;
+  padding: 1px 7px;
+  background: var(--accent-soft);
+  color: var(--text-muted);
+  border-radius: 999px;
+  margin-left: 4px;
+}
+
+/* 来訪情報（QR自動取得） */
+.rec-auto-card {
+  margin: 0 16px;
+  background: linear-gradient(135deg, #E8F5EE 0%, #F2FAF5 100%);
+  border: 1px solid rgba(35,120,83,0.25);
+  border-radius: 12px;
+  padding: 14px;
+}
+.rec-auto-head {
+  display: flex; align-items: center; gap: 7px;
+  margin-bottom: 10px;
+}
+.rec-auto-head i { font-size: 16px; color: #237853; }
+.rec-auto-head span {
+  font-size: 11px; color: #237853;
+  font-weight: 500;
+}
+.rec-auto-row {
+  display: flex; align-items: baseline; gap: 8px;
+  padding: 5px 0;
+}
+.rec-auto-key {
+  font-size: 11px; color: var(--text-muted);
+  width: 64px; flex-shrink: 0;
+}
+.rec-auto-val {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 13px; font-weight: 500;
+  color: var(--text);
+}
+
+/* 写真追加 */
+.rec-photo-add {
+  margin: 0 16px;
+  aspect-ratio: 16 / 9;
+  border: 1.5px dashed var(--border-strong);
+  border-radius: 12px;
+  background: var(--surface);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.rec-photo-add:active { transform: scale(0.99); background: var(--surface-warm); }
+.rec-photo-add i { font-size: 30px; color: var(--accent); }
+.rec-photo-add span {
+  font-size: 12px; color: var(--text-muted);
+}
+
+/* メモ入力方法バナー */
+.rec-memo-banners {
+  margin: 0 16px;
+  display: flex; flex-direction: column;
+  gap: 9px;
+}
+.rec-memo-banner {
+  display: flex; align-items: center; gap: 13px;
+  padding: 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid var(--border);
+}
+.rec-memo-banner:active { transform: scale(0.99); }
+.rec-memo-banner.text { background: var(--surface); }
+.rec-memo-banner.voice { background: linear-gradient(135deg, #EAF1FB 0%, #F5F9FE 100%); border-color: #B8D4EC; }
+.rec-memo-banner.camera { background: linear-gradient(135deg, #FBF1EA 0%, #FEF8F5 100%); border-color: #E8C9B3; }
+.rec-memo-icon {
+  width: 44px; height: 44px;
+  border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.rec-memo-icon i { font-size: 22px; color: #FFFFFF; }
+.rec-memo-banner.text .rec-memo-icon { background: var(--accent); }
+.rec-memo-banner.voice .rec-memo-icon { background: #1E5687; }
+.rec-memo-banner.camera .rec-memo-icon { background: #B5703E; }
+.rec-memo-text { flex: 1; min-width: 0; }
+.rec-memo-name {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 14px; font-weight: 500;
+  color: var(--text);
+  margin: 0;
+}
+.rec-memo-desc {
+  font-size: 11px; color: var(--text-muted);
+  margin: 2px 0 0; line-height: 1.5;
+}
+.rec-memo-banner .chevron {
+  color: var(--text-soft); font-size: 17px;
+}
+
+/* 確定ボタン */
+.rec-submit {
+  margin: 22px 16px 0;
+  width: calc(100% - 32px);
+  padding: 15px;
+  background: linear-gradient(135deg, var(--gold) 0%, #B5895E 100%);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px; font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  transition: all 0.2s ease;
+  box-shadow: 0 3px 12px rgba(201,168,118,0.3);
+}
+.rec-submit:active { transform: scale(0.99); }
+.rec-submit i { font-size: 18px; }
+
+.rec-private-note {
+  margin: 12px 16px 0;
+  text-align: center;
+  font-size: 10px; color: var(--text-soft);
+  line-height: 1.6;
+}
+
 .co-history-header {
   padding: 14px 16px;
   background: var(--surface-warm);
@@ -4979,20 +5153,27 @@ body { min-height: 100vh; min-height: 100dvh; }
         <div class="co-history-tabs">
           <div class="co-history-tab active" id="memo-htab-self" onclick="switchCoHistory('memoreed', 'self')">
             <i class="ti ti-walk"></i>やりとり履歴
-            <span class="co-history-tab-count">8</span>
+            <span class="co-history-tab-count">9</span>
           </div>
           <div class="co-history-tab" id="memo-htab-news" onclick="switchCoHistory('memoreed', 'news')">
             <i class="ti ti-mail"></i>お知らせ
             <span class="co-history-tab-count">5</span>
           </div>
-          <div class="co-history-tab" id="memo-htab-evt" onclick="switchCoHistory('memoreed', 'evt')">
-            <i class="ti ti-sparkles"></i>イベント記録
-            <span class="co-history-tab-count">1</span>
-          </div>
         </div>
 
         <!-- やりとり履歴：メモリード -->
         <div class="co-timeline-view active" id="memo-hview-self">
+
+          <div class="co-timeline-item">
+            <div class="co-timeline-dot event"><i class="ti ti-building"></i></div>
+            <div class="co-timeline-content">
+              <div class="co-timeline-date">2026 年 5 月 15 日 ・ 木</div>
+              <p class="co-timeline-title">会場見学会に参加しました</p>
+              <p class="co-timeline-by">主人と一緒に ・ 場所：メモリードホール長崎</p>
+              <div class="co-timeline-note">第一ホールを見学。和室の落ち着いた雰囲気が主人も気に入った様子。担当の山田さんが控室や駐車場まで案内してくださった。</div>
+              <div class="co-timeline-photo"><img src="saidan2.png" alt="会場見学の写真"></div>
+            </div>
+          </div>
 
           <div class="co-timeline-item">
             <div class="co-timeline-dot event"><i class="ti ti-confetti"></i></div>
@@ -5125,41 +5306,7 @@ body { min-height: 100vh; min-height: 100dvh; }
 
         </div>
 
-        <!-- イベント記録：メモリード -->
-        <div class="co-evt-view" id="memo-hview-evt">
-
-          <div class="co-evt-intro">
-            <i class="ti ti-shield-lock"></i>
-            <p>イベント会場のQRコードを読み込むと、その日の記録がここに残ります。<strong>この記録は、メモリードのページにのみ保管されます。</strong></p>
-          </div>
-
-          <div class="co-evt-card">
-            <div class="co-evt-card-head">
-              <p class="co-evt-card-date">2026 年 2 月 15 日 ・ 日</p>
-              <p class="co-evt-card-title"><i class="ti ti-building"></i>メモリードホール 会場見学会</p>
-            </div>
-            <div class="co-evt-card-body">
-              <div class="co-evt-image">
-                <img src="saidan2.png" alt="会場見学の写真">
-              </div>
-              <p class="co-evt-section-label"><i class="ti ti-note"></i>メモ</p>
-              <p class="co-evt-text">第一ホールを見学。和室の落ち着いた雰囲気が主人も気に入った様子。担当の山田さんが控室や駐車場まで案内してくださった。</p>
-              <a href="https://osoushiki.memolead.co.jp/" target="_blank" rel="noopener noreferrer" class="co-evt-link">
-                <i class="ti ti-link"></i>
-                見学した式場の詳細を見る
-                <i class="ti ti-external-link co-evt-link-arrow"></i>
-              </a>
-            </div>
-          </div>
-
-          <button class="co-evt-qr-button">
-            <i class="ti ti-qrcode"></i>
-            イベントのQRコードを読み込む
-          </button>
-          <p class="co-evt-private">イベント記録は、この葬儀社のページにのみ残ります。<br>他の葬儀社のページには表示されません。</p>
-        </div>
-
-        <button class="co-add-button">
+        <button class="co-add-button" data-goto="record-create">
           <i class="ti ti-plus"></i>
           やりとりを記録する
         </button>
@@ -5294,20 +5441,27 @@ body { min-height: 100vh; min-height: 100dvh; }
         <div class="co-history-tabs">
           <div class="co-history-tab active" id="aip-htab-self" onclick="switchCoHistory('aiplan', 'self')">
             <i class="ti ti-walk"></i>やりとり履歴
-            <span class="co-history-tab-count">8</span>
+            <span class="co-history-tab-count">9</span>
           </div>
           <div class="co-history-tab" id="aip-htab-news" onclick="switchCoHistory('aiplan', 'news')">
             <i class="ti ti-mail"></i>お知らせ
             <span class="co-history-tab-count">5</span>
           </div>
-          <div class="co-history-tab" id="aip-htab-evt" onclick="switchCoHistory('aiplan', 'evt')">
-            <i class="ti ti-sparkles"></i>イベント記録
-            <span class="co-history-tab-count">1</span>
-          </div>
         </div>
 
         <!-- やりとり履歴：あいプラン -->
         <div class="co-timeline-view active" id="aip-hview-self">
+
+          <div class="co-timeline-item">
+            <div class="co-timeline-dot event"><i class="ti ti-sparkles"></i></div>
+            <div class="co-timeline-content">
+              <div class="co-timeline-date">2026 年 5 月 9 日 ・ 金</div>
+              <p class="co-timeline-title">葬儀会場イメージを作成しました</p>
+              <p class="co-timeline-by">主人と一緒に ・ 場所：やわらぎ斎場 札幌</p>
+              <div class="co-timeline-note">イベントで希望を選んでいくと、会場のイメージ画像ができあがった。主人と相談しながら、白い生花の祭壇に決めた。当日の画像を持ち帰り。</div>
+              <div class="co-timeline-photo"><img src="saidan1.png" alt="葬儀会場イメージ"></div>
+            </div>
+          </div>
 
           <div class="co-timeline-item">
             <div class="co-timeline-dot event"><i class="ti ti-confetti"></i></div>
@@ -5440,41 +5594,7 @@ body { min-height: 100vh; min-height: 100dvh; }
 
         </div>
 
-        <!-- イベント記録：あいプラン -->
-        <div class="co-evt-view" id="aip-hview-evt">
-
-          <div class="co-evt-intro">
-            <i class="ti ti-shield-lock"></i>
-            <p>イベント会場のQRコードを読み込むと、その日の記録がここに残ります。<strong>この記録は、あいプランのページにのみ保管されます。</strong></p>
-          </div>
-
-          <div class="co-evt-card">
-            <div class="co-evt-card-head">
-              <p class="co-evt-card-date">2026 年 5 月 9 日 ・ 金</p>
-              <p class="co-evt-card-title"><i class="ti ti-sparkles"></i>葬儀会場イメージを作成しました</p>
-            </div>
-            <div class="co-evt-card-body">
-              <div class="co-evt-image">
-                <img src="saidan1.png" alt="AIが生成した葬儀会場イメージ">
-              </div>
-              <p class="co-evt-section-label"><i class="ti ti-note"></i>メモ</p>
-              <p class="co-evt-text">やわらぎ斎場のイベントで、希望を選んでいくとAIが会場のイメージ画像を作ってくれた。主人と相談しながら、白い生花の祭壇に決めた。当日の画像を持ち帰り。</p>
-              <a href="https://www.apg-aiplan.com/" target="_blank" rel="noopener noreferrer" class="co-evt-link">
-                <i class="ti ti-link"></i>
-                作成したプランの詳細を見る
-                <i class="ti ti-external-link co-evt-link-arrow"></i>
-              </a>
-            </div>
-          </div>
-
-          <button class="co-evt-qr-button">
-            <i class="ti ti-qrcode"></i>
-            イベントのQRコードを読み込む
-          </button>
-          <p class="co-evt-private">イベント記録は、この葬儀社のページにのみ残ります。<br>他の葬儀社のページには表示されません。</p>
-        </div>
-
-        <button class="co-add-button">
+        <button class="co-add-button" data-goto="record-create">
           <i class="ti ti-plus"></i>
           やりとりを記録する
         </button>
@@ -7008,6 +7128,88 @@ body { min-height: 100vh; min-height: 100dvh; }
     <div style="height: 24px;"></div>
   </div>
 
+
+  
+  <!-- ============ RECORD CREATE PAGE ============ -->
+  <div class="page" id="page-record-create">
+    <div class="page-bar">
+      <div class="left">
+        <i class="ti ti-arrow-left" data-back="company-aiplan"></i>
+        <span class="title-text">やりとりを記録する</span>
+      </div>
+    </div>
+
+    <div class="rec-hero">
+      <div class="rec-hero-icon"><i class="ti ti-pencil-plus"></i></div>
+      <h2>やりとりを記録する</h2>
+      <p>葬儀社さまとのやりとりを残します。<br>このまま記録もできますし、メモや写真も追加できます。</p>
+    </div>
+
+    <!-- 来訪情報（QR自動取得） -->
+    <p class="rec-section-label"><i class="ti ti-qrcode"></i>来訪の情報</p>
+    <div class="rec-auto-card">
+      <div class="rec-auto-head">
+        <i class="ti ti-check"></i>
+        <span>QRコードから自動で読み取りました</span>
+      </div>
+      <div class="rec-auto-row">
+        <span class="rec-auto-key">イベント</span>
+        <span class="rec-auto-val">葬儀会場イメージ作成会</span>
+      </div>
+      <div class="rec-auto-row">
+        <span class="rec-auto-key">会場</span>
+        <span class="rec-auto-val">やわらぎ斎場 札幌</span>
+      </div>
+      <div class="rec-auto-row">
+        <span class="rec-auto-key">日時</span>
+        <span class="rec-auto-val">2026年5月9日 14:20</span>
+      </div>
+    </div>
+
+    <!-- 写真 -->
+    <p class="rec-section-label"><i class="ti ti-photo"></i>写真<span class="rec-opt">任意</span></p>
+    <div class="rec-photo-add">
+      <i class="ti ti-photo"></i>
+      <span>写真を追加する</span>
+    </div>
+
+    <!-- メモ -->
+    <p class="rec-section-label"><i class="ti ti-note"></i>メモ<span class="rec-opt">任意</span></p>
+    <div class="rec-memo-banners">
+      <div class="rec-memo-banner text">
+        <div class="rec-memo-icon"><i class="ti ti-pencil"></i></div>
+        <div class="rec-memo-text">
+          <p class="rec-memo-name">文字で入力</p>
+          <p class="rec-memo-desc">キーボードで書く</p>
+        </div>
+        <i class="ti ti-chevron-right chevron"></i>
+      </div>
+      <div class="rec-memo-banner voice">
+        <div class="rec-memo-icon"><i class="ti ti-microphone"></i></div>
+        <div class="rec-memo-text">
+          <p class="rec-memo-name">音声で入力</p>
+          <p class="rec-memo-desc">話した言葉が、そのまま文字になります</p>
+        </div>
+        <i class="ti ti-chevron-right chevron"></i>
+      </div>
+      <div class="rec-memo-banner camera">
+        <div class="rec-memo-icon"><i class="ti ti-camera"></i></div>
+        <div class="rec-memo-text">
+          <p class="rec-memo-name">カメラで読み取り</p>
+          <p class="rec-memo-desc">紙のメモや資料を撮ると、文字を読み取ります</p>
+        </div>
+        <i class="ti ti-chevron-right chevron"></i>
+      </div>
+    </div>
+
+    <button class="rec-submit" data-back="company-aiplan">
+      <i class="ti ti-check"></i>
+      この内容で記録する
+    </button>
+    <p class="rec-private-note">記録した内容は、この葬儀社のページにのみ残ります。<br>他の葬儀社のページには表示されません。</p>
+
+    <div style="height: 28px;"></div>
+  </div>
 
   
   <!-- ============ ADMIN SCREEN DEMO ============ -->
@@ -8711,6 +8913,7 @@ body { min-height: 100vh; min-height: 100dvh; }
       'expert-list': 'manage',
       'realestate-list': 'manage',
       'register': 'manage',
+      'record-create': 'goen',
       'admin': 'manage',
       'admin-members': 'manage',
       'admin-events': 'manage',
@@ -8976,11 +9179,11 @@ body { min-height: 100vh; min-height: 100dvh; }
   function switchCoHistory(company, view) {
     const prefix = company === 'memoreed' ? 'memo' : 'aip';
     // タブ
-    document.querySelectorAll(`#${prefix}-htab-self, #${prefix}-htab-news, #${prefix}-htab-evt`).forEach(t => t.classList.remove('active'));
+    document.querySelectorAll(`#${prefix}-htab-self, #${prefix}-htab-news`).forEach(t => t.classList.remove('active'));
     const tab = document.getElementById(`${prefix}-htab-${view}`);
     if (tab) tab.classList.add('active');
     // ビュー
-    document.querySelectorAll(`#${prefix}-hview-self, #${prefix}-hview-news, #${prefix}-hview-evt`).forEach(v => v.classList.remove('active'));
+    document.querySelectorAll(`#${prefix}-hview-self, #${prefix}-hview-news`).forEach(v => v.classList.remove('active'));
     const v = document.getElementById(`${prefix}-hview-${view}`);
     if (v) v.classList.add('active');
   }
