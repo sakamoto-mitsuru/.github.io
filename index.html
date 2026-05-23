@@ -463,6 +463,166 @@ body { min-height: 100vh; min-height: 100dvh; }
   font-weight: 500;
 }
 
+/* === 「伝える」ページ === */
+.tell-tabs {
+  display: flex;
+  margin: 14px 16px 0;
+  background: var(--accent-soft);
+  border-radius: 12px;
+  padding: 4px;
+}
+.tell-tab {
+  flex: 1;
+  padding: 10px 0;
+  text-align: center;
+  font-size: 13px; font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: 9px;
+  transition: all 0.2s ease;
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+}
+.tell-tab i { font-size: 15px; }
+.tell-tab.active {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 1px 2px rgba(60,50,35,0.06);
+}
+.tell-panel { display: none; }
+.tell-panel.active { display: block; }
+.tell-panel-lead {
+  font-size: 11px; color: var(--text-muted);
+  line-height: 1.7;
+  margin: 14px 20px 12px;
+}
+
+/* いつか伝える 手紙カード */
+.tell-letter {
+  margin: 0 16px 12px;
+  background: var(--surface);
+  border: 1px solid var(--gold);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.tell-letter-photo {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  background: linear-gradient(135deg, #EDE6D6 0%, #E2D8C0 100%);
+  background-size: cover; background-position: center;
+}
+.tell-letter-body { padding: 13px 15px; }
+.tell-letter-tag {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 10px; font-weight: 500;
+  color: #9A7B3A;
+  background: #F6EFDF;
+  padding: 3px 9px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
+.tell-letter-tag i { font-size: 11px; }
+.tell-letter-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 15px; font-weight: 500;
+  color: var(--text);
+  margin: 0 0 5px;
+}
+.tell-letter-text {
+  font-size: 12px; color: var(--text-muted);
+  line-height: 1.7;
+  margin: 0 0 10px;
+}
+.tell-letter-meta {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 10px; color: var(--text-soft);
+  padding-top: 9px;
+  border-top: 1px solid var(--border);
+  margin-bottom: 11px;
+}
+.tell-letter-meta i { font-size: 12px; }
+.tell-letter-actions {
+  display: flex; gap: 8px;
+}
+.tell-letter-btn {
+  flex: 1;
+  padding: 9px;
+  border-radius: 9px;
+  font-size: 12px; font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+}
+.tell-letter-btn:active { transform: scale(0.98); }
+.tell-letter-btn.now {
+  background: var(--line-green, #06C755);
+  color: #FFFFFF;
+  border: none;
+}
+.tell-letter-btn.now i { font-size: 14px; }
+.tell-letter-btn.view {
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  color: var(--text-muted);
+}
+
+/* いつか伝える 説明バナー */
+.tell-letter-note {
+  margin: 0 16px 14px;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, #F6F1E6 0%, #FBF9F3 100%);
+  border: 1px solid var(--gold);
+  border-radius: 11px;
+  display: flex; gap: 8px;
+}
+.tell-letter-note i {
+  font-size: 16px; color: var(--gold);
+  flex-shrink: 0; margin-top: 1px;
+}
+.tell-letter-note p {
+  font-size: 11px; color: var(--text-muted);
+  line-height: 1.7; margin: 0;
+}
+
+/* 伝わる範囲の設定 */
+.tell-scope {
+  margin: 22px 16px 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+.tell-scope-label {
+  font-size: 11px; color: var(--text-muted);
+  margin: 0 4px 10px;
+  letter-spacing: 0.05em;
+}
+.tell-scope-item {
+  display: flex; align-items: center; gap: 11px;
+  padding: 13px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.tell-scope-item:active { background: var(--surface-warm); }
+.tell-scope-icon {
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  background: var(--accent-soft);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.tell-scope-icon i { font-size: 18px; color: var(--accent); }
+.tell-scope-text { flex: 1; min-width: 0; }
+.tell-scope-name {
+  font-size: 13px; font-weight: 500;
+  color: var(--text); margin: 0;
+}
+.tell-scope-desc {
+  font-size: 10px; color: var(--text-muted);
+  margin: 2px 0 0; line-height: 1.5;
+}
+
 /* === Generic page hero === */
 .page-hero {
   padding: 28px 20px 20px; text-align: center;
@@ -666,6 +826,35 @@ body { min-height: 100vh; min-height: 100dvh; }
 .ptn-cat-label .ptn-cat-count {
   font-size: 10px; font-weight: 400;
   color: var(--text-soft);
+}
+
+/* ご家族とご縁のあった葬儀社（優先枠） */
+.ptn-priority {
+  margin: 16px 16px 0;
+  padding: 14px;
+  background: linear-gradient(135deg, #F4F0E6 0%, #FBF9F3 100%);
+  border: 1.5px solid var(--gold);
+  border-radius: 14px;
+}
+.ptn-priority-head {
+  display: flex; align-items: center; gap: 6px;
+  margin-bottom: 4px;
+}
+.ptn-priority-head i { font-size: 15px; color: var(--gold); }
+.ptn-priority-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 13px; font-weight: 500;
+  color: var(--text);
+  margin: 0;
+}
+.ptn-priority-desc {
+  font-size: 10px; color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0 0 11px;
+}
+.ptn-priority .ptn-card {
+  margin: 0;
+  border-color: var(--gold);
 }
 
 /* 提携企業カード */
@@ -4943,6 +5132,220 @@ body { min-height: 100vh; min-height: 100dvh; }
 }
 .adm-stat-caption strong { color: #1E5687; }
 
+/* 直接のご縁の割合メーター */
+.adm-meter {
+  margin: 12px 16px 0;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.adm-meter-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 10px;
+}
+.adm-meter-title {
+  font-size: 12px; font-weight: 500;
+  color: var(--text);
+  display: flex; align-items: center; gap: 5px;
+}
+.adm-meter-title i { font-size: 14px; color: #1E5687; }
+.adm-meter-pct {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 24px; font-weight: 600;
+  color: #1E5687;
+  line-height: 1;
+}
+.adm-meter-pct span { font-size: 12px; font-weight: 400; }
+.adm-meter-bar {
+  height: 12px;
+  background: #EAEAEA;
+  border-radius: 999px;
+  overflow: hidden;
+  display: flex;
+}
+.adm-meter-fill {
+  background: linear-gradient(90deg, #1E5687 0%, #3C82C0 100%);
+  border-radius: 999px;
+  height: 100%;
+}
+.adm-meter-legend {
+  display: flex; gap: 16px;
+  margin-top: 10px;
+}
+.adm-meter-legend-item {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 10px; color: var(--text-muted);
+}
+.adm-meter-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.adm-meter-dot.primary { background: #1E5687; }
+.adm-meter-dot.rest { background: #EAEAEA; border: 1px solid #D5D5D5; }
+.adm-meter-msg {
+  margin: 12px 16px 0;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, #E6F1FB 0%, #F4F9FE 100%);
+  border: 1px solid #B8D4EC;
+  border-radius: 10px;
+  display: flex; align-items: flex-start; gap: 8px;
+}
+.adm-meter-msg i {
+  font-size: 16px; color: #1E5687;
+  flex-shrink: 0; margin-top: 1px;
+}
+.adm-meter-msg p {
+  font-size: 11px; color: var(--text);
+  line-height: 1.7; margin: 0;
+}
+.adm-meter-msg strong { color: #1E5687; font-weight: 600; }
+
+/* === 月別 新規登録者の推移（棒グラフ） === */
+.adm-chart {
+  margin: 12px 16px 0;
+  padding: 16px 14px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.adm-chart-title {
+  font-size: 12px; font-weight: 500;
+  color: var(--text);
+  margin: 0 0 2px;
+  display: flex; align-items: center; gap: 5px;
+}
+.adm-chart-title i { font-size: 14px; color: #1E5687; }
+.adm-chart-sub {
+  font-size: 10px; color: var(--text-muted);
+  margin: 0 0 14px;
+}
+.adm-chart-bars {
+  display: flex; align-items: flex-end;
+  gap: 8px;
+  height: 150px;
+  padding-top: 4px;
+}
+.adm-chart-col {
+  flex: 1;
+  display: flex; flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: flex-end;
+}
+.adm-chart-val {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 11px; font-weight: 600;
+  color: #1E5687;
+  margin-bottom: 4px;
+}
+.adm-chart-bar {
+  width: 100%;
+  max-width: 30px;
+  border-radius: 4px 4px 0 0;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.adm-chart-bar-rest {
+  background: #C8D8E6;
+  width: 100%;
+}
+.adm-chart-bar-primary {
+  background: linear-gradient(180deg, #1E5687 0%, #2C6BA0 100%);
+  width: 100%;
+}
+.adm-chart-month {
+  font-size: 9px; color: var(--text-muted);
+  margin-top: 6px;
+}
+.adm-chart-legend {
+  display: flex; gap: 14px;
+  justify-content: center;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.adm-chart-legend-item {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 10px; color: var(--text-muted);
+}
+.adm-chart-legend-box {
+  width: 10px; height: 10px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.adm-chart-legend-box.primary { background: #1E5687; }
+.adm-chart-legend-box.rest { background: #C8D8E6; }
+
+/* === イベント → 登録 ファネル === */
+.adm-funnel {
+  margin: 12px 16px 0;
+  padding: 16px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.adm-funnel-title {
+  font-size: 12px; font-weight: 500;
+  color: var(--text);
+  margin: 0 0 2px;
+  display: flex; align-items: center; gap: 5px;
+}
+.adm-funnel-title i { font-size: 14px; color: #1E5687; }
+.adm-funnel-sub {
+  font-size: 10px; color: var(--text-muted);
+  margin: 0 0 14px;
+}
+.adm-funnel-step {
+  display: flex; align-items: center;
+  gap: 10px;
+}
+.adm-funnel-bar {
+  height: 46px;
+  border-radius: 8px;
+  display: flex; flex-direction: column;
+  justify-content: center;
+  padding-left: 14px;
+  color: #FFFFFF;
+}
+.adm-funnel-bar.s1 { background: linear-gradient(135deg, #93AFC6 0%, #A8C0D4 100%); width: 100%; }
+.adm-funnel-bar.s2 { background: linear-gradient(135deg, #3C7AAC 0%, #5491BF 100%); width: 82%; }
+.adm-funnel-bar.s3 { background: linear-gradient(135deg, #1E5687 0%, #2C6BA0 100%); width: 68%; }
+.adm-funnel-bar-label {
+  font-size: 10px;
+  opacity: 0.92;
+}
+.adm-funnel-bar-num {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 16px; font-weight: 600;
+  line-height: 1.1;
+}
+.adm-funnel-bar-num span {
+  font-size: 10px; font-weight: 400;
+  opacity: 0.9;
+}
+.adm-funnel-arrow {
+  text-align: center;
+  color: var(--text-soft);
+  font-size: 14px;
+  margin: 3px 0;
+}
+.adm-funnel-note {
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: rgba(30,86,135,0.05);
+  border-radius: 8px;
+  font-size: 10px; color: var(--text-muted);
+  line-height: 1.7;
+  display: flex; gap: 6px;
+}
+.adm-funnel-note i {
+  color: #1E5687; font-size: 13px;
+  flex-shrink: 0; margin-top: 1px;
+}
+.adm-funnel-note strong { color: #1E5687; }
+
 /* イベント別参加者数 */
 .adm-evt-list {
   margin: 0 16px;
@@ -5071,23 +5474,46 @@ body { min-height: 100vh; min-height: 100dvh; }
   text-align: center;
 }
 .adm-qr-result-code {
-  width: 120px; height: 120px;
-  margin: 0 auto 10px;
+  width: 180px; height: 180px;
+  margin: 0 auto 12px;
   background: #FFFFFF;
   border: 1px solid var(--border);
   border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
+  padding: 8px;
+  box-sizing: border-box;
 }
-.adm-qr-result-code i { font-size: 76px; color: #1E5687; }
+.adm-qr-result-code img {
+  width: 100%; height: 100%;
+  display: block;
+}
 .adm-qr-result-name {
   font-family: 'Shippori Mincho', serif;
-  font-size: 13px; font-weight: 500;
+  font-size: 14px; font-weight: 500;
   color: var(--text);
   margin: 0 0 2px;
 }
 .adm-qr-result-meta {
   font-size: 10px; color: var(--text-muted);
-  margin: 0;
+  margin: 0 0 14px;
+}
+.adm-qr-download {
+  width: 100%;
+  padding: 13px;
+  background: #1E5687;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px; font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  transition: all 0.2s ease;
+}
+.adm-qr-download:active { transform: scale(0.98); background: #174873; }
+.adm-qr-download i { font-size: 17px; }
+.adm-qr-download-note {
+  font-size: 10px; color: var(--text-soft);
+  margin: 8px 0 0;
 }
 
 .adm-foot-note {
@@ -6450,13 +6876,13 @@ body { min-height: 100vh; min-height: 100dvh; }
           </div>
           <i class="ti ti-chevron-right chevron"></i>
         </div>
-        <div class="manage-item">
-          <div class="manage-icon privacy"><i class="ti ti-lock"></i></div>
+        <div class="manage-item" data-goto="tell">
+          <div class="manage-icon privacy"><i class="ti ti-send"></i></div>
           <div class="manage-text">
             <div class="manage-title-row">
-              <p class="manage-name">公開設定</p>
+              <p class="manage-name">伝える</p>
             </div>
-            <p class="manage-desc">家族への共有範囲を設定</p>
+            <p class="manage-desc">伝えたこと・いつか伝える手紙</p>
           </div>
           <i class="ti ti-chevron-right chevron"></i>
         </div>
@@ -7939,6 +8365,154 @@ body { min-height: 100vh; min-height: 100dvh; }
 
 
   
+  <!-- ============ 伝える PAGE ============ -->
+  <div class="page" id="page-tell">
+    <div class="page-bar">
+      <div class="left">
+        <i class="ti ti-arrow-left" data-back="manage"></i>
+        <span class="title-text">伝える</span>
+      </div>
+    </div>
+
+    <div class="tell-tabs">
+      <div class="tell-tab active" id="tell-tab-told" onclick="switchTellTab('told')">
+        <i class="ti ti-check"></i>伝えたこと
+      </div>
+      <div class="tell-tab" id="tell-tab-later" onclick="switchTellTab('later')">
+        <i class="ti ti-mail-heart"></i>いつか伝える
+      </div>
+    </div>
+
+    <!-- 伝えたこと タブ -->
+    <div class="tell-panel active" id="tell-panel-told">
+      <p class="tell-panel-lead">これまでご家族に届けた記録です。ご家族からの言葉も、ここで見られます。</p>
+
+      <div class="home-feed">
+        <div class="feed-card">
+          <div class="feed-card-photo" style="background-image: url('saidan1.png');"></div>
+          <div class="feed-card-body">
+            <div class="feed-card-meta">
+              <span class="feed-card-type diary">日記</span>
+              <span class="feed-card-date">5月15日</span>
+            </div>
+            <p class="feed-card-title">桜が満開でした</p>
+            <p class="feed-card-text">主人と近所の公園まで散歩。今年の桜は青空に映えて、思わず立ち止まりました。</p>
+            <div class="feed-card-shared">
+              <div class="feed-shared-icon"><i class="ti ti-check"></i></div>
+              <span class="feed-shared-text"><strong>健一</strong>さん・<strong>さくら</strong>さんに伝えました</span>
+            </div>
+            <div class="feed-card-reply">
+              <div class="feed-reply-avatar">桜</div>
+              <div class="feed-reply-body">
+                <p class="feed-reply-name">さくら</p>
+                <p class="feed-reply-text">おばあちゃん、とてもきれいな写真！今度一緒にお花見したいな。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feed-card">
+          <div class="feed-card-body">
+            <div class="feed-card-meta">
+              <span class="feed-card-type record">やりとり</span>
+              <span class="feed-card-date">5月9日</span>
+            </div>
+            <p class="feed-card-title">葬儀会場イメージを作成しました</p>
+            <p class="feed-card-text">やわらぎ斎場のイベントで、主人と相談しながら白い生花の祭壇に決めました。</p>
+            <div class="feed-card-shared">
+              <div class="feed-shared-icon"><i class="ti ti-check"></i></div>
+              <span class="feed-shared-text"><strong>健一</strong>さんに伝えました</span>
+            </div>
+            <div class="feed-card-reply">
+              <div class="feed-reply-avatar">健</div>
+              <div class="feed-reply-body">
+                <p class="feed-reply-name">健一</p>
+                <p class="feed-reply-text">教えてくれてありがとう。今度、一緒に話を聞かせてね。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feed-card">
+          <div class="feed-card-photo" style="background-image: url('saidan2.png');"></div>
+          <div class="feed-card-body">
+            <div class="feed-card-meta">
+              <span class="feed-card-type photo">写真</span>
+              <span class="feed-card-date">5月6日</span>
+            </div>
+            <p class="feed-card-title">家庭菜園の野菜が育ちました</p>
+            <p class="feed-card-text">今年もトマトとナスを植えました。毎朝の水やりが、ちょっとした楽しみです。</p>
+            <div class="feed-card-shared">
+              <div class="feed-shared-icon"><i class="ti ti-check"></i></div>
+              <span class="feed-shared-text">家族みんなに伝えました</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- いつか伝える タブ -->
+    <div class="tell-panel" id="tell-panel-later">
+      <p class="tell-panel-lead">大切にしまっておいた、ご家族への手紙です。伝えたい時が来たら、いつでも届けられます。</p>
+
+      <div class="tell-letter-note">
+        <i class="ti ti-mail-heart"></i>
+        <p>ここにある手紙は、あなただけがご覧になれます。そのままにしておくと、いつか必ずご家族のもとへ届きます。</p>
+      </div>
+
+      <div class="tell-letter">
+        <div class="tell-letter-body">
+          <span class="tell-letter-tag"><i class="ti ti-mail-heart"></i>いつか伝える手紙</span>
+          <p class="tell-letter-title">結婚した年の春のこと</p>
+          <p class="tell-letter-text">あなたたちのお父さんと出会った春のことを、いつか聞いてほしくて書きました。桜の下を二人で歩いた、あの日のことを——</p>
+          <div class="tell-letter-meta">
+            <i class="ti ti-clock"></i>2026年4月20日に保管 ・ 健一さん、さくらさんへ
+          </div>
+          <div class="tell-letter-actions">
+            <button class="tell-letter-btn now" onclick="openRecModal('record')">
+              <i class="ti ti-brand-line"></i>いま伝える
+            </button>
+            <button class="tell-letter-btn view">中を見る</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="tell-letter">
+        <div class="tell-letter-photo" style="background-image: url('saidan2.png');"></div>
+        <div class="tell-letter-body">
+          <span class="tell-letter-tag"><i class="ti ti-mail-heart"></i>いつか伝える手紙</span>
+          <p class="tell-letter-title">家族みんなへ、ありがとう</p>
+          <p class="tell-letter-text">いつか、わたしがいなくなったあとに読んでほしい手紙です。これまで本当に幸せでした。あなたたちに恵まれて——</p>
+          <div class="tell-letter-meta">
+            <i class="ti ti-clock"></i>2026年3月2日に保管 ・ 家族みんなへ
+          </div>
+          <div class="tell-letter-actions">
+            <button class="tell-letter-btn now" onclick="openRecModal('record')">
+              <i class="ti ti-brand-line"></i>いま伝える
+            </button>
+            <button class="tell-letter-btn view">中を見る</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 伝わる範囲の設定 -->
+    <div class="tell-scope">
+      <p class="tell-scope-label">伝わる範囲の設定</p>
+      <div class="tell-scope-item">
+        <div class="tell-scope-icon"><i class="ti ti-users"></i></div>
+        <div class="tell-scope-text">
+          <p class="tell-scope-name">家族ごとの公開範囲</p>
+          <p class="tell-scope-desc">ご家族それぞれに、何を伝えるかを設定できます</p>
+        </div>
+        <i class="ti ti-chevron-right chevron"></i>
+      </div>
+    </div>
+
+    <div style="height: 28px;"></div>
+  </div>
+
+  
   <!-- ============ PARTNER COMPANIES PAGE ============ -->
   <div class="page" id="page-partners">
     <div class="page-bar">
@@ -7968,20 +8542,28 @@ body { min-height: 100vh; min-height: 100dvh; }
       <span><strong>「近くの企業」</strong>は、ご登録の郵便番号（〒460-0008）をもとに、お住まいの地域の企業を表示します。</span>
     </div>
 
-    <!-- 葬儀社 -->
-    <p class="ptn-cat-label"><i class="ti ti-building"></i>葬儀社<span class="ptn-cat-count">・3社</span></p>
-
-    <div class="ptn-card" data-ptn-near="1">
-      <div class="ptn-card-logo">
-        <img src="aiplan_logo.png" alt="あいプラン">
+    <!-- ご家族とご縁のあった葬儀社（優先枠） -->
+    <div class="ptn-priority">
+      <div class="ptn-priority-head">
+        <i class="ti ti-flag"></i>
+        <p class="ptn-priority-title">ご家族とご縁のあった葬儀社</p>
       </div>
-      <div class="ptn-card-info">
-        <p class="ptn-card-name">株式会社あいプラン</p>
-        <p class="ptn-card-cat">葬儀社</p>
-        <p class="ptn-card-area"><i class="ti ti-map-pin"></i>北海道</p>
+      <p class="ptn-priority-desc">ご葬儀でお世話になった葬儀社さまです。こちらからご登録いただくとスムーズです。</p>
+      <div class="ptn-card" data-ptn-near="1">
+        <div class="ptn-card-logo">
+          <img src="aiplan_logo.png" alt="あいプラン">
+        </div>
+        <div class="ptn-card-info">
+          <p class="ptn-card-name">株式会社あいプラン</p>
+          <p class="ptn-card-cat">葬儀社</p>
+          <p class="ptn-card-area"><i class="ti ti-map-pin"></i>北海道</p>
+        </div>
+        <button class="ptn-card-add">登録する</button>
       </div>
-      <button class="ptn-card-add">登録する</button>
     </div>
+
+    <!-- 葬儀社 -->
+    <p class="ptn-cat-label"><i class="ti ti-building"></i>葬儀社<span class="ptn-cat-count">・2社</span></p>
 
     <div class="ptn-card" data-ptn-near="1">
       <div class="ptn-card-logo">
@@ -8450,7 +9032,7 @@ body { min-height: 100vh; min-height: 100dvh; }
         <div class="adm-menu-icon" style="background: #E6F1FB; color: #1E5687;"><i class="ti ti-users"></i></div>
         <div class="adm-menu-text">
           <p class="adm-menu-name">メモリーノート登録者数</p>
-          <p class="adm-menu-desc">一番手・それ以降の登録者数を確認</p>
+          <p class="adm-menu-desc">直接・間接のご縁の登録者数を確認</p>
         </div>
         <i class="ti ti-chevron-right chevron"></i>
       </div>
@@ -8499,23 +9081,141 @@ body { min-height: 100vh; min-height: 100dvh; }
     <div class="adm-stat-grid">
       <div class="adm-stat-card total">
         <p class="adm-stat-label"><i class="ti ti-user-check"></i>御社経由の登録者 合計</p>
-        <p class="adm-stat-num">142<span class="adm-stat-unit"> 名</span></p>
+        <p class="adm-stat-num">8,400<span class="adm-stat-unit"> 名</span></p>
         <p class="adm-stat-note">2026年5月時点</p>
       </div>
       <div class="adm-stat-card primary">
-        <p class="adm-stat-label"><i class="ti ti-flag"></i>一番手</p>
-        <p class="adm-stat-num">98<span class="adm-stat-unit"> 名</span></p>
-        <p class="adm-stat-note">御社が最初に<br>ご紹介した方</p>
+        <p class="adm-stat-label"><i class="ti ti-flag"></i>直接のご縁</p>
+        <p class="adm-stat-num">7,200<span class="adm-stat-unit"> 名</span></p>
+        <p class="adm-stat-note">御社が起点となって<br>ご登録</p>
       </div>
       <div class="adm-stat-card">
-        <p class="adm-stat-label"><i class="ti ti-users"></i>それ以降</p>
-        <p class="adm-stat-num">44<span class="adm-stat-unit"> 名</span></p>
-        <p class="adm-stat-note">他社が初回登録 ・<br>御社は2社目以降</p>
+        <p class="adm-stat-label"><i class="ti ti-users"></i>間接のご縁</p>
+        <p class="adm-stat-num">900<span class="adm-stat-unit"> 名</span></p>
+        <p class="adm-stat-note">訃報ページ等から登録<br>昇格の余地あり</p>
       </div>
     </div>
+    <div class="adm-stat-grid" style="margin-top: 10px;">
+      <div class="adm-stat-card" style="grid-column: 1 / -1;">
+        <p class="adm-stat-label"><i class="ti ti-building"></i>他社のご縁</p>
+        <p class="adm-stat-num">300<span class="adm-stat-unit"> 名</span></p>
+        <p class="adm-stat-note">他社が起点</p>
+      </div>
+    </div>
+
+    <!-- 直接のご縁の割合メーター -->
+    <div class="adm-meter">
+      <div class="adm-meter-head">
+        <span class="adm-meter-title"><i class="ti ti-flag"></i>直接のご縁の割合</span>
+        <span class="adm-meter-pct">86<span>%</span></span>
+      </div>
+      <div class="adm-meter-bar">
+        <div class="adm-meter-fill" style="width: 86%;"></div>
+      </div>
+      <div class="adm-meter-legend">
+        <span class="adm-meter-legend-item"><span class="adm-meter-dot primary"></span>直接のご縁 7,200名</span>
+        <span class="adm-meter-legend-item"><span class="adm-meter-dot rest"></span>間接・他社 1,200名</span>
+      </div>
+    </div>
+
+    <div class="adm-meter-msg">
+      <i class="ti ti-flag"></i>
+      <p>間接のご縁の方は、御社が登録されると<strong>直接のご縁</strong>になります。</p>
+    </div>
+
+    <!-- 月別 新規登録者の推移 -->
+    <div class="adm-chart">
+      <p class="adm-chart-title"><i class="ti ti-calendar"></i>新規登録者の推移</p>
+      <p class="adm-chart-sub">月別 ・ 御社経由のご登録</p>
+      <div class="adm-chart-bars">
+        <div class="adm-chart-col">
+          <span class="adm-chart-val">700</span>
+          <div class="adm-chart-bar" style="height: 34%;">
+            <div class="adm-chart-bar-rest" style="height: 11%;"></div>
+            <div class="adm-chart-bar-primary" style="height: 89%;"></div>
+          </div>
+          <span class="adm-chart-month">12月</span>
+        </div>
+        <div class="adm-chart-col">
+          <span class="adm-chart-val">970</span>
+          <div class="adm-chart-bar" style="height: 47%;">
+            <div class="adm-chart-bar-rest" style="height: 12%;"></div>
+            <div class="adm-chart-bar-primary" style="height: 88%;"></div>
+          </div>
+          <span class="adm-chart-month">1月</span>
+        </div>
+        <div class="adm-chart-col">
+          <span class="adm-chart-val">1,260</span>
+          <div class="adm-chart-bar" style="height: 61%;">
+            <div class="adm-chart-bar-rest" style="height: 13%;"></div>
+            <div class="adm-chart-bar-primary" style="height: 87%;"></div>
+          </div>
+          <span class="adm-chart-month">2月</span>
+        </div>
+        <div class="adm-chart-col">
+          <span class="adm-chart-val">1,570</span>
+          <div class="adm-chart-bar" style="height: 76%;">
+            <div class="adm-chart-bar-rest" style="height: 14%;"></div>
+            <div class="adm-chart-bar-primary" style="height: 86%;"></div>
+          </div>
+          <span class="adm-chart-month">3月</span>
+        </div>
+        <div class="adm-chart-col">
+          <span class="adm-chart-val">1,830</span>
+          <div class="adm-chart-bar" style="height: 88%;">
+            <div class="adm-chart-bar-rest" style="height: 15%;"></div>
+            <div class="adm-chart-bar-primary" style="height: 85%;"></div>
+          </div>
+          <span class="adm-chart-month">4月</span>
+        </div>
+        <div class="adm-chart-col">
+          <span class="adm-chart-val">2,070</span>
+          <div class="adm-chart-bar" style="height: 100%;">
+            <div class="adm-chart-bar-rest" style="height: 15%;"></div>
+            <div class="adm-chart-bar-primary" style="height: 85%;"></div>
+          </div>
+          <span class="adm-chart-month">5月</span>
+        </div>
+      </div>
+      <div class="adm-chart-legend">
+        <span class="adm-chart-legend-item"><span class="adm-chart-legend-box primary"></span>直接のご縁</span>
+        <span class="adm-chart-legend-item"><span class="adm-chart-legend-box rest"></span>間接・他社</span>
+      </div>
+    </div>
+
+    <!-- イベント → 登録 ファネル -->
+    <div class="adm-funnel">
+      <p class="adm-funnel-title"><i class="ti ti-users"></i>イベントからの登録の流れ</p>
+      <p class="adm-funnel-sub">会場見学会（2026年5月）の例</p>
+      <div class="adm-funnel-step">
+        <div class="adm-funnel-bar s1">
+          <span class="adm-funnel-bar-label">イベント参加</span>
+          <span class="adm-funnel-bar-num">538<span> 名</span></span>
+        </div>
+      </div>
+      <div class="adm-funnel-arrow"><i class="ti ti-chevron-down"></i></div>
+      <div class="adm-funnel-step">
+        <div class="adm-funnel-bar s2">
+          <span class="adm-funnel-bar-label">メモリーノートに登録</span>
+          <span class="adm-funnel-bar-num">441<span> 名 ・ 82%</span></span>
+        </div>
+      </div>
+      <div class="adm-funnel-arrow"><i class="ti ti-chevron-down"></i></div>
+      <div class="adm-funnel-step">
+        <div class="adm-funnel-bar s3">
+          <span class="adm-funnel-bar-label">うち 直接のご縁</span>
+          <span class="adm-funnel-bar-num">408<span> 名 ・ 93%</span></span>
+        </div>
+      </div>
+      <div class="adm-funnel-note">
+        <i class="ti ti-sparkles"></i>
+        <span>イベントを開くほど、<strong>直接のご縁</strong>が増えていきます。</span>
+      </div>
+    </div>
+
     <div class="adm-stat-caption">
       <i class="ti ti-info-circle"></i>
-      <span><strong>「一番手」</strong>は、その利用者さまをメモリーノートに最初にご登録いただいた葬儀社さまです。<strong>「それ以降」</strong>は、すでに他社経由で登録済みの利用者さまが、御社のご縁にも登録された場合です。</span>
+      <span><strong>「直接のご縁」</strong>は、葬儀後のご案内・イベント・会報誌・提携企業など、御社が起点となってご登録いただいた方です。<strong>「間接のご縁」</strong>は、訃報ページ等を通じてご登録された方で、御社が登録されると直接のご縁になります。</span>
     </div>
 
     <div style="height: 24px;"></div>
@@ -8545,7 +9245,7 @@ body { min-height: 100vh; min-height: 100dvh; }
           <p class="adm-evt-meta">○○斎場 本館 ・ 2026/5/9</p>
         </div>
         <div class="adm-evt-count">
-          <p class="adm-evt-count-num">38</p>
+          <p class="adm-evt-count-num">412</p>
           <span class="adm-evt-count-unit">名 参加</span>
         </div>
       </div>
@@ -8556,7 +9256,7 @@ body { min-height: 100vh; min-height: 100dvh; }
           <p class="adm-evt-meta">○○斎場 別館ホール ・ 2026/5/9</p>
         </div>
         <div class="adm-evt-count">
-          <p class="adm-evt-count-num">25</p>
+          <p class="adm-evt-count-num">286</p>
           <span class="adm-evt-count-unit">名 参加</span>
         </div>
       </div>
@@ -8567,7 +9267,7 @@ body { min-height: 100vh; min-height: 100dvh; }
           <p class="adm-evt-meta">○○斎場 本館 ・ 2026/4/20</p>
         </div>
         <div class="adm-evt-count">
-          <p class="adm-evt-count-num">19</p>
+          <p class="adm-evt-count-num">174</p>
           <span class="adm-evt-count-unit">名 参加</span>
         </div>
       </div>
@@ -8578,7 +9278,7 @@ body { min-height: 100vh; min-height: 100dvh; }
           <p class="adm-evt-meta">○○ホール ・ 2026/3/15</p>
         </div>
         <div class="adm-evt-count">
-          <p class="adm-evt-count-num">60</p>
+          <p class="adm-evt-count-num">538</p>
           <span class="adm-evt-count-unit">名 参加</span>
         </div>
       </div>
@@ -8630,16 +9330,23 @@ body { min-height: 100vh; min-height: 100dvh; }
           利用者さまの読み込み日時を自動で記録します
         </div>
       </div>
-      <button class="adm-qr-generate" onclick="document.getElementById('adm-qr-result').style.display='block';">
+      <button class="adm-qr-generate" onclick="generateAdmQr()">
         <i class="ti ti-qrcode"></i>
         QRコードを生成する
       </button>
     </div>
 
     <div class="adm-qr-result" id="adm-qr-result" style="display:none;">
-      <div class="adm-qr-result-code"><i class="ti ti-qrcode"></i></div>
+      <div class="adm-qr-result-code">
+        <img id="adm-qr-img" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0NjQiIGhlaWdodD0iNDY0IiB2aWV3Qm94PSIwIDAgNDY0IDQ2NCI+CjxyZWN0IHdpZHRoPSI0NjQiIGhlaWdodD0iNDY0IiBmaWxsPSIjRkZGRkZGIi8+CjxnIGZpbGw9IiMxQTFBMUEiPgo8cmVjdCB4PSIzMiIgeT0iMzIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSI0OCIgeT0iMzIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSI2NCIgeT0iMzIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSI4MCIgeT0iMzIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSI5NiIgeT0iMzIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIxMTIiIHk9IjMyIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMTI4IiB5PSIzMiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjE2MCIgeT0iMzIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIxOTIiIHk9IjMyIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMjU2IiB5PSIzMiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjI3MiIgeT0iMzIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIyODgiIHk9IjMyIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzA0IiB5PSIzMiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjMyMCIgeT0iMzIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzMzYiIHk9IjMyIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzUyIiB5PSIzMiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjM2OCIgeT0iMzIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzODQiIHk9IjMyIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iNDAwIiB5PSIzMiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjQxNiIgeT0iMzIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzMiIgeT0iNDgiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIxMjgiIHk9IjQ4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMTYwIiB5PSI0OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjE5MiIgeT0iNDgiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIyNDAiIHk9IjQ4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMjU2IiB5PSI0OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjI3MiIgeT0iNDgiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIyODgiIHk9IjQ4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzIwIiB5PSI0OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjQxNiIgeT0iNDgiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzMiIgeT0iNjQiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSI2NCIgeT0iNjQiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSI4MCIgeT0iNjQiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSI5NiIgeT0iNjQiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIxMjgiIHk9IjY0IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMTYwIiB5PSI2NCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjE3NiIgeT0iNjQiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIyMDgiIHk9IjY0IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMjcyIiB5PSI2NCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjI4OCIgeT0iNjQiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzMDQiIHk9IjY0IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzIwIiB5PSI2NCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjM1MiIgeT0iNjQiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzNjgiIHk9IjY0IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzg0IiB5PSI2NCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjQxNiIgeT0iNjQiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzMiIgeT0iODAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSI2NCIgeT0iODAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSI4MCIgeT0iODAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSI5NiIgeT0iODAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIxMjgiIHk9IjgwIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMTkyIiB5PSI4MCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjIwOCIgeT0iODAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIyMjQiIHk9IjgwIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMjQwIiB5PSI4MCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjI1NiIgeT0iODAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIyNzIiIHk9IjgwIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMjg4IiB5PSI4MCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjMwNCIgeT0iODAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzMjAiIHk9IjgwIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzUyIiB5PSI4MCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjM2OCIgeT0iODAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzODQiIHk9IjgwIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iNDE2IiB5PSI4MCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjMyIiB5PSI5NiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjY0IiB5PSI5NiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjgwIiB5PSI5NiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9Ijk2IiB5PSI5NiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjEyOCIgeT0iOTYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIyMDgiIHk9Ijk2IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMjI0IiB5PSI5NiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjI0MCIgeT0iOTYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIyNTYiIHk9Ijk2IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMjg4IiB5PSI5NiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjMwNCIgeT0iOTYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzMjAiIHk9Ijk2IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzUyIiB5PSI5NiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjM2OCIgeT0iOTYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzODQiIHk9Ijk2IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iNDE2IiB5PSI5NiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjMyIiB5PSIxMTIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIxMjgiIHk9IjExMiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjE2MCIgeT0iMTEyIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMjU2IiB5PSIxMTIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIyNzIiIHk9IjExMiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjI4OCIgeT0iMTEyIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzIwIiB5PSIxMTIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSI0MTYiIHk9IjExMiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjMyIiB5PSIxMjgiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSI0OCIgeT0iMTI4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iNjQiIHk9IjEyOCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjgwIiB5PSIxMjgiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSI5NiIgeT0iMTI4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMTEyIiB5PSIxMjgiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIxMjgiIHk9IjEyOCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjE2MCIgeT0iMTI4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMTkyIiB5PSIxMjgiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIyMjQiIHk9IjEyOCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjI1NiIgeT0iMTI4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMjg4IiB5PSIxMjgiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzMjAiIHk9IjEyOCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjMzNiIgeT0iMTI4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzUyIiB5PSIxMjgiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzNjgiIHk9IjEyOCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjM4NCIgeT0iMTI4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iNDAwIiB5PSIxMjgiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSI0MTYiIHk9IjEyOCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjE5MiIgeT0iMTQ0IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMjA4IiB5PSIxNDQiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIyNzIiIHk9IjE0NCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjI4OCIgeT0iMTQ0IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iNDgiIHk9IjE2MCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjgwIiB5PSIxNjAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSI5NiIgeT0iMTYwIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMTI4IiB5PSIxNjAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIxNDQiIHk9IjE2MCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjE3NiIgeT0iMTYwIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMjU2IiB5PSIxNjAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIyNzIiIHk9IjE2MCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjMzNiIgeT0iMTYwIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzUyIiB5PSIxNjAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzNjgiIHk9IjE2MCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjM4NCIgeT0iMTYwIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iNDAwIiB5PSIxNjAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSI5NiIgeT0iMTc2IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMTEyIiB5PSIxNzYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIxNDQiIHk9IjE3NiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjE2MCIgeT0iMTc2IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMjA4IiB5PSIxNzYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIyNTYiIHk9IjE3NiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjI4OCIgeT0iMTc2IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzA0IiB5PSIxNzYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzMjAiIHk9IjE3NiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjM1MiIgeT0iMTc2IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzg0IiB5PSIxNzYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSI0MDAiIHk9IjE3NiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjQxNiIgeT0iMTc2IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iNDgiIHk9IjE5MiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjY0IiB5PSIxOTIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIxMjgiIHk9IjE5MiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjE2MCIgeT0iMTkyIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMTc2IiB5PSIxOTIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIyMDgiIHk9IjE5MiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjI0MCIgeT0iMTkyIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMjU2IiB5PSIxOTIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIyODgiIHk9IjE5MiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjMwNCIgeT0iMTkyIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzM2IiB5PSIxOTIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzNTIiIHk9IjE5MiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjM2OCIgeT0iMTkyIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzg0IiB5PSIxOTIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzMiIgeT0iMjA4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMTQ0IiB5PSIyMDgiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIxNjAiIHk9IjIwOCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjE5MiIgeT0iMjA4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMjA4IiB5PSIyMDgiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIyODgiIHk9IjIwOCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjMyMCIgeT0iMjA4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzM2IiB5PSIyMDgiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzNjgiIHk9IjIwOCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjQ4IiB5PSIyMjQiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSI4MCIgeT0iMjI0IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iOTYiIHk9IjIyNCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjEyOCIgeT0iMjI0IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMTkyIiB5PSIyMjQiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIyNTYiIHk9IjIyNCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjI3MiIgeT0iMjI0IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMjg4IiB5PSIyMjQiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzMDQiIHk9IjIyNCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjM1MiIgeT0iMjI0IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzIiIHk9IjI0MCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjQ4IiB5PSIyNDAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIxNzYiIHk9IjI0MCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjI3MiIgeT0iMjQwIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzA0IiB5PSIyNDAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzMjAiIHk9IjI0MCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjM1MiIgeT0iMjQwIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iNDAwIiB5PSIyNDAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSI0MTYiIHk9IjI0MCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjQ4IiB5PSIyNTYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIxMTIiIHk9IjI1NiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjEyOCIgeT0iMjU2IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMTYwIiB5PSIyNTYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIxNzYiIHk9IjI1NiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjIwOCIgeT0iMjU2IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMjcyIiB5PSIyNTYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzMjAiIHk9IjI1NiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjM1MiIgeT0iMjU2IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzg0IiB5PSIyNTYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzMiIgeT0iMjcyIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iNDgiIHk9IjI3MiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9Ijk2IiB5PSIyNzIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIxMTIiIHk9IjI3MiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjE5MiIgeT0iMjcyIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMjI0IiB5PSIyNzIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIyNDAiIHk9IjI3MiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjI1NiIgeT0iMjcyIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzA0IiB5PSIyNzIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzMjAiIHk9IjI3MiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjMzNiIgeT0iMjcyIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iNDAwIiB5PSIyNzIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSI0OCIgeT0iMjg4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iOTYiIHk9IjI4OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjExMiIgeT0iMjg4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMTI4IiB5PSIyODgiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIxNDQiIHk9IjI4OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjIwOCIgeT0iMjg4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMjQwIiB5PSIyODgiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIyNTYiIHk9IjI4OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjM1MiIgeT0iMjg4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iNDAwIiB5PSIyODgiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIxNzYiIHk9IjMwNCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjE5MiIgeT0iMzA0IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMjA4IiB5PSIzMDQiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIyMjQiIHk9IjMwNCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjI3MiIgeT0iMzA0IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMjg4IiB5PSIzMDQiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzMDQiIHk9IjMwNCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjMyMCIgeT0iMzA0IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzM2IiB5PSIzMDQiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzNjgiIHk9IjMwNCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjQxNiIgeT0iMzA0IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzIiIHk9IjMyMCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjQ4IiB5PSIzMjAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSI2NCIgeT0iMzIwIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iODAiIHk9IjMyMCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9Ijk2IiB5PSIzMjAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIxMTIiIHk9IjMyMCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjEyOCIgeT0iMzIwIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMTYwIiB5PSIzMjAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIxNzYiIHk9IjMyMCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjE5MiIgeT0iMzIwIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMjU2IiB5PSIzMjAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIyNzIiIHk9IjMyMCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjMwNCIgeT0iMzIwIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzg0IiB5PSIzMjAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSI0MTYiIHk9IjMyMCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjMyIiB5PSIzMzYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIxMjgiIHk9IjMzNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjE2MCIgeT0iMzM2IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMTc2IiB5PSIzMzYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIxOTIiIHk9IjMzNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjIwOCIgeT0iMzM2IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMjI0IiB5PSIzMzYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIyNzIiIHk9IjMzNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjI4OCIgeT0iMzM2IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzA0IiB5PSIzMzYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzMjAiIHk9IjMzNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjMzNiIgeT0iMzM2IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iNDAwIiB5PSIzMzYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzMiIgeT0iMzUyIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iNjQiIHk9IjM1MiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjgwIiB5PSIzNTIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSI5NiIgeT0iMzUyIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMTI4IiB5PSIzNTIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIxOTIiIHk9IjM1MiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjIwOCIgeT0iMzUyIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMjQwIiB5PSIzNTIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIyNzIiIHk9IjM1MiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjMwNCIgeT0iMzUyIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzIwIiB5PSIzNTIiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSI0MDAiIHk9IjM1MiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjQxNiIgeT0iMzUyIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzIiIHk9IjM2OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjY0IiB5PSIzNjgiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSI4MCIgeT0iMzY4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iOTYiIHk9IjM2OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjEyOCIgeT0iMzY4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMTkyIiB5PSIzNjgiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIyMjQiIHk9IjM2OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjI0MCIgeT0iMzY4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMjU2IiB5PSIzNjgiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIyNzIiIHk9IjM2OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjMyMCIgeT0iMzY4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzUyIiB5PSIzNjgiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSI0MDAiIHk9IjM2OCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjQxNiIgeT0iMzY4IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzIiIHk9IjM4NCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjY0IiB5PSIzODQiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSI4MCIgeT0iMzg0IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iOTYiIHk9IjM4NCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjEyOCIgeT0iMzg0IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMTYwIiB5PSIzODQiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIyNTYiIHk9IjM4NCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjMyMCIgeT0iMzg0IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzUyIiB5PSIzODQiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzNjgiIHk9IjM4NCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjQwMCIgeT0iMzg0IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzIiIHk9IjQwMCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjEyOCIgeT0iNDAwIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMTYwIiB5PSI0MDAiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIyNTYiIHk9IjQwMCIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjI4OCIgeT0iNDAwIiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzIiIHk9IjQxNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjQ4IiB5PSI0MTYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSI2NCIgeT0iNDE2IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iODAiIHk9IjQxNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9Ijk2IiB5PSI0MTYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIxMTIiIHk9IjQxNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjEyOCIgeT0iNDE2IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMTYwIiB5PSI0MTYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIxNzYiIHk9IjQxNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjIyNCIgeT0iNDE2IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMjQwIiB5PSI0MTYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIyNTYiIHk9IjQxNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjI4OCIgeT0iNDE2IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzA0IiB5PSI0MTYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzMjAiIHk9IjQxNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjMzNiIgeT0iNDE2IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iMzY4IiB5PSI0MTYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8cmVjdCB4PSIzODQiIHk9IjQxNiIgd2lkdGg9IjE2IiBoZWlnaHQ9IjE2Ii8+CjxyZWN0IHg9IjQwMCIgeT0iNDE2IiB3aWR0aD0iMTYiIGhlaWdodD0iMTYiLz4KPHJlY3QgeD0iNDE2IiB5PSI0MTYiIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIvPgo8L2c+Cjwvc3ZnPg==" alt="イベントQRコード">
+      </div>
       <p class="adm-qr-result-name">葬儀会場イメージ作成会</p>
       <p class="adm-qr-result-meta">印刷して会場に掲示できます</p>
+      <button class="adm-qr-download" onclick="downloadAdmQr()">
+        <i class="ti ti-download"></i>
+        QRコードをダウンロード
+      </button>
+      <p class="adm-qr-download-note">PNG形式・印刷用の高解像度で保存されます</p>
     </div>
 
     <div class="adm-foot-note">
@@ -10106,6 +10813,7 @@ body { min-height: 100vh; min-height: 100dvh; }
       'grave': 'manage',
       'manage': 'manage',
       'partners': 'manage',
+      'tell': 'manage',
       'life-ahead': 'manage',
       'ending-note': 'manage',
       'inheritance': 'manage',
@@ -10444,11 +11152,21 @@ body { min-height: 100vh; min-height: 100dvh; }
     recModalShowStep(3);
   }
 
+  // === 「伝える」ページ タブ切替 ===
+  function switchTellTab(tab) {
+    document.getElementById('tell-tab-told').classList.toggle('active', tab === 'told');
+    document.getElementById('tell-tab-later').classList.toggle('active', tab === 'later');
+    document.getElementById('tell-panel-told').classList.toggle('active', tab === 'told');
+    document.getElementById('tell-panel-later').classList.toggle('active', tab === 'later');
+  }
+
   // === 提携企業ページ 表示切替 ===
   function switchPtnFilter(mode) {
     document.getElementById('ptn-tab-all').classList.toggle('active', mode === 'all');
     document.getElementById('ptn-tab-near').classList.toggle('active', mode === 'near');
+    // 優先枠（ご家族とご縁のあった葬儀社）内のカードは常に表示し、フィルタ対象外
     document.querySelectorAll('#page-partners .ptn-card').forEach(card => {
+      if (card.closest('.ptn-priority')) return;
       const isNear = card.getAttribute('data-ptn-near') === '1';
       card.style.display = (mode === 'near' && !isNear) ? 'none' : 'flex';
     });
@@ -10462,6 +11180,64 @@ body { min-height: 100vh; min-height: 100dvh; }
       }
       label.style.display = visibleCount === 0 ? 'none' : 'flex';
     });
+  }
+
+  // === イベントQRコード 生成 ===
+  function generateAdmQr() {
+    var nameInput = document.getElementById('adm-evt-name');
+    var venueSelect = document.getElementById('adm-evt-venue');
+    var resultName = document.querySelector('#adm-qr-result .adm-qr-result-name');
+    var resultMeta = document.querySelector('#adm-qr-result .adm-qr-result-meta');
+    var evtName = (nameInput && nameInput.value) ? nameInput.value : 'イベント';
+    if (resultName) resultName.textContent = evtName;
+    if (resultMeta) {
+      var venue = (venueSelect && venueSelect.value && venueSelect.value !== '（指定なし）')
+        ? venueSelect.value + ' ・ ' : '';
+      resultMeta.textContent = venue + '印刷して会場に掲示できます';
+    }
+    document.getElementById('adm-qr-result').style.display = 'block';
+  }
+
+  // === イベントQRコード ダウンロード ===
+  function downloadAdmQr() {
+    var img = document.getElementById('adm-qr-img');
+    if (!img) return;
+    var nameInput = document.getElementById('adm-evt-name');
+    var fileName = (nameInput && nameInput.value ? nameInput.value : 'イベントQRコード') + '_QRコード';
+    // SVGを高解像度PNGに変換してダウンロード
+    var canvas = document.createElement('canvas');
+    var scale = 1024;
+    canvas.width = scale;
+    canvas.height = scale;
+    var ctx = canvas.getContext('2d');
+    var image = new Image();
+    image.onload = function() {
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(0, 0, scale, scale);
+      ctx.drawImage(image, 0, 0, scale, scale);
+      var link = document.createElement('a');
+      link.download = fileName + '.png';
+      try {
+        link.href = canvas.toDataURL('image/png');
+      } catch (e) {
+        // フォールバック：SVGをそのまま保存
+        link.href = img.src;
+        link.download = fileName + '.svg';
+      }
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
+    image.onerror = function() {
+      // フォールバック：SVGをそのまま保存
+      var link = document.createElement('a');
+      link.download = fileName + '.svg';
+      link.href = img.src;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
+    image.src = img.src;
   }
 </script>
 </body>
