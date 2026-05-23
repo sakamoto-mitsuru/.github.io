@@ -266,6 +266,203 @@ body { min-height: 100vh; min-height: 100dvh; }
 .activity-text { flex: 1; font-size: 13px; color: var(--text); }
 .activity-time { font-size: 11px; color: var(--text-soft); }
 
+/* === 家族とのつながり（ホーム） === */
+.home-family {
+  margin: 0 20px 20px;
+  padding: 14px 16px;
+  background: var(--surface-warm);
+  border-radius: 14px;
+  border: 1px solid var(--border);
+}
+.home-family-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 10px;
+}
+.home-family-label {
+  font-size: 11px; color: var(--text-muted);
+  display: flex; align-items: center; gap: 5px;
+}
+.home-family-label i { font-size: 13px; color: var(--accent); }
+.home-family-manage {
+  font-size: 11px; color: var(--link);
+  cursor: pointer;
+}
+.home-family-avatars {
+  display: flex; align-items: center; gap: 0;
+}
+.home-fam-avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  border: 2px solid var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Shippori Mincho', serif;
+  font-size: 15px; color: var(--accent);
+  margin-left: -8px;
+  flex-shrink: 0;
+}
+.home-fam-avatar:first-child { margin-left: 0; }
+.home-fam-avatar.more {
+  background: var(--surface);
+  border-color: var(--border-strong);
+  font-size: 11px; color: var(--text-muted);
+}
+.home-family-note {
+  font-size: 11px; color: var(--text-soft);
+  margin: 8px 0 0; line-height: 1.5;
+}
+
+/* === 家族に伝えたこと フィード === */
+.home-feed-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin: 0 20px 12px;
+}
+.home-feed-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 16px; font-weight: 500;
+  color: var(--text); margin: 0;
+}
+.home-feed-more {
+  font-size: 12px; color: var(--link);
+  cursor: pointer;
+}
+.home-feed { margin: 0 20px 22px; }
+
+.feed-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+.feed-card-photo {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  background: linear-gradient(135deg, #EDE6D6 0%, #E2D8C0 100%);
+  background-size: cover; background-position: center;
+}
+.feed-card-body { padding: 13px 15px; }
+.feed-card-meta {
+  display: flex; align-items: center; gap: 6px;
+  margin-bottom: 6px;
+}
+.feed-card-type {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-weight: 500;
+}
+.feed-card-type.diary { background: #FAEEDA; color: #854F0B; }
+.feed-card-type.photo { background: #E1F5EE; color: #0F6E56; }
+.feed-card-type.record { background: #EEEDFE; color: #534AB7; }
+.feed-card-date {
+  font-size: 10px; color: var(--text-soft);
+}
+.feed-card-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 15px; font-weight: 500;
+  color: var(--text);
+  margin: 0 0 5px;
+}
+.feed-card-text {
+  font-size: 12px; color: var(--text-muted);
+  line-height: 1.7;
+  margin: 0 0 11px;
+}
+.feed-card-shared {
+  display: flex; align-items: center; gap: 6px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+.feed-shared-icon {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--line-green, #06C755);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.feed-shared-icon i { font-size: 12px; color: #FFFFFF; }
+.feed-shared-text {
+  font-size: 11px; color: var(--text-muted);
+}
+.feed-shared-text strong { color: var(--text); font-weight: 500; }
+
+/* 家族からのねぎらい */
+.feed-card-reply {
+  margin-top: 9px;
+  padding: 9px 11px;
+  background: var(--surface-warm);
+  border-radius: 10px;
+  display: flex; gap: 8px;
+}
+.feed-reply-avatar {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Shippori Mincho', serif;
+  font-size: 12px; color: var(--accent);
+  flex-shrink: 0;
+}
+.feed-reply-body { flex: 1; min-width: 0; }
+.feed-reply-name {
+  font-size: 11px; font-weight: 500;
+  color: var(--text); margin: 0;
+}
+.feed-reply-text {
+  font-size: 12px; color: var(--text-muted);
+  margin: 2px 0 0; line-height: 1.6;
+}
+
+.feed-empty {
+  text-align: center;
+  padding: 28px 20px;
+  color: var(--text-soft);
+}
+.feed-empty i { font-size: 32px; color: var(--border-strong); }
+.feed-empty p { font-size: 12px; margin: 8px 0 0; line-height: 1.6; }
+
+/* === 控えめな機能カード（ホーム下部） === */
+.home-tools-label {
+  font-size: 11px; color: var(--text-muted);
+  margin: 0 20px 10px;
+  letter-spacing: 0.05em;
+}
+.home-tools {
+  margin: 0 20px 24px;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.home-tool {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  padding: 13px 6px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.home-tool:active { transform: scale(0.96); background: var(--surface-warm); }
+.home-tool-icon {
+  width: 34px; height: 34px;
+  border-radius: 9px;
+  margin: 0 auto 6px;
+  display: flex; align-items: center; justify-content: center;
+}
+.home-tool-icon.write { background: #FAEEDA; }
+.home-tool-icon.draw { background: #E1F5EE; }
+.home-tool-icon.timeline { background: #EEEDFE; }
+.home-tool-icon.connection { background: #F0E9DA; }
+.home-tool-icon i { font-size: 18px; }
+.home-tool-icon.write i { color: #854F0B; }
+.home-tool-icon.draw i { color: #0F6E56; }
+.home-tool-icon.timeline i { color: #534AB7; }
+.home-tool-icon.connection i { color: #6B5D4F; }
+.home-tool-name {
+  font-size: 11px; color: var(--text);
+  font-weight: 500;
+}
+
 /* === Generic page hero === */
 .page-hero {
   padding: 28px 20px 20px; text-align: center;
@@ -325,6 +522,208 @@ body { min-height: 100vh; min-height: 100dvh; }
   transition: all 0.2s ease;
 }
 .add-button:active { background: var(--surface-warm); color: var(--text); }
+
+/* ご縁ページ セクション分け */
+.goen-section-head {
+  display: flex; align-items: center; gap: 7px;
+  margin: 4px 2px 12px;
+}
+.goen-section-head:not(:first-child) { margin-top: 26px; }
+.goen-section-head i { font-size: 17px; color: var(--accent); }
+.goen-section-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 15px; font-weight: 500;
+  color: var(--text);
+  margin: 0;
+}
+.goen-section-desc {
+  font-size: 11px; color: var(--text-muted);
+  margin: -7px 2px 12px;
+  line-height: 1.6;
+}
+
+/* 家族のご縁カード */
+.fam-goen-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 10px;
+}
+.fam-goen-by {
+  display: flex; align-items: center; gap: 6px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed var(--border);
+}
+.fam-goen-avatar {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Shippori Mincho', serif;
+  font-size: 12px; color: var(--accent);
+  flex-shrink: 0;
+}
+.fam-goen-by-text {
+  font-size: 11px; color: var(--text-muted);
+}
+.fam-goen-by-text strong {
+  color: var(--text); font-weight: 500;
+}
+.fam-goen-main {
+  display: flex; align-items: center; gap: 12px;
+}
+.fam-goen-icon {
+  width: 46px; height: 46px;
+  border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.fam-goen-icon i { font-size: 22px; }
+.fam-goen-info { flex: 1; min-width: 0; }
+.fam-goen-name {
+  font-size: 14px; font-weight: 500;
+  color: var(--text); margin: 0;
+}
+.fam-goen-category {
+  font-size: 11px; color: var(--text-muted);
+  margin: 2px 0 0;
+}
+
+/* === メモリーノート提携企業ページ === */
+.ptn-hero {
+  padding: 24px 22px 20px;
+  text-align: center;
+  background: linear-gradient(135deg, #FBF8F1 0%, #F0E9DA 100%);
+  border-bottom: 1px solid var(--border);
+}
+.ptn-hero-icon {
+  width: 54px; height: 54px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 10px;
+}
+.ptn-hero-icon i { font-size: 26px; color: var(--accent); }
+.ptn-hero h2 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 18px; font-weight: 500;
+  margin: 0 0 8px; letter-spacing: 0.06em;
+}
+.ptn-hero p {
+  font-size: 12px; color: var(--text-muted);
+  margin: 0; line-height: 1.8;
+}
+
+/* 表示切替タブ */
+.ptn-filter {
+  display: flex; gap: 8px;
+  padding: 14px 16px 4px;
+}
+.ptn-filter-tab {
+  flex: 1;
+  padding: 9px;
+  border-radius: 999px;
+  font-size: 12px; font-weight: 500;
+  text-align: center;
+  border: 1.5px solid var(--border-strong);
+  background: var(--surface);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  display: flex; align-items: center; justify-content: center; gap: 5px;
+}
+.ptn-filter-tab i { font-size: 14px; }
+.ptn-filter-tab.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #FFFFFF;
+}
+
+.ptn-zip-note {
+  margin: 8px 16px 0;
+  padding: 8px 12px;
+  background: rgba(35,120,83,0.05);
+  border-radius: 8px;
+  font-size: 10px; color: var(--text-muted);
+  line-height: 1.6;
+  display: flex; align-items: center; gap: 6px;
+}
+.ptn-zip-note i { font-size: 13px; color: #237853; flex-shrink: 0; }
+.ptn-zip-note strong { color: #237853; }
+
+/* 業種グループ見出し */
+.ptn-cat-label {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 13px; font-weight: 500;
+  color: var(--text);
+  margin: 22px 18px 10px;
+  display: flex; align-items: center; gap: 6px;
+}
+.ptn-cat-label i { font-size: 15px; color: var(--accent); }
+.ptn-cat-label .ptn-cat-count {
+  font-size: 10px; font-weight: 400;
+  color: var(--text-soft);
+}
+
+/* 提携企業カード */
+.ptn-card {
+  margin: 0 16px 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  padding: 14px;
+  display: flex; align-items: center; gap: 12px;
+}
+.ptn-card-logo {
+  width: 48px; height: 48px;
+  border-radius: 11px;
+  background: var(--surface-warm);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.ptn-card-logo img { width: 100%; height: 100%; object-fit: contain; padding: 5px; }
+.ptn-card-logo i { font-size: 23px; }
+.ptn-card-info { flex: 1; min-width: 0; }
+.ptn-card-name {
+  font-size: 14px; font-weight: 500;
+  color: var(--text); margin: 0;
+  display: flex; align-items: center; gap: 6px;
+}
+.ptn-card-name .ptn-near-badge {
+  font-size: 9px; font-weight: 400;
+  padding: 1px 6px;
+  background: #E8F5EE;
+  color: #237853;
+  border-radius: 999px;
+}
+.ptn-card-cat {
+  font-size: 11px; color: var(--text-muted);
+  margin: 3px 0 0;
+}
+.ptn-card-area {
+  font-size: 10px; color: var(--text-soft);
+  margin: 2px 0 0;
+  display: flex; align-items: center; gap: 3px;
+}
+.ptn-card-area i { font-size: 11px; }
+.ptn-card-add {
+  flex-shrink: 0;
+  padding: 7px 12px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: none;
+  border-radius: 999px;
+  font-size: 11px; font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.ptn-card-add:active { transform: scale(0.97); }
 
 .share-section {
   margin: 8px 16px 24px; padding: 16px;
@@ -1754,7 +2153,7 @@ body { min-height: 100vh; min-height: 100dvh; }
   margin-top: 4px;
 }
 
-/* === 終活の足跡（エンディングノート＝ビュー） === */
+/* === 終活の足跡（大切なことの整理＝ビュー） === */
 .en-trail {
   margin: 0 16px 14px;
   background: var(--surface);
@@ -2871,6 +3270,11 @@ body { min-height: 100vh; min-height: 100dvh; }
 }
 
 /* メモ入力方法バナー */
+.rec-memo-lead {
+  margin: 0 20px 9px;
+  font-size: 11px; color: var(--text-muted);
+  line-height: 1.6;
+}
 .rec-memo-banners {
   margin: 0 16px;
   display: flex; flex-direction: column;
@@ -2886,6 +3290,7 @@ body { min-height: 100vh; min-height: 100dvh; }
 }
 .rec-memo-banner:active { transform: scale(0.99); }
 .rec-memo-banner.text { background: var(--surface); }
+.rec-memo-banner.predict { background: linear-gradient(135deg, #E8F5EE 0%, #F4FBF7 100%); border-color: #A6D4BC; }
 .rec-memo-banner.voice { background: linear-gradient(135deg, #EAF1FB 0%, #F5F9FE 100%); border-color: #B8D4EC; }
 .rec-memo-banner.camera { background: linear-gradient(135deg, #FBF1EA 0%, #FEF8F5 100%); border-color: #E8C9B3; }
 .rec-memo-icon {
@@ -2896,6 +3301,7 @@ body { min-height: 100vh; min-height: 100dvh; }
 }
 .rec-memo-icon i { font-size: 22px; color: #FFFFFF; }
 .rec-memo-banner.text .rec-memo-icon { background: var(--accent); }
+.rec-memo-banner.predict .rec-memo-icon { background: #237853; }
 .rec-memo-banner.voice .rec-memo-icon { background: #1E5687; }
 .rec-memo-banner.camera .rec-memo-icon { background: #B5703E; }
 .rec-memo-text { flex: 1; min-width: 0; }
@@ -2937,6 +3343,290 @@ body { min-height: 100vh; min-height: 100dvh; }
   text-align: center;
   font-size: 10px; color: var(--text-soft);
   line-height: 1.6;
+}
+
+/* === 記録完了モーダル === */
+.rec-modal-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(40,34,28,0.5);
+  z-index: 200;
+  align-items: center; justify-content: center;
+  padding: 28px;
+}
+.rec-modal-overlay.show { display: flex; }
+.rec-modal {
+  background: var(--bg);
+  border-radius: 18px;
+  width: 100%; max-width: 340px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+  animation: recModalIn 0.25s ease;
+}
+@keyframes recModalIn {
+  from { opacity: 0; transform: scale(0.94) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.rec-modal-step { display: none; }
+.rec-modal-step.active { display: block; }
+
+/* ステップ1：完了 */
+.rec-modal-done-top {
+  padding: 26px 22px 18px;
+  text-align: center;
+}
+.rec-modal-check {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #237853 0%, #56A07B 100%);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 12px;
+}
+.rec-modal-check i { font-size: 30px; color: #FFFFFF; }
+.rec-modal-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 17px; font-weight: 500;
+  color: var(--text);
+  margin: 0 0 5px;
+}
+.rec-modal-sub {
+  font-size: 12px; color: var(--text-muted);
+  margin: 0; line-height: 1.6;
+}
+.rec-modal-ask {
+  margin: 6px 22px 0;
+  padding: 14px;
+  background: var(--surface-warm);
+  border-radius: 12px;
+  text-align: center;
+}
+.rec-modal-ask-icon {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--line-green, #06C755);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 8px;
+}
+.rec-modal-ask-icon i { font-size: 19px; color: #FFFFFF; }
+.rec-modal-ask-text {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 14px; font-weight: 500;
+  color: var(--text);
+  margin: 0 0 3px;
+}
+.rec-modal-ask-desc {
+  font-size: 11px; color: var(--text-muted);
+  margin: 0; line-height: 1.6;
+}
+.rec-modal-actions {
+  display: flex; gap: 9px;
+  padding: 16px 22px 20px;
+}
+.rec-modal-btn {
+  flex: 1;
+  padding: 13px;
+  border-radius: 11px;
+  font-size: 13px; font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  transition: all 0.2s ease;
+}
+.rec-modal-btn:active { transform: scale(0.98); }
+.rec-modal-btn.close {
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  color: var(--text-muted);
+}
+.rec-modal-btn.tell {
+  background: var(--line-green, #06C755);
+  color: #FFFFFF;
+}
+.rec-modal-btn.tell i { font-size: 16px; }
+
+/* 3択（いま伝える／いつか伝える／自分の中だけ） */
+.rec-modal-q {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 13px; font-weight: 500;
+  color: var(--text);
+  text-align: center;
+  margin: 4px 22px 12px;
+}
+.rec-modal-choices {
+  padding: 0 16px 18px;
+  display: flex; flex-direction: column;
+  gap: 9px;
+}
+.rec-modal-choice {
+  display: flex; align-items: center; gap: 11px;
+  padding: 13px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+.rec-modal-choice:active { transform: scale(0.98); }
+.rec-modal-choice.now { background: linear-gradient(135deg, #EAF7EF 0%, #F5FBF7 100%); border-color: #A6D4BC; }
+.rec-modal-choice.later { background: linear-gradient(135deg, #F6F1E6 0%, #FBF8F1 100%); border-color: #DCC9A0; }
+.rec-modal-choice-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.rec-modal-choice-icon i { font-size: 20px; color: #FFFFFF; }
+.rec-modal-choice-icon.now { background: var(--line-green, #06C755); }
+.rec-modal-choice-icon.later { background: var(--gold); }
+.rec-modal-choice-icon.keep { background: var(--text-soft); }
+.rec-modal-choice-text { flex: 1; min-width: 0; }
+.rec-modal-choice-name {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 13px; font-weight: 500;
+  color: var(--text);
+  margin: 0;
+}
+.rec-modal-choice-desc {
+  font-size: 10px; color: var(--text-muted);
+  margin: 2px 0 0; line-height: 1.5;
+}
+.rec-modal-choice-arrow {
+  font-size: 16px; color: var(--text-soft);
+  flex-shrink: 0;
+}
+.rec-modal-sent-icon.later { background: var(--gold); }
+
+/* ステップ2：家族選択 */
+.rec-modal-fam-head {
+  padding: 20px 22px 12px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.rec-modal-fam-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 16px; font-weight: 500;
+  color: var(--text);
+  margin: 0 0 4px;
+}
+.rec-modal-fam-sub {
+  font-size: 11px; color: var(--text-muted);
+  margin: 0; line-height: 1.6;
+}
+.rec-modal-fam-list {
+  padding: 10px 16px;
+  max-height: 244px;
+  overflow-y: auto;
+}
+.rec-fam-row {
+  display: flex; align-items: center; gap: 11px;
+  padding: 10px 8px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background 0.15s ease;
+}
+.rec-fam-row:active { background: var(--surface-warm); }
+.rec-fam-avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Shippori Mincho', serif;
+  font-size: 15px; color: var(--accent);
+  flex-shrink: 0;
+}
+.rec-fam-info { flex: 1; min-width: 0; }
+.rec-fam-name {
+  font-size: 13px; font-weight: 500;
+  color: var(--text);
+  margin: 0;
+}
+.rec-fam-rel {
+  font-size: 10px; color: var(--text-muted);
+  margin: 1px 0 0;
+}
+.rec-fam-check {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border-strong);
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s ease;
+}
+.rec-fam-check i { font-size: 14px; color: #FFFFFF; opacity: 0; }
+.rec-fam-row.selected .rec-fam-check {
+  background: var(--line-green, #06C755);
+  border-color: var(--line-green, #06C755);
+}
+.rec-fam-row.selected .rec-fam-check i { opacity: 1; }
+.rec-modal-fam-foot {
+  padding: 14px 22px 20px;
+}
+.rec-modal-fam-send {
+  width: 100%;
+  padding: 14px;
+  background: var(--line-green, #06C755);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 11px;
+  font-size: 13px; font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  transition: all 0.2s ease;
+}
+.rec-modal-fam-send:active { transform: scale(0.98); }
+.rec-modal-fam-send:disabled {
+  background: var(--border-strong);
+  cursor: default;
+}
+.rec-modal-fam-send i { font-size: 16px; }
+.rec-modal-fam-cancel {
+  width: 100%;
+  margin-top: 8px;
+  padding: 10px;
+  background: none;
+  border: none;
+  font-size: 12px; color: var(--text-muted);
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* ステップ3：送信完了 */
+.rec-modal-sent {
+  padding: 32px 22px 26px;
+  text-align: center;
+}
+.rec-modal-sent-icon {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--line-green, #06C755);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 14px;
+}
+.rec-modal-sent-icon i { font-size: 30px; color: #FFFFFF; }
+.rec-modal-sent-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 16px; font-weight: 500;
+  color: var(--text);
+  margin: 0 0 5px;
+}
+.rec-modal-sent-sub {
+  font-size: 12px; color: var(--text-muted);
+  margin: 0 0 18px; line-height: 1.6;
+}
+.rec-modal-sent-done {
+  width: 100%;
+  padding: 13px;
+  background: var(--accent);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 11px;
+  font-size: 13px; font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
 }
 
 .co-history-header {
@@ -4509,111 +5199,126 @@ body { min-height: 100vh; min-height: 100dvh; }
     <div class="stats">
       <div class="stat"><div class="stat-num">28</div><div class="stat-label">日記</div></div>
       <div class="stat"><div class="stat-num">48</div><div class="stat-label">思い出の写真</div></div>
-      <div class="stat"><div class="stat-num">3</div><div class="stat-label">ご縁</div></div>
+      <div class="stat"><div class="stat-num">6</div><div class="stat-label">家族</div></div>
     </div>
 
+    <!-- 家族とのつながり -->
+    <div class="home-family">
+      <div class="home-family-head">
+        <span class="home-family-label"><i class="ti ti-users"></i>つながっている家族</span>
+        <span class="home-family-manage" data-goto="family">家族を管理</span>
+      </div>
+      <div class="home-family-avatars">
+        <div class="home-fam-avatar">一</div>
+        <div class="home-fam-avatar">健</div>
+        <div class="home-fam-avatar">桜</div>
+        <div class="home-fam-avatar">隆</div>
+        <div class="home-fam-avatar">美</div>
+        <div class="home-fam-avatar more">+1</div>
+      </div>
+      <p class="home-family-note">6人のご家族とつながっています。綋ったことを伝えると、ご家族のもとへ届きます。</p>
+    </div>
+
+    <!-- 今日のひとこと -->
     <div class="today-section">
       <p class="today-label">今 日 の ひ と こ と</p>
-      <p class="today-prompt">今日、心に残ったことは何ですか？</p>
-      <button class="today-button" data-goto="diary">
-        <i class="ti ti-pencil"></i>書いてみる
+      <p class="today-prompt">今日のことを、ご家族に伝えませんか？</p>
+      <button class="today-button" data-goto="diary-write">
+        <i class="ti ti-pencil"></i>綋ってみる
       </button>
     </div>
 
-    <div class="section-tabs">
-      <div class="section-tab active">すべて</div>
-      <div class="section-tab">よく使う</div>
-      <div class="section-tab">下書き</div>
+    <!-- 家族に伝えたこと フィード -->
+    <div class="home-feed-head">
+      <p class="home-feed-title">家族に伝えたこと</p>
+      <span class="home-feed-more" data-goto="diary">すべて見る</span>
+    </div>
+    <div class="home-feed">
+
+      <div class="feed-card">
+        <div class="feed-card-photo" style="background-image: url('saidan1.png');"></div>
+        <div class="feed-card-body">
+          <div class="feed-card-meta">
+            <span class="feed-card-type diary">日記</span>
+            <span class="feed-card-date">5月15日</span>
+          </div>
+          <p class="feed-card-title">桜が満開でした</p>
+          <p class="feed-card-text">主人と近所の公園まで散歩。今年の桜は例年より早く満開を迎え、青空に映える姿に思わず立ち止まりました。</p>
+          <div class="feed-card-shared">
+            <div class="feed-shared-icon"><i class="ti ti-check"></i></div>
+            <span class="feed-shared-text"><strong>健一</strong>さん・<strong>さくら</strong>さんに伝えました</span>
+          </div>
+          <div class="feed-card-reply">
+            <div class="feed-reply-avatar">桜</div>
+            <div class="feed-reply-body">
+              <p class="feed-reply-name">さくら</p>
+              <p class="feed-reply-text">おばあちゃん、とてもきれいな写真！今度一緒にお花見したいな。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feed-card">
+        <div class="feed-card-body">
+          <div class="feed-card-meta">
+            <span class="feed-card-type record">やりとり</span>
+            <span class="feed-card-date">5月9日</span>
+          </div>
+          <p class="feed-card-title">葬儀会場イメージを作成しました</p>
+          <p class="feed-card-text">やわらぎ斎場のイベントで、主人と相談しながら白い生花の祭壇に決めました。</p>
+          <div class="feed-card-shared">
+            <div class="feed-shared-icon"><i class="ti ti-check"></i></div>
+            <span class="feed-shared-text"><strong>健一</strong>さんに伝えました</span>
+          </div>
+          <div class="feed-card-reply">
+            <div class="feed-reply-avatar">健</div>
+            <div class="feed-reply-body">
+              <p class="feed-reply-name">健一</p>
+              <p class="feed-reply-text">教えてくれてありがとう。今度、一緒に話を聞かせてね。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feed-card">
+        <div class="feed-card-photo" style="background-image: url('saidan2.png');"></div>
+        <div class="feed-card-body">
+          <div class="feed-card-meta">
+            <span class="feed-card-type photo">写真</span>
+            <span class="feed-card-date">5月6日</span>
+          </div>
+          <p class="feed-card-title">家庭菜園の野菜が育ちました</p>
+          <p class="feed-card-text">今年もトマトとナスを植えました。毎朝の水やりが、ちょっとした楽しみです。</p>
+          <div class="feed-card-shared">
+            <div class="feed-shared-icon"><i class="ti ti-check"></i></div>
+            <span class="feed-shared-text">家族みんなに伝えました</span>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <div class="features">
-      <div class="feature-card" data-goto="diary">
-        <div class="feature-icon-box write">
-          <svg class="icon-svg icon-write" viewBox="0 0 24 24">
-            <path d="M14 4 L20 4 L20 20 L8 20 L8 9"/>
-            <path d="M4 4 L8 4 L8 9 Z"/>
-            <line x1="11" y1="11" x2="17" y2="11"/>
-            <line x1="11" y1="14" x2="17" y2="14"/>
-            <line x1="11" y1="17" x2="15" y2="17"/>
-          </svg>
-        </div>
-        <p class="feature-title">日記</p>
-        <p class="feature-desc">日々の想いを綴る</p>
-        <div class="feature-count"><i class="ti ti-notebook"></i>28件の記録</div>
+    <!-- 控えめな機能カード -->
+    <p class="home-tools-label">メモリーノートの中を見る</p>
+    <div class="home-tools">
+      <div class="home-tool" data-goto="diary">
+        <div class="home-tool-icon write"><i class="ti ti-notebook"></i></div>
+        <p class="home-tool-name">日記</p>
       </div>
-
-      <div class="feature-card" data-goto="album">
-        <div class="feature-icon-box draw">
-          <svg class="icon-svg icon-draw" viewBox="0 0 24 24">
-            <circle cx="17" cy="7" r="2"/>
-            <path d="M3 19 L8 11 L12 16 L15 13 L21 19 Z" fill="#0F6E56" fill-opacity="0.15"/>
-            <path d="M3 19 L8 11 L12 16 L15 13 L21 19"/>
-            <line x1="3" y1="19" x2="21" y2="19"/>
-          </svg>
-        </div>
-        <p class="feature-title">アルバム</p>
-        <p class="feature-desc">写真・思い出</p>
-        <div class="feature-count"><i class="ti ti-photo"></i>48枚の写真</div>
+      <div class="home-tool" data-goto="album">
+        <div class="home-tool-icon draw"><i class="ti ti-photo"></i></div>
+        <p class="home-tool-name">アルバム</p>
       </div>
-
-      <div class="feature-card" data-goto="timeline">
-        <div class="feature-icon-box timeline">
-          <svg class="icon-svg icon-timeline" viewBox="0 0 24 24">
-            <line x1="4" y1="12" x2="20" y2="12"/>
-            <circle cx="7" cy="12" r="2" fill="#534AB7" fill-opacity="0.15"/>
-            <circle cx="7" cy="12" r="2"/>
-            <circle cx="13" cy="12" r="2" fill="#534AB7" fill-opacity="0.15"/>
-            <circle cx="13" cy="12" r="2"/>
-            <circle cx="19" cy="12" r="2" fill="#534AB7" fill-opacity="0.15"/>
-            <circle cx="19" cy="12" r="2"/>
-            <line x1="7" y1="6" x2="7" y2="9"/>
-            <line x1="13" y1="15" x2="13" y2="18"/>
-            <line x1="19" y1="6" x2="19" y2="9"/>
-          </svg>
-        </div>
-        <p class="feature-title">年表</p>
-        <p class="feature-desc">人生の歩み</p>
-        <div class="feature-count"><i class="ti ti-flag"></i>14の節目</div>
+      <div class="home-tool" data-goto="timeline">
+        <div class="home-tool-icon timeline"><i class="ti ti-flag"></i></div>
+        <p class="home-tool-name">年表</p>
       </div>
-
-      <div class="feature-card" data-goto="goen">
-        <div class="feature-icon-box connection">
-          <svg class="icon-svg icon-connection" viewBox="0 0 24 24">
-            <circle cx="9" cy="12" r="5" fill="#6B5D4F" fill-opacity="0.1"/>
-            <circle cx="15" cy="12" r="5" fill="#6B5D4F" fill-opacity="0.1"/>
-            <circle cx="9" cy="12" r="5"/>
-            <circle cx="15" cy="12" r="5"/>
-          </svg>
-        </div>
-        <p class="feature-title">ご縁</p>
-        <p class="feature-desc">大切な繋がり</p>
-        <div class="feature-count"><i class="ti ti-building"></i>3社を登録</div>
+      <div class="home-tool" data-goto="goen">
+        <div class="home-tool-icon connection"><i class="ti ti-heart-handshake"></i></div>
+        <p class="home-tool-name">ご縁</p>
       </div>
     </div>
 
-    <div class="activity">
-      <div class="activity-header">
-        <h3 class="activity-title">最近の記録</h3>
-        <span class="activity-more">すべて見る →</span>
-      </div>
-      <div class="activity-list">
-        <div class="activity-item">
-          <span class="activity-dot"></span>
-          <span class="activity-text">「桜が満開でした」を書きました</span>
-          <span class="activity-time">昨日</span>
-        </div>
-        <div class="activity-item">
-          <span class="activity-dot"></span>
-          <span class="activity-text">家庭菜園の写真を3枚追加しました</span>
-          <span class="activity-time">3日前</span>
-        </div>
-        <div class="activity-item">
-          <span class="activity-dot"></span>
-          <span class="activity-text">ご縁に「メモリード」を登録</span>
-          <span class="activity-time">2週間前</span>
-        </div>
-      </div>
-    </div>
   </div>
 
   <!-- ============ DIARY PAGE ============ -->
@@ -4703,7 +5408,7 @@ body { min-height: 100vh; min-height: 100dvh; }
       </div>
     </div>
 
-    <button class="fab" data-goto="diary">
+    <button class="fab" data-goto="diary-write">
       <i class="ti ti-pencil-plus"></i>
     </button>
   </div>
@@ -4955,6 +5660,14 @@ body { min-height: 100vh; min-height: 100dvh; }
     </div>
 
     <div class="page-body">
+
+      <!-- わたしのご縁 -->
+      <div class="goen-section-head">
+        <i class="ti ti-user"></i>
+        <p class="goen-section-title">わたしのご縁</p>
+      </div>
+      <p class="goen-section-desc">あなたが登録した、大切な繋がりです</p>
+
       <div class="company-card" data-goto="company-aiplan">
         <div class="company-card-top">
           <div class="logo-frame brand-green" style="overflow: hidden; padding: 4px;">
@@ -5020,16 +5733,72 @@ body { min-height: 100vh; min-height: 100dvh; }
         </div>
       </div>
 
-      <button class="add-button">
-        <i class="ti ti-plus" style="vertical-align: -2px; margin-right: 4px;"></i>企業を追加する
+      <button class="add-button" data-goto="partners">
+        <i class="ti ti-plus" style="vertical-align: -2px; margin-right: 4px;"></i>提携企業から追加する
       </button>
+
+      <!-- 家族のご縁 -->
+      <div class="goen-section-head">
+        <i class="ti ti-users"></i>
+        <p class="goen-section-title">家族のご縁</p>
+      </div>
+      <p class="goen-section-desc">ご家族が登録した繋がりです。もしもの時、お互いに支え合えるように。</p>
+
+      <div class="fam-goen-card">
+        <div class="fam-goen-by">
+          <div class="fam-goen-avatar">健</div>
+          <span class="fam-goen-by-text"><strong>糸和 健一</strong>さん（長男）が登録</span>
+        </div>
+        <div class="fam-goen-main">
+          <div class="fam-goen-icon" style="background: #E8F5EE;">
+            <i class="ti ti-heart" style="color: #237853;"></i>
+          </div>
+          <div class="fam-goen-info">
+            <p class="fam-goen-name">○○介護センター</p>
+            <p class="fam-goen-category">介護事業者 ・ 訪問介護</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="fam-goen-card">
+        <div class="fam-goen-by">
+          <div class="fam-goen-avatar">健</div>
+          <span class="fam-goen-by-text"><strong>糸和 健一</strong>さん（長男）が登録</span>
+        </div>
+        <div class="fam-goen-main">
+          <div class="fam-goen-icon" style="background: #E6F1FB;">
+            <i class="ti ti-building" style="color: #1E5687;"></i>
+          </div>
+          <div class="fam-goen-info">
+            <p class="fam-goen-name">○○クリニック</p>
+            <p class="fam-goen-category">かかりつけ医</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="fam-goen-card">
+        <div class="fam-goen-by">
+          <div class="fam-goen-avatar">桜</div>
+          <span class="fam-goen-by-text"><strong>糸和 さくら</strong>さん（孫）が登録</span>
+        </div>
+        <div class="fam-goen-main">
+          <div class="fam-goen-icon" style="background: #FBF1EA;">
+            <i class="ti ti-home" style="color: #B5703E;"></i>
+          </div>
+          <div class="fam-goen-info">
+            <p class="fam-goen-name">○○デイサービス</p>
+            <p class="fam-goen-category">介護事業者 ・ 通所介護</p>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <div class="share-section">
       <button class="share-button">
         <i class="ti ti-share-2"></i>家族へ共有する
       </button>
-      <p class="share-help">登録された全企業の情報を、ご家族に伝えます</p>
+      <p class="share-help">「わたしのご縁」に登録した企業の情報を、ご家族に伝えます</p>
     </div>
   </div>
 
@@ -5228,7 +5997,7 @@ body { min-height: 100vh; min-height: 100dvh; }
             <div class="co-timeline-dot event"><i class="ti ti-confetti"></i></div>
             <div class="co-timeline-content">
               <div class="co-timeline-date">2025 年 5 月 10 日 ・ 土</div>
-              <p class="co-timeline-title">終活セミナー参加（エンディングノートの書き方）</p>
+              <p class="co-timeline-title">終活セミナー参加（これからの暮らしの整理）</p>
               <p class="co-timeline-by">一人で参加 ・ 講師：◯◯さん</p>
             </div>
           </div>
@@ -5516,7 +6285,7 @@ body { min-height: 100vh; min-height: 100dvh; }
             <div class="co-timeline-dot event"><i class="ti ti-confetti"></i></div>
             <div class="co-timeline-content">
               <div class="co-timeline-date">2025 年 5 月 11 日 ・ 日</div>
-              <p class="co-timeline-title">終活セミナー参加（エンディングノートの書き方）</p>
+              <p class="co-timeline-title">終活セミナー参加（これからの暮らしの整理）</p>
               <p class="co-timeline-by">一人で参加 ・ 講師：△△さん</p>
             </div>
           </div>
@@ -5718,42 +6487,39 @@ body { min-height: 100vh; min-height: 100dvh; }
           </div>
           <i class="ti ti-chevron-right chevron"></i>
         </div>
+        <div class="manage-item" data-goto="partners">
+          <div class="manage-icon connection"><i class="ti ti-building"></i></div>
+          <div class="manage-text">
+            <div class="manage-title-row">
+              <p class="manage-name">メモリーノート提携企業</p>
+            </div>
+            <p class="manage-desc">家族の繋がりを大切にする企業から選ぶ</p>
+          </div>
+          <i class="ti ti-chevron-right chevron"></i>
+        </div>
       </div>
     </div>
 
     <div class="manage-section">
-      <p class="manage-section-label">いつかの備え</p>
+      <p class="manage-section-label">のこしておくこと</p>
       <div class="manage-list">
         <div class="manage-item" data-goto="grave">
           <div class="manage-icon grave"><i class="ti ti-map-pin"></i></div>
           <div class="manage-text">
             <div class="manage-title-row">
               <p class="manage-name">お墓マップ</p>
-              <span class="manage-badge new">NEW</span>
             </div>
-            <p class="manage-desc">お墓の場所と最寄りのセブン-イレブン</p>
+            <p class="manage-desc">ご先祖の眠る場所を、家族で見守る</p>
           </div>
           <i class="ti ti-chevron-right chevron"></i>
         </div>
-        <div class="manage-item" data-goto="inheritance">
-          <div class="manage-icon inheritance"><i class="ti ti-file-certificate"></i></div>
+        <div class="manage-item" data-goto="life-ahead">
+          <div class="manage-icon ending-note"><i class="ti ti-books"></i></div>
           <div class="manage-text">
             <div class="manage-title-row">
-              <p class="manage-name">相続</p>
-              <span class="manage-badge new">NEW</span>
+              <p class="manage-name">暮らしと、これから</p>
             </div>
-            <p class="manage-desc">財産・遺言の整理</p>
-          </div>
-          <i class="ti ti-chevron-right chevron"></i>
-        </div>
-        <div class="manage-item" data-goto="ending-note">
-          <div class="manage-icon ending-note"><i class="ti ti-notebook"></i></div>
-          <div class="manage-text">
-            <div class="manage-title-row">
-              <p class="manage-name">エンディングノート</p>
-              <span class="manage-badge new">NEW</span>
-            </div>
-            <p class="manage-desc">大切な情報をまとめて整理</p>
+            <p class="manage-desc">大切なことを、ゆっくり整理しておく</p>
           </div>
           <i class="ti ti-chevron-right chevron"></i>
         </div>
@@ -6766,19 +7532,62 @@ body { min-height: 100vh; min-height: 100dvh; }
 
   
   <!-- ============ ENDING NOTE PAGE ============ -->
-  <div class="page" id="page-ending-note">
+  <!-- ============ 暮らしと、これから PAGE ============ -->
+  <div class="page" id="page-life-ahead">
     <div class="page-bar">
       <div class="left">
         <i class="ti ti-arrow-left" data-back="manage"></i>
-        <span class="title-text">エンディングノート</span>
+        <span class="title-text">暮らしと、これから</span>
+      </div>
+    </div>
+
+    <div class="en-hero">
+      <div class="en-hero-icon"><i class="ti ti-books"></i></div>
+      <h2>暮らしと、これから</h2>
+      <p>急がず、少しずつ。大切なことを<br>ゆっくり整理しておく場所です。</p>
+    </div>
+
+    <div style="padding: 8px 16px 20px;">
+      <div class="manage-list">
+        <div class="manage-item" data-goto="ending-note">
+          <div class="manage-icon ending-note"><i class="ti ti-notebook"></i></div>
+          <div class="manage-text">
+            <div class="manage-title-row">
+              <p class="manage-name">大切なことの整理</p>
+            </div>
+            <p class="manage-desc">暮らしの情報を、家族への道しるべとして残す</p>
+          </div>
+          <i class="ti ti-chevron-right chevron"></i>
+        </div>
+        <div class="manage-item" data-goto="inheritance">
+          <div class="manage-icon inheritance"><i class="ti ti-file-certificate"></i></div>
+          <div class="manage-text">
+            <div class="manage-title-row">
+              <p class="manage-name">相続</p>
+            </div>
+            <p class="manage-desc">財産や遺言について、考えをまとめておく</p>
+          </div>
+          <i class="ti ti-chevron-right chevron"></i>
+        </div>
+      </div>
+    </div>
+
+    <div style="height: 24px;"></div>
+  </div>
+
+  <div class="page" id="page-ending-note">
+    <div class="page-bar">
+      <div class="left">
+        <i class="ti ti-arrow-left" data-back="life-ahead"></i>
+        <span class="title-text">大切なことの整理</span>
       </div>
       <i class="ti ti-help"></i>
     </div>
 
     <div class="en-hero">
-      <div class="en-hero-icon"><i class="ti ti-notebook"></i></div>
-      <h2>エンディングノート</h2>
-      <p>終活は、書くためではなく生きるための時間。<br>その歩みが、ご家族の道しるべになります。</p>
+      <div class="en-hero-icon"><i class="ti ti-books"></i></div>
+      <h2>大切なことの整理</h2>
+      <p>あなたが整理したことの一つひとつが、<br>いつか、ご家族への道しるべになります。</p>
     </div>
 
     <!-- セキュリティ案内カード -->
@@ -6981,7 +7790,7 @@ body { min-height: 100vh; min-height: 100dvh; }
     <!-- 「ご縁」連携 案内 -->
     <div class="en-tip-card">
       <p class="en-tip-card-title"><i class="ti ti-link"></i>「ご縁」と自動で連携しています</p>
-      ご縁に登録した企業（メモリード、あいプランなど）は、エンディングノートにも自動で反映されます。
+      ご縁に登録した企業（メモリード、あいプランなど）は、この整理にも自動で反映されます。
     </div>
 
     <!-- 3. もしもの時の希望 -->
@@ -7121,13 +7930,289 @@ body { min-height: 100vh; min-height: 100dvh; }
     <!-- 補足案内 -->
     <div class="en-tip-card">
       <p class="en-tip-card-title"><i class="ti ti-info-circle"></i>少しずつ、ご自身のペースで</p>
-      エンディングノートは、一度に書き上げる必要はありません。
+      大切なことの整理は、一度に書き上げる必要はありません。
       気が向いた時に、お話するように追加していけます。コンシェルジュがやさしくお手伝いします。
     </div>
 
     <div style="height: 24px;"></div>
   </div>
 
+
+  
+  <!-- ============ PARTNER COMPANIES PAGE ============ -->
+  <div class="page" id="page-partners">
+    <div class="page-bar">
+      <div class="left">
+        <i class="ti ti-arrow-left" data-back="goen"></i>
+        <span class="title-text">メモリーノート提携企業</span>
+      </div>
+      <i class="ti ti-info-circle"></i>
+    </div>
+
+    <div class="ptn-hero">
+      <div class="ptn-hero-icon"><i class="ti ti-heart-handshake"></i></div>
+      <h2>メモリーノート提携企業</h2>
+      <p>ご家族の繋がりを大切にされている<br>企業さまと提携しております。<br>必要な時に、提携企業をお選びいただくと<br>スムーズにお手続きいただけます。</p>
+    </div>
+
+    <div class="ptn-filter">
+      <button class="ptn-filter-tab active" id="ptn-tab-all" onclick="switchPtnFilter('all')">
+        <i class="ti ti-building"></i>すべての企業
+      </button>
+      <button class="ptn-filter-tab" id="ptn-tab-near" onclick="switchPtnFilter('near')">
+        <i class="ti ti-map-pin"></i>近くの企業
+      </button>
+    </div>
+    <div class="ptn-zip-note">
+      <i class="ti ti-map-pin"></i>
+      <span><strong>「近くの企業」</strong>は、ご登録の郵便番号（〒460-0008）をもとに、お住まいの地域の企業を表示します。</span>
+    </div>
+
+    <!-- 葬儀社 -->
+    <p class="ptn-cat-label"><i class="ti ti-building"></i>葬儀社<span class="ptn-cat-count">・3社</span></p>
+
+    <div class="ptn-card" data-ptn-near="1">
+      <div class="ptn-card-logo">
+        <img src="aiplan_logo.png" alt="あいプラン">
+      </div>
+      <div class="ptn-card-info">
+        <p class="ptn-card-name">株式会社あいプラン</p>
+        <p class="ptn-card-cat">葬儀社</p>
+        <p class="ptn-card-area"><i class="ti ti-map-pin"></i>北海道</p>
+      </div>
+      <button class="ptn-card-add">登録する</button>
+    </div>
+
+    <div class="ptn-card" data-ptn-near="1">
+      <div class="ptn-card-logo">
+        <img src="memoreed_logo.png" alt="メモリード">
+      </div>
+      <div class="ptn-card-info">
+        <p class="ptn-card-name">株式会社メモリード</p>
+        <p class="ptn-card-cat">葬儀社</p>
+        <p class="ptn-card-area"><i class="ti ti-map-pin"></i>長崎県</p>
+      </div>
+      <button class="ptn-card-add">登録する</button>
+    </div>
+
+    <div class="ptn-card" data-ptn-near="1">
+      <div class="ptn-card-logo" style="background: #FFFFFF;">
+        <i class="ti ti-building" style="color: #1E5687;"></i>
+      </div>
+      <div class="ptn-card-info">
+        <p class="ptn-card-name">株式会社ニチリョク</p>
+        <p class="ptn-card-cat">葬儀社・墓地・霊園</p>
+        <p class="ptn-card-area"><i class="ti ti-map-pin"></i>関東</p>
+      </div>
+      <button class="ptn-card-add">登録する</button>
+    </div>
+
+    <!-- 介護事業者 -->
+    <p class="ptn-cat-label"><i class="ti ti-heart"></i>介護・生活支援<span class="ptn-cat-count">・3社</span></p>
+
+    <div class="ptn-card" data-ptn-near="1">
+      <div class="ptn-card-logo" style="background: #E8F5EE;">
+        <i class="ti ti-heart" style="color: #237853;"></i>
+      </div>
+      <div class="ptn-card-info">
+        <p class="ptn-card-name">○○ケアサービス</p>
+        <p class="ptn-card-cat">介護事業者・訪問介護</p>
+        <p class="ptn-card-area"><i class="ti ti-map-pin"></i>愛知県</p>
+      </div>
+      <button class="ptn-card-add">登録する</button>
+    </div>
+
+    <div class="ptn-card" data-ptn-near="1">
+      <div class="ptn-card-logo" style="background: #E8F5EE;">
+        <i class="ti ti-home" style="color: #237853;"></i>
+      </div>
+      <div class="ptn-card-info">
+        <p class="ptn-card-name">○○デイサービスセンター</p>
+        <p class="ptn-card-cat">介護事業者・通所介護</p>
+        <p class="ptn-card-area"><i class="ti ti-map-pin"></i>愛知県</p>
+      </div>
+      <button class="ptn-card-add">登録する</button>
+    </div>
+
+    <div class="ptn-card" data-ptn-near="0">
+      <div class="ptn-card-logo" style="background: #E8F5EE;">
+        <i class="ti ti-users" style="color: #237853;"></i>
+      </div>
+      <div class="ptn-card-info">
+        <p class="ptn-card-name">○○シニアサポート</p>
+        <p class="ptn-card-cat">高齢者の暮らし支援</p>
+        <p class="ptn-card-area"><i class="ti ti-map-pin"></i>大阪府</p>
+      </div>
+      <button class="ptn-card-add">登録する</button>
+    </div>
+
+    <!-- 保険 -->
+    <p class="ptn-cat-label"><i class="ti ti-shield"></i>保険<span class="ptn-cat-count">・3社</span></p>
+
+    <div class="ptn-card" data-ptn-near="1">
+      <div class="ptn-card-logo" style="background: #E6F1FB;">
+        <i class="ti ti-shield" style="color: #1E5687;"></i>
+      </div>
+      <div class="ptn-card-info">
+        <p class="ptn-card-name">○○生命保険</p>
+        <p class="ptn-card-cat">生命保険</p>
+        <p class="ptn-card-area"><i class="ti ti-map-pin"></i>愛知県</p>
+      </div>
+      <button class="ptn-card-add">登録する</button>
+    </div>
+
+    <div class="ptn-card" data-ptn-near="0">
+      <div class="ptn-card-logo" style="background: #E6F1FB;">
+        <i class="ti ti-shield" style="color: #1E5687;"></i>
+      </div>
+      <div class="ptn-card-info">
+        <p class="ptn-card-name">○○保険サービス</p>
+        <p class="ptn-card-cat">保険相談・見直し</p>
+        <p class="ptn-card-area"><i class="ti ti-map-pin"></i>東京都</p>
+      </div>
+      <button class="ptn-card-add">登録する</button>
+    </div>
+
+    <div class="ptn-card" data-ptn-near="0">
+      <div class="ptn-card-logo" style="background: #E6F1FB;">
+        <i class="ti ti-file-certificate" style="color: #1E5687;"></i>
+      </div>
+      <div class="ptn-card-info">
+        <p class="ptn-card-name">○○少額短期保険</p>
+        <p class="ptn-card-cat">葬儀保険・終身保険</p>
+        <p class="ptn-card-area"><i class="ti ti-map-pin"></i>福岡県</p>
+      </div>
+      <button class="ptn-card-add">登録する</button>
+    </div>
+
+    <!-- 暮らしのサポート -->
+    <p class="ptn-cat-label"><i class="ti ti-home"></i>暮らしのサポート<span class="ptn-cat-count">・3社</span></p>
+
+    <div class="ptn-card" data-ptn-near="1">
+      <div class="ptn-card-logo" style="background: #FBF1EA;">
+        <i class="ti ti-flower" style="color: #B5703E;"></i>
+      </div>
+      <div class="ptn-card-info">
+        <p class="ptn-card-name">○○フラワー</p>
+        <p class="ptn-card-cat">花・供花</p>
+        <p class="ptn-card-area"><i class="ti ti-map-pin"></i>愛知県</p>
+      </div>
+      <button class="ptn-card-add">登録する</button>
+    </div>
+
+    <div class="ptn-card" data-ptn-near="0">
+      <div class="ptn-card-logo" style="background: #FBF1EA;">
+        <i class="ti ti-briefcase" style="color: #B5703E;"></i>
+      </div>
+      <div class="ptn-card-info">
+        <p class="ptn-card-name">○○相続サポート</p>
+        <p class="ptn-card-cat">相続・遺言の相談</p>
+        <p class="ptn-card-area"><i class="ti ti-map-pin"></i>東京都</p>
+      </div>
+      <button class="ptn-card-add">登録する</button>
+    </div>
+
+    <div class="ptn-card" data-ptn-near="0">
+      <div class="ptn-card-logo" style="background: #FBF1EA;">
+        <i class="ti ti-home" style="color: #B5703E;"></i>
+      </div>
+      <div class="ptn-card-info">
+        <p class="ptn-card-name">○○生活整理サービス</p>
+        <p class="ptn-card-cat">生前整理・遺品整理</p>
+        <p class="ptn-card-area"><i class="ti ti-map-pin"></i>大阪府</p>
+      </div>
+      <button class="ptn-card-add">登録する</button>
+    </div>
+
+    <div style="height: 28px;"></div>
+  </div>
+
+  
+  <!-- ============ DIARY WRITE PAGE ============ -->
+  <div class="page" id="page-diary-write">
+    <div class="page-bar">
+      <div class="left">
+        <i class="ti ti-arrow-left" data-back="diary"></i>
+        <span class="title-text">日記を書く</span>
+      </div>
+    </div>
+
+    <div class="rec-hero">
+      <div class="rec-hero-icon"><i class="ti ti-pencil-plus"></i></div>
+      <h2>今日のことを綴る</h2>
+      <p>うまく書こうとしなくて大丈夫。<br>写真や声からでも、今日を残せます。</p>
+    </div>
+
+    <!-- 今日の情報 -->
+    <p class="rec-section-label"><i class="ti ti-calendar"></i>今日</p>
+    <div class="rec-auto-card">
+      <div class="rec-auto-head">
+        <i class="ti ti-check"></i>
+        <span>今日の日付が入ります</span>
+      </div>
+      <div class="rec-auto-row">
+        <span class="rec-auto-key">日付</span>
+        <span class="rec-auto-val">2026年5月23日 土曜日</span>
+      </div>
+      <div class="rec-auto-row">
+        <span class="rec-auto-key">天気</span>
+        <span class="rec-auto-val">晴れ</span>
+      </div>
+    </div>
+
+    <!-- 写真 -->
+    <p class="rec-section-label"><i class="ti ti-photo"></i>写真<span class="rec-opt">任意</span></p>
+    <div class="rec-photo-add">
+      <i class="ti ti-photo"></i>
+      <span>写真を追加する</span>
+    </div>
+
+    <!-- 今日のこと -->
+    <p class="rec-section-label"><i class="ti ti-note"></i>今日のこと<span class="rec-opt">任意</span></p>
+    <p class="rec-memo-lead">書き方を選べます。文字が苦手でも、写真や声から残せます。</p>
+    <div class="rec-memo-banners">
+      <div class="rec-memo-banner predict">
+        <div class="rec-memo-icon"><i class="ti ti-sparkles"></i></div>
+        <div class="rec-memo-text">
+          <p class="rec-memo-name">画像から予測</p>
+          <p class="rec-memo-desc">追加した写真をAIが読み取り、日記の下書きを作ります。写真も残ります</p>
+        </div>
+        <i class="ti ti-chevron-right chevron"></i>
+      </div>
+      <div class="rec-memo-banner voice">
+        <div class="rec-memo-icon"><i class="ti ti-microphone"></i></div>
+        <div class="rec-memo-text">
+          <p class="rec-memo-name">音声で入力</p>
+          <p class="rec-memo-desc">話した言葉が、そのまま文字になります</p>
+        </div>
+        <i class="ti ti-chevron-right chevron"></i>
+      </div>
+      <div class="rec-memo-banner camera">
+        <div class="rec-memo-icon"><i class="ti ti-camera"></i></div>
+        <div class="rec-memo-text">
+          <p class="rec-memo-name">カメラで読み取り</p>
+          <p class="rec-memo-desc">紙のメモや手紙を撮ると、文字を読み取ります。画像は残りません</p>
+        </div>
+        <i class="ti ti-chevron-right chevron"></i>
+      </div>
+      <div class="rec-memo-banner text">
+        <div class="rec-memo-icon"><i class="ti ti-pencil"></i></div>
+        <div class="rec-memo-text">
+          <p class="rec-memo-name">文字で入力</p>
+          <p class="rec-memo-desc">キーボードで、自分の言葉で書く</p>
+        </div>
+        <i class="ti ti-chevron-right chevron"></i>
+      </div>
+    </div>
+
+    <button class="rec-submit" onclick="openRecModal('diary')">
+      <i class="ti ti-check"></i>
+      この日記を保存する
+    </button>
+    <p class="rec-private-note">保存した日記は、あなたのメモリーノートに残ります。</p>
+
+    <div style="height: 28px;"></div>
+  </div>
 
   
   <!-- ============ RECORD CREATE PAGE ============ -->
@@ -7175,12 +8260,13 @@ body { min-height: 100vh; min-height: 100dvh; }
 
     <!-- メモ -->
     <p class="rec-section-label"><i class="ti ti-note"></i>メモ<span class="rec-opt">任意</span></p>
+    <p class="rec-memo-lead">書き方を選べます。文字が苦手でも、写真や声から残せます。</p>
     <div class="rec-memo-banners">
-      <div class="rec-memo-banner text">
-        <div class="rec-memo-icon"><i class="ti ti-pencil"></i></div>
+      <div class="rec-memo-banner predict">
+        <div class="rec-memo-icon"><i class="ti ti-sparkles"></i></div>
         <div class="rec-memo-text">
-          <p class="rec-memo-name">文字で入力</p>
-          <p class="rec-memo-desc">キーボードで書く</p>
+          <p class="rec-memo-name">画像から予測</p>
+          <p class="rec-memo-desc">追加した写真をAIが読み取り、内容を下書きします。写真も記録に残ります</p>
         </div>
         <i class="ti ti-chevron-right chevron"></i>
       </div>
@@ -7196,19 +8282,138 @@ body { min-height: 100vh; min-height: 100dvh; }
         <div class="rec-memo-icon"><i class="ti ti-camera"></i></div>
         <div class="rec-memo-text">
           <p class="rec-memo-name">カメラで読み取り</p>
-          <p class="rec-memo-desc">紙のメモや資料を撮ると、文字を読み取ります</p>
+          <p class="rec-memo-desc">紙のメモや資料を撮ると、文字を読み取ります。画像は残りません</p>
+        </div>
+        <i class="ti ti-chevron-right chevron"></i>
+      </div>
+      <div class="rec-memo-banner text">
+        <div class="rec-memo-icon"><i class="ti ti-pencil"></i></div>
+        <div class="rec-memo-text">
+          <p class="rec-memo-name">文字で入力</p>
+          <p class="rec-memo-desc">キーボードで、自分の言葉で書く</p>
         </div>
         <i class="ti ti-chevron-right chevron"></i>
       </div>
     </div>
 
-    <button class="rec-submit" data-back="company-aiplan">
+    <button class="rec-submit" onclick="openRecModal('record')">
       <i class="ti ti-check"></i>
       この内容で記録する
     </button>
     <p class="rec-private-note">記録した内容は、この葬儀社のページにのみ残ります。<br>他の葬儀社のページには表示されません。</p>
 
     <div style="height: 28px;"></div>
+  </div>
+
+  <!-- 記録完了モーダル -->
+  <div class="rec-modal-overlay" id="rec-modal-overlay">
+    <div class="rec-modal">
+
+      <!-- ステップ1：記録完了＋伝えますか（3択） -->
+      <div class="rec-modal-step active" id="rec-modal-step1">
+        <div class="rec-modal-done-top">
+          <div class="rec-modal-check"><i class="ti ti-check"></i></div>
+          <p class="rec-modal-title">記録しました</p>
+          <p class="rec-modal-sub" id="rec-modal-sub">やりとり履歴に残りました</p>
+        </div>
+        <p class="rec-modal-q">この記録を、家族に伝えますか？</p>
+        <div class="rec-modal-choices">
+          <button class="rec-modal-choice now" onclick="recModalToFamily()">
+            <div class="rec-modal-choice-icon now"><i class="ti ti-brand-line"></i></div>
+            <div class="rec-modal-choice-text">
+              <p class="rec-modal-choice-name">いま伝える</p>
+              <p class="rec-modal-choice-desc">選んだご家族に、すぐLINEで届きます</p>
+            </div>
+            <i class="ti ti-chevron-right rec-modal-choice-arrow"></i>
+          </button>
+          <button class="rec-modal-choice later" onclick="recModalLater()">
+            <div class="rec-modal-choice-icon later"><i class="ti ti-mail-heart"></i></div>
+            <div class="rec-modal-choice-text">
+              <p class="rec-modal-choice-name">いつか伝える</p>
+              <p class="rec-modal-choice-desc">大切にしまっておき、伝えたい時に伝えられます</p>
+            </div>
+            <i class="ti ti-chevron-right rec-modal-choice-arrow"></i>
+          </button>
+          <button class="rec-modal-choice keep" onclick="closeRecModal()">
+            <div class="rec-modal-choice-icon keep"><i class="ti ti-lock"></i></div>
+            <div class="rec-modal-choice-text">
+              <p class="rec-modal-choice-name">自分の中だけに残す</p>
+              <p class="rec-modal-choice-desc">いまは伝えません。あとから伝えることもできます</p>
+            </div>
+            <i class="ti ti-chevron-right rec-modal-choice-arrow"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- ステップ2：家族を選ぶ -->
+      <div class="rec-modal-step" id="rec-modal-step2">
+        <div class="rec-modal-fam-head">
+          <p class="rec-modal-fam-title">伝えるご家族を選ぶ</p>
+          <p class="rec-modal-fam-sub">LINEで繋がっているご家族に伝えられます</p>
+        </div>
+        <div class="rec-modal-fam-list">
+          <div class="rec-fam-row" onclick="this.classList.toggle('selected'); recFamUpdate();">
+            <div class="rec-fam-avatar">和</div>
+            <div class="rec-fam-info">
+              <p class="rec-fam-name">糸和 一郎</p>
+              <p class="rec-fam-rel">主人</p>
+            </div>
+            <div class="rec-fam-check"><i class="ti ti-check"></i></div>
+          </div>
+          <div class="rec-fam-row" onclick="this.classList.toggle('selected'); recFamUpdate();">
+            <div class="rec-fam-avatar">健</div>
+            <div class="rec-fam-info">
+              <p class="rec-fam-name">糸和 健一</p>
+              <p class="rec-fam-rel">長男</p>
+            </div>
+            <div class="rec-fam-check"><i class="ti ti-check"></i></div>
+          </div>
+          <div class="rec-fam-row" onclick="this.classList.toggle('selected'); recFamUpdate();">
+            <div class="rec-fam-avatar">桜</div>
+            <div class="rec-fam-info">
+              <p class="rec-fam-name">糸和 さくら</p>
+              <p class="rec-fam-rel">孫（長男の娘）</p>
+            </div>
+            <div class="rec-fam-check"><i class="ti ti-check"></i></div>
+          </div>
+          <div class="rec-fam-row" onclick="this.classList.toggle('selected'); recFamUpdate();">
+            <div class="rec-fam-avatar">隆</div>
+            <div class="rec-fam-info">
+              <p class="rec-fam-name">糸和 隆二</p>
+              <p class="rec-fam-rel">次男</p>
+            </div>
+            <div class="rec-fam-check"><i class="ti ti-check"></i></div>
+          </div>
+        </div>
+        <div class="rec-modal-fam-foot">
+          <button class="rec-modal-fam-send" id="rec-fam-send" onclick="recModalSend()" disabled>
+            <i class="ti ti-send"></i><span id="rec-fam-send-label">伝える</span>
+          </button>
+          <button class="rec-modal-fam-cancel" onclick="closeRecModal()">やめておく</button>
+        </div>
+      </div>
+
+      <!-- ステップ3：送信完了 -->
+      <div class="rec-modal-step" id="rec-modal-step3">
+        <div class="rec-modal-sent">
+          <div class="rec-modal-sent-icon"><i class="ti ti-brand-line"></i></div>
+          <p class="rec-modal-sent-title">ご家族に伝えました</p>
+          <p class="rec-modal-sent-sub">選んだご家族のLINEに、お知らせが届きました</p>
+          <button class="rec-modal-sent-done" onclick="closeRecModal()">とじる</button>
+        </div>
+      </div>
+
+      <!-- ステップ4：いつか伝えるに保存 -->
+      <div class="rec-modal-step" id="rec-modal-step4">
+        <div class="rec-modal-sent">
+          <div class="rec-modal-sent-icon later"><i class="ti ti-mail-heart"></i></div>
+          <p class="rec-modal-sent-title">「いつか伝える」に<br>しまいました</p>
+          <p class="rec-modal-sent-sub">伝えたい時が来たら、いつでもご家族に伝えられます。そのままなら、いつか必ずご家族のもとへ届きます。</p>
+          <button class="rec-modal-sent-done" onclick="closeRecModal()">とじる</button>
+        </div>
+      </div>
+
+    </div>
   </div>
 
   
@@ -7311,11 +8516,6 @@ body { min-height: 100vh; min-height: 100dvh; }
     <div class="adm-stat-caption">
       <i class="ti ti-info-circle"></i>
       <span><strong>「一番手」</strong>は、その利用者さまをメモリーノートに最初にご登録いただいた葬儀社さまです。<strong>「それ以降」</strong>は、すでに他社経由で登録済みの利用者さまが、御社のご縁にも登録された場合です。</span>
-    </div>
-
-    <div class="adm-foot-note">
-      <strong>今後の拡張について</strong>
-      「一番手」と「それ以降」を区別して記録することで、初回登録をした葬儀社さまへのインセンティブ設計が可能になります。
     </div>
 
     <div style="height: 24px;"></div>
@@ -7492,8 +8692,9 @@ body { min-height: 100vh; min-height: 100dvh; }
 
         <h1 class="reg-welcome-title">ようこそ</h1>
         <p class="reg-welcome-subtitle">
-          日々を綴り、家族と分かち合う。<br>
-          あなただけの、メモリーノートへ。
+          メモリーノートは、<br>
+          ご家族との繋がりを大切に思う方のための、<br>
+          想いを綴り、受け継ぐ場所です。
         </p>
 
         <!-- 提携先紹介（URLパラメータから取得した1社のみ表示）-->
@@ -7543,24 +8744,24 @@ body { min-height: 100vh; min-height: 100dvh; }
 
         <div class="reg-welcome-features">
           <div class="reg-welcome-feature">
-            <div class="reg-welcome-feature-icon"><i class="ti ti-book"></i></div>
+            <div class="reg-welcome-feature-icon"><i class="ti ti-users"></i></div>
             <div class="reg-welcome-feature-text">
-              <p class="reg-welcome-feature-title">日々を綴る</p>
-              <p class="reg-welcome-feature-desc">何気ない日常も、大切な思い出になります</p>
+              <p class="reg-welcome-feature-title">ご家族とつながる</p>
+              <p class="reg-welcome-feature-desc">大切なご家族と繋がり、想いを届け合えます</p>
             </div>
           </div>
           <div class="reg-welcome-feature">
-            <div class="reg-welcome-feature-icon"><i class="ti ti-users"></i></div>
+            <div class="reg-welcome-feature-icon"><i class="ti ti-book"></i></div>
             <div class="reg-welcome-feature-text">
-              <p class="reg-welcome-feature-title">家族と分かち合う</p>
-              <p class="reg-welcome-feature-desc">大切な人と、思い出を共有できます</p>
+              <p class="reg-welcome-feature-title">日々を、ご家族に伝える</p>
+              <p class="reg-welcome-feature-desc">何気ない日常も、綴ればご家族への便りになります</p>
             </div>
           </div>
           <div class="reg-welcome-feature">
             <div class="reg-welcome-feature-icon"><i class="ti ti-heart"></i></div>
             <div class="reg-welcome-feature-text">
-              <p class="reg-welcome-feature-title">いつまでも、続く</p>
-              <p class="reg-welcome-feature-desc">あなたの人生が、ご家族に受け継がれます</p>
+              <p class="reg-welcome-feature-title">想いが、受け継がれていく</p>
+              <p class="reg-welcome-feature-desc">あなたの歩みは、いつかご家族の道しるべになります</p>
             </div>
           </div>
         </div>
@@ -8098,7 +9299,7 @@ body { min-height: 100vh; min-height: 100dvh; }
   <div class="page" id="page-inheritance">
     <div class="page-bar">
       <div class="left">
-        <i class="ti ti-arrow-left" data-back="ending-note"></i>
+        <i class="ti ti-arrow-left" data-back="life-ahead"></i>
         <span class="title-text">相続</span>
       </div>
       <i class="ti ti-help"></i>
@@ -8143,7 +9344,7 @@ body { min-height: 100vh; min-height: 100dvh; }
       <div class="ws-info-row">
         <div class="ws-info-icon" style="background: #E6F1FB;"><i class="ti ti-building-bank" style="color: #1E5687;"></i></div>
         <div class="ws-info-text">
-          <p class="ws-info-label">エンディングノートに登録済</p>
+          <p class="ws-info-label">大切なことの整理に登録済</p>
           <p class="ws-info-value">2件（三菱UFJ銀行、ゆうちょ銀行）</p>
           <p class="ws-info-note">口座番号は記録していません</p>
         </div>
@@ -8171,7 +9372,7 @@ body { min-height: 100vh; min-height: 100dvh; }
         <div class="ws-info-text">
           <p class="ws-info-label">税理士</p>
           <p class="ws-info-value">山田太郎 税理士事務所</p>
-          <p class="ws-info-note">エンディングノートから連携</p>
+          <p class="ws-info-note">大切なことの整理から連携</p>
         </div>
       </div>
     </div>
@@ -8904,6 +10105,8 @@ body { min-height: 100vh; min-height: 100dvh; }
       'family': 'manage',
       'grave': 'manage',
       'manage': 'manage',
+      'partners': 'manage',
+      'life-ahead': 'manage',
       'ending-note': 'manage',
       'inheritance': 'manage',
       'will': 'manage',
@@ -8913,6 +10116,7 @@ body { min-height: 100vh; min-height: 100dvh; }
       'expert-list': 'manage',
       'realestate-list': 'manage',
       'register': 'manage',
+      'diary-write': 'diary',
       'record-create': 'goen',
       'admin': 'manage',
       'admin-members': 'manage',
@@ -9186,6 +10390,78 @@ body { min-height: 100vh; min-height: 100dvh; }
     document.querySelectorAll(`#${prefix}-hview-self, #${prefix}-hview-news`).forEach(v => v.classList.remove('active'));
     const v = document.getElementById(`${prefix}-hview-${view}`);
     if (v) v.classList.add('active');
+  }
+
+  // === 記録完了モーダル ===
+  var recModalContext = 'record';
+  function recModalShowStep(n) {
+    document.querySelectorAll('.rec-modal-step').forEach(s => s.classList.remove('active'));
+    const step = document.getElementById('rec-modal-step' + n);
+    if (step) step.classList.add('active');
+  }
+  function openRecModal(context) {
+    recModalContext = context || 'record';
+    // 文脈に応じて完了メッセージを切り替え
+    const sub = document.getElementById('rec-modal-sub');
+    if (sub) {
+      sub.textContent = (recModalContext === 'diary')
+        ? '日記に保存しました'
+        : 'やりとり履歴に残りました';
+    }
+    recModalShowStep(1);
+    // 家族選択をリセット
+    document.querySelectorAll('#rec-modal-step2 .rec-fam-row').forEach(r => r.classList.remove('selected'));
+    recFamUpdate();
+    document.getElementById('rec-modal-overlay').classList.add('show');
+  }
+  function closeRecModal() {
+    document.getElementById('rec-modal-overlay').classList.remove('show');
+    // 文脈に応じて戻り先を切り替え
+    if (typeof showPage === 'function') {
+      showPage(recModalContext === 'diary' ? 'diary' : 'company-aiplan');
+    }
+  }
+  function recModalToFamily() {
+    recModalShowStep(2);
+  }
+  function recModalLater() {
+    recModalShowStep(4);
+  }
+  function recFamUpdate() {
+    const count = document.querySelectorAll('#rec-modal-step2 .rec-fam-row.selected').length;
+    const btn = document.getElementById('rec-fam-send');
+    const label = document.getElementById('rec-fam-send-label');
+    if (!btn || !label) return;
+    if (count > 0) {
+      btn.disabled = false;
+      label.textContent = count + '人に伝える';
+    } else {
+      btn.disabled = true;
+      label.textContent = '伝える';
+    }
+  }
+  function recModalSend() {
+    recModalShowStep(3);
+  }
+
+  // === 提携企業ページ 表示切替 ===
+  function switchPtnFilter(mode) {
+    document.getElementById('ptn-tab-all').classList.toggle('active', mode === 'all');
+    document.getElementById('ptn-tab-near').classList.toggle('active', mode === 'near');
+    document.querySelectorAll('#page-partners .ptn-card').forEach(card => {
+      const isNear = card.getAttribute('data-ptn-near') === '1';
+      card.style.display = (mode === 'near' && !isNear) ? 'none' : 'flex';
+    });
+    // 「近くの企業」で1社も無い業種見出しを隠す
+    document.querySelectorAll('#page-partners .ptn-cat-label').forEach(label => {
+      let next = label.nextElementSibling;
+      let visibleCount = 0;
+      while (next && next.classList.contains('ptn-card')) {
+        if (next.style.display !== 'none') visibleCount++;
+        next = next.nextElementSibling;
+      }
+      label.style.display = visibleCount === 0 ? 'none' : 'flex';
+    });
   }
 </script>
 </body>
