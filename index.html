@@ -5399,6 +5399,239 @@ body { min-height: 100vh; min-height: 100dvh; }
   font-size: 9px; color: var(--text-soft);
 }
 
+/* イベント行：タップ可能・新規/リピーター内訳 */
+.adm-evt-row { cursor: pointer; }
+.adm-evt-row:active { background: var(--surface-warm); }
+.adm-evt-breakdown {
+  display: flex; gap: 6px;
+  margin: 0 16px 10px;
+}
+.adm-evt-bd-chip {
+  flex: 1;
+  display: flex; flex-direction: column;
+  align-items: center;
+  padding: 7px 4px;
+  border-radius: 8px;
+  font-size: 10px;
+}
+.adm-evt-bd-chip.new { background: #E8F2FB; }
+.adm-evt-bd-chip.rep { background: #F3EEDD; }
+.adm-evt-bd-num {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 15px; font-weight: 600;
+}
+.adm-evt-bd-chip.new .adm-evt-bd-num { color: #1E5687; }
+.adm-evt-bd-chip.rep .adm-evt-bd-num { color: #9A7B3A; }
+.adm-evt-bd-label { color: var(--text-muted); }
+
+/* 参加者リスト */
+.adm-pl-head {
+  margin: 14px 16px 4px;
+  padding: 14px;
+  background: var(--surface-warm);
+  border-radius: 12px;
+}
+.adm-pl-head-name {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 15px; font-weight: 500;
+  color: var(--text); margin: 0 0 2px;
+}
+.adm-pl-head-meta {
+  font-size: 11px; color: var(--text-muted); margin: 0 0 10px;
+}
+.adm-pl-head-stats {
+  display: flex; gap: 8px;
+}
+.adm-pl-stat {
+  flex: 1; text-align: center;
+  padding: 8px 4px;
+  border-radius: 8px;
+}
+.adm-pl-stat.total { background: var(--surface); border: 1px solid var(--border); }
+.adm-pl-stat.new { background: #E8F2FB; }
+.adm-pl-stat.rep { background: #F3EEDD; }
+.adm-pl-stat-num {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 17px; font-weight: 600;
+}
+.adm-pl-stat.total .adm-pl-stat-num { color: var(--text); }
+.adm-pl-stat.new .adm-pl-stat-num { color: #1E5687; }
+.adm-pl-stat.rep .adm-pl-stat-num { color: #9A7B3A; }
+.adm-pl-stat-label { font-size: 9px; color: var(--text-muted); }
+
+.adm-pl-list-label {
+  font-size: 11px; color: var(--text-muted);
+  margin: 18px 18px 8px;
+}
+.adm-pl-item {
+  display: flex; align-items: center; gap: 11px;
+  margin: 0 16px;
+  padding: 13px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-bottom: none;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.adm-pl-item:first-of-type { border-radius: 12px 12px 0 0; }
+.adm-pl-item:last-of-type { border-radius: 0 0 12px 12px; border-bottom: 1px solid var(--border); }
+.adm-pl-item:active { background: var(--surface-warm); }
+.adm-pl-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Shippori Mincho', serif;
+  font-size: 14px; color: var(--accent);
+  flex-shrink: 0;
+}
+.adm-pl-info { flex: 1; min-width: 0; }
+.adm-pl-name {
+  font-size: 14px; font-weight: 500;
+  color: var(--text); margin: 0;
+}
+.adm-pl-sub {
+  font-size: 10px; color: var(--text-soft);
+  margin: 2px 0 0;
+}
+.adm-pl-badge {
+  font-size: 10px; font-weight: 500;
+  padding: 3px 9px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+.adm-pl-badge.new { background: #E8F2FB; color: #1E5687; }
+.adm-pl-badge.rep { background: #F3EEDD; color: #9A7B3A; }
+
+/* やりとり履歴の検索 */
+.adm-hist-search {
+  margin: 14px 16px 0;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.adm-hist-field { margin-bottom: 12px; }
+.adm-hist-field:last-of-type { margin-bottom: 14px; }
+.adm-hist-label {
+  font-size: 11px; color: var(--text);
+  font-weight: 500;
+  display: block; margin-bottom: 6px;
+}
+.adm-hist-input {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 9px;
+  font-size: 14px;
+  font-family: inherit;
+  background: var(--surface);
+  color: var(--text);
+  box-sizing: border-box;
+}
+.adm-hist-search-btn {
+  width: 100%;
+  padding: 13px;
+  background: #6B5B9A;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px; font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+}
+.adm-hist-search-btn:active { transform: scale(0.98); }
+.adm-hist-search-btn i { font-size: 16px; }
+
+/* 検索結果 */
+.adm-hist-result { margin: 14px 16px 0; }
+.adm-hist-result.hidden { display: none; }
+.adm-hist-person {
+  padding: 14px;
+  background: var(--surface-warm);
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+.adm-hist-person-name {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 16px; font-weight: 500;
+  color: var(--text); margin: 0 0 3px;
+}
+.adm-hist-person-meta {
+  font-size: 11px; color: var(--text-muted); margin: 0;
+}
+.adm-hist-person-badge {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 10px; font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+.adm-hist-person-badge.new { background: #E8F2FB; color: #1E5687; }
+.adm-hist-person-badge.rep { background: #F3EEDD; color: #9A7B3A; }
+
+.adm-hist-log-label {
+  font-size: 11px; color: var(--text-muted);
+  margin: 16px 2px 8px;
+}
+.adm-hist-timeline {
+  position: relative;
+  padding-left: 22px;
+}
+.adm-hist-timeline::before {
+  content: ""; position: absolute;
+  left: 5px; top: 6px; bottom: 6px;
+  width: 2px; background: var(--border);
+}
+.adm-hist-entry {
+  position: relative;
+  padding-bottom: 16px;
+}
+.adm-hist-entry:last-child { padding-bottom: 0; }
+.adm-hist-entry::before {
+  content: ""; position: absolute;
+  left: -22px; top: 3px;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: #6B5B9A;
+  border: 2px solid var(--bg);
+}
+.adm-hist-entry-date {
+  font-size: 10px; color: var(--text-soft);
+  margin: 0 0 2px;
+}
+.adm-hist-entry-title {
+  font-size: 13px; font-weight: 500;
+  color: var(--text); margin: 0 0 2px;
+}
+.adm-hist-entry-desc {
+  font-size: 11px; color: var(--text-muted);
+  line-height: 1.6; margin: 0;
+}
+.adm-hist-privacy {
+  margin: 16px 0 0;
+  padding: 11px 13px;
+  background: rgba(107,91,154,0.06);
+  border-radius: 9px;
+  display: flex; gap: 7px;
+}
+.adm-hist-privacy i {
+  font-size: 14px; color: #6B5B9A;
+  flex-shrink: 0; margin-top: 1px;
+}
+.adm-hist-privacy p {
+  font-size: 10px; color: var(--text-muted);
+  line-height: 1.6; margin: 0;
+}
+.adm-hist-empty {
+  text-align: center;
+  padding: 30px 20px;
+  color: var(--text-soft);
+}
+.adm-hist-empty i { font-size: 30px; color: var(--border-strong); }
+.adm-hist-empty p { font-size: 12px; margin: 8px 0 0; line-height: 1.6; }
+
 /* QR生成フォーム */
 .adm-qr-card {
   margin: 0 16px;
@@ -9054,7 +9287,15 @@ body { min-height: 100vh; min-height: 100dvh; }
         <div class="adm-menu-icon" style="background: #FBF6E5; color: #B5895E;"><i class="ti ti-calendar"></i></div>
         <div class="adm-menu-text">
           <p class="adm-menu-name">イベント参加状況</p>
-          <p class="adm-menu-desc">イベント別の参加者数を確認</p>
+          <p class="adm-menu-desc">イベント別の参加者と新規・リピーターを確認</p>
+        </div>
+        <i class="ti ti-chevron-right chevron"></i>
+      </div>
+      <div class="adm-menu-item" data-goto="admin-history">
+        <div class="adm-menu-icon" style="background: #F0EAF8; color: #6B5B9A;"><i class="ti ti-id"></i></div>
+        <div class="adm-menu-text">
+          <p class="adm-menu-name">やりとり履歴の確認</p>
+          <p class="adm-menu-desc">お名前と生年月日で、やりとりの記録を確認</p>
         </div>
         <i class="ti ti-chevron-right chevron"></i>
       </div>
@@ -9251,8 +9492,9 @@ body { min-height: 100vh; min-height: 100dvh; }
     </div>
 
     <p class="adm-section-label"><i class="ti ti-calendar"></i>イベント別 参加者数</p>
+    <p class="adm-evt-tap-hint" style="font-size:10px;color:var(--text-muted);margin:0 18px 10px;">イベントを選ぶと、参加者の一覧をご覧いただけます。</p>
     <div class="adm-evt-list">
-      <div class="adm-evt-row">
+      <div class="adm-evt-row" data-goto="admin-event-detail">
         <div class="adm-evt-icon"><i class="ti ti-sparkles"></i></div>
         <div class="adm-evt-info">
           <p class="adm-evt-name">葬儀会場イメージ作成会</p>
@@ -9262,6 +9504,11 @@ body { min-height: 100vh; min-height: 100dvh; }
           <p class="adm-evt-count-num">412</p>
           <span class="adm-evt-count-unit">名 参加</span>
         </div>
+        <i class="ti ti-chevron-right chevron"></i>
+      </div>
+      <div class="adm-evt-breakdown">
+        <div class="adm-evt-bd-chip new"><span class="adm-evt-bd-num">301</span><span class="adm-evt-bd-label">新規</span></div>
+        <div class="adm-evt-bd-chip rep"><span class="adm-evt-bd-num">111</span><span class="adm-evt-bd-label">リピーター</span></div>
       </div>
       <div class="adm-evt-row">
         <div class="adm-evt-icon"><i class="ti ti-school"></i></div>
@@ -9273,6 +9520,11 @@ body { min-height: 100vh; min-height: 100dvh; }
           <p class="adm-evt-count-num">286</p>
           <span class="adm-evt-count-unit">名 参加</span>
         </div>
+        <i class="ti ti-chevron-right chevron"></i>
+      </div>
+      <div class="adm-evt-breakdown">
+        <div class="adm-evt-bd-chip new"><span class="adm-evt-bd-num">158</span><span class="adm-evt-bd-label">新規</span></div>
+        <div class="adm-evt-bd-chip rep"><span class="adm-evt-bd-num">128</span><span class="adm-evt-bd-label">リピーター</span></div>
       </div>
       <div class="adm-evt-row">
         <div class="adm-evt-icon"><i class="ti ti-building"></i></div>
@@ -9284,6 +9536,11 @@ body { min-height: 100vh; min-height: 100dvh; }
           <p class="adm-evt-count-num">174</p>
           <span class="adm-evt-count-unit">名 参加</span>
         </div>
+        <i class="ti ti-chevron-right chevron"></i>
+      </div>
+      <div class="adm-evt-breakdown">
+        <div class="adm-evt-bd-chip new"><span class="adm-evt-bd-num">96</span><span class="adm-evt-bd-label">新規</span></div>
+        <div class="adm-evt-bd-chip rep"><span class="adm-evt-bd-num">78</span><span class="adm-evt-bd-label">リピーター</span></div>
       </div>
       <div class="adm-evt-row">
         <div class="adm-evt-icon"><i class="ti ti-confetti"></i></div>
@@ -9295,12 +9552,172 @@ body { min-height: 100vh; min-height: 100dvh; }
           <p class="adm-evt-count-num">538</p>
           <span class="adm-evt-count-unit">名 参加</span>
         </div>
+        <i class="ti ti-chevron-right chevron"></i>
+      </div>
+      <div class="adm-evt-breakdown">
+        <div class="adm-evt-bd-chip new"><span class="adm-evt-bd-num">204</span><span class="adm-evt-bd-label">新規</span></div>
+        <div class="adm-evt-bd-chip rep"><span class="adm-evt-bd-num">334</span><span class="adm-evt-bd-label">リピーター</span></div>
       </div>
     </div>
 
     <div class="adm-foot-note">
-      <strong>参加者数について</strong>
-      参加者数は、イベント会場のQRコードを読み込んだ人数です。どのイベントが効果的かを、御社で把握していただけます。
+      <strong>新規・リピーターについて</strong>
+      <strong>新規</strong>は、御社経由でのメモリーノート作成が初めての方です。<strong>リピーター</strong>は、過去にも御社経由でメモリーノートを作成された方です。新規が増えればお繋がりの裾野が広がり、リピーターが多ければ信頼が続いている証です。
+    </div>
+
+    <div style="height: 24px;"></div>
+  </div>
+
+  <!-- 管理画面 イベント参加者リスト -->
+  <div class="page" id="page-admin-event-detail">
+    <div class="page-bar">
+      <div class="left">
+        <i class="ti ti-arrow-left" data-back="admin-events"></i>
+        <span class="title-text">参加者リスト</span>
+      </div>
+    </div>
+
+    <div class="adm-demo-banner">
+      <i class="ti ti-device-desktop"></i>
+      <span>提携葬儀社さま向け 管理画面のイメージです</span>
+    </div>
+
+    <div class="adm-pl-head">
+      <p class="adm-pl-head-name">葬儀会場イメージ作成会</p>
+      <p class="adm-pl-head-meta">○○斎場 本館 ・ 2026年5月9日</p>
+      <div class="adm-pl-head-stats">
+        <div class="adm-pl-stat total">
+          <p class="adm-pl-stat-num">412</p>
+          <p class="adm-pl-stat-label">参加者</p>
+        </div>
+        <div class="adm-pl-stat new">
+          <p class="adm-pl-stat-num">301</p>
+          <p class="adm-pl-stat-label">新規</p>
+        </div>
+        <div class="adm-pl-stat rep">
+          <p class="adm-pl-stat-num">111</p>
+          <p class="adm-pl-stat-label">リピーター</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="adm-pl-list-label">参加者一覧（一部を表示しています）</p>
+
+    <div class="adm-pl-item" data-goto="admin-history">
+      <div class="adm-pl-avatar">糸</div>
+      <div class="adm-pl-info">
+        <p class="adm-pl-name">糸和 花子 さま</p>
+        <p class="adm-pl-sub">1955年生まれ ・ 5月9日 11:20 登録</p>
+      </div>
+      <span class="adm-pl-badge rep">リピーター</span>
+    </div>
+    <div class="adm-pl-item">
+      <div class="adm-pl-avatar">田</div>
+      <div class="adm-pl-info">
+        <p class="adm-pl-name">田中 一子 さま</p>
+        <p class="adm-pl-sub">1948年生まれ ・ 5月9日 10:45 登録</p>
+      </div>
+      <span class="adm-pl-badge new">新規</span>
+    </div>
+    <div class="adm-pl-item">
+      <div class="adm-pl-avatar">佐</div>
+      <div class="adm-pl-info">
+        <p class="adm-pl-name">佐藤 敏夫 さま</p>
+        <p class="adm-pl-sub">1951年生まれ ・ 5月9日 13:10 登録</p>
+      </div>
+      <span class="adm-pl-badge new">新規</span>
+    </div>
+    <div class="adm-pl-item">
+      <div class="adm-pl-avatar">鈴</div>
+      <div class="adm-pl-info">
+        <p class="adm-pl-name">鈴木 美代 さま</p>
+        <p class="adm-pl-sub">1943年生まれ ・ 5月9日 14:30 登録</p>
+      </div>
+      <span class="adm-pl-badge rep">リピーター</span>
+    </div>
+    <div class="adm-pl-item">
+      <div class="adm-pl-avatar">山</div>
+      <div class="adm-pl-info">
+        <p class="adm-pl-name">山本 治 さま</p>
+        <p class="adm-pl-sub">1957年生まれ ・ 5月9日 15:05 登録</p>
+      </div>
+      <span class="adm-pl-badge new">新規</span>
+    </div>
+
+    <div class="adm-foot-note">
+      <strong>お名前をお選びいただくと</strong>
+      その方とのやりとり履歴をご確認いただけます。日記やお写真など、メモリーノートの中身は表示されません。
+    </div>
+
+    <div style="height: 24px;"></div>
+  </div>
+
+  <!-- 管理画面 やりとり履歴の確認（検索） -->
+  <div class="page" id="page-admin-history">
+    <div class="page-bar">
+      <div class="left">
+        <i class="ti ti-arrow-left" data-back="admin"></i>
+        <span class="title-text">やりとり履歴の確認</span>
+      </div>
+    </div>
+
+    <div class="adm-demo-banner">
+      <i class="ti ti-device-desktop"></i>
+      <span>提携葬儀社さま向け 管理画面のイメージです</span>
+    </div>
+
+    <p class="adm-section-label"><i class="ti ti-id"></i>お名前で検索</p>
+    <div class="adm-hist-search">
+      <div class="adm-hist-field">
+        <label class="adm-hist-label">お名前（姓名）</label>
+        <input type="text" class="adm-hist-input" id="adm-hist-name" placeholder="例：糸和 花子" value="糸和 花子">
+      </div>
+      <div class="adm-hist-field">
+        <label class="adm-hist-label">生年月日</label>
+        <input type="text" class="adm-hist-input" id="adm-hist-birth" placeholder="例：1955年4月3日" value="1955年4月3日">
+      </div>
+      <button class="adm-hist-search-btn" onclick="searchAdmHistory()">
+        <i class="ti ti-id"></i>
+        やりとり履歴を検索する
+      </button>
+    </div>
+
+    <!-- 検索結果（ヒット例） -->
+    <div class="adm-hist-result" id="adm-hist-result">
+      <div class="adm-hist-person">
+        <p class="adm-hist-person-name">糸和 花子 さま</p>
+        <p class="adm-hist-person-meta">1955年4月3日生まれ ・ メモリーノート登録 2026年3月</p>
+        <span class="adm-hist-person-badge rep">御社経由 2回目以降（リピーター）</span>
+      </div>
+
+      <p class="adm-hist-log-label">御社とのやりとり履歴</p>
+      <div class="adm-hist-timeline">
+        <div class="adm-hist-entry">
+          <p class="adm-hist-entry-date">2026年5月9日</p>
+          <p class="adm-hist-entry-title">葬儀会場イメージ作成会に参加</p>
+          <p class="adm-hist-entry-desc">○○斎場 本館 ・ 会場のQRコードから登録</p>
+        </div>
+        <div class="adm-hist-entry">
+          <p class="adm-hist-entry-date">2026年4月20日</p>
+          <p class="adm-hist-entry-title">会場見学会に参加</p>
+          <p class="adm-hist-entry-desc">○○斎場 本館</p>
+        </div>
+        <div class="adm-hist-entry">
+          <p class="adm-hist-entry-date">2026年3月15日</p>
+          <p class="adm-hist-entry-title">お知らせを送信</p>
+          <p class="adm-hist-entry-desc">春の感謝祭のご案内</p>
+        </div>
+        <div class="adm-hist-entry">
+          <p class="adm-hist-entry-date">2026年3月2日</p>
+          <p class="adm-hist-entry-title">メモリーノートを作成</p>
+          <p class="adm-hist-entry-desc">御社経由での初回登録</p>
+        </div>
+      </div>
+
+      <div class="adm-hist-privacy">
+        <i class="ti ti-shield-check"></i>
+        <p>表示されるのは、御社と利用者さまの間のやりとりの記録のみです。利用者さまの日記・お写真・メモの内容は、プライバシー保護のため表示されません。</p>
+      </div>
     </div>
 
     <div style="height: 24px;"></div>
@@ -10856,6 +11273,8 @@ body { min-height: 100vh; min-height: 100dvh; }
       'admin': 'manage',
       'admin-members': 'manage',
       'admin-events': 'manage',
+      'admin-event-detail': 'manage',
+      'admin-history': 'manage',
       'admin-qr': 'manage',
       'listen': 'listen'
     };
@@ -11207,6 +11626,15 @@ body { min-height: 100vh; min-height: 100dvh; }
       }
       label.style.display = visibleCount === 0 ? 'none' : 'flex';
     });
+  }
+
+  // === やりとり履歴の検索 ===
+  function searchAdmHistory() {
+    // モック：検索結果へスクロール（結果は常に表示されている）
+    var result = document.getElementById('adm-hist-result');
+    if (result) {
+      result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 
   // === イベントQRコード 生成 ===
