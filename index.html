@@ -4870,6 +4870,215 @@ body { min-height: 100vh; min-height: 100dvh; }
   font-family: 'Shippori Mincho', serif;
 }
 
+/* === 見える範囲の確認＋合意（登録画面） === */
+.reg-scope {
+  margin: 16px 0 0;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.reg-scope-head {
+  padding: 12px 14px;
+  background: var(--surface-warm);
+  border-bottom: 1px solid var(--border);
+}
+.reg-scope-head-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 13px; font-weight: 500;
+  color: var(--text);
+  margin: 0;
+  display: flex; align-items: center; gap: 6px;
+}
+.reg-scope-head-title i { font-size: 15px; color: var(--accent); }
+.reg-scope-head-sub {
+  font-size: 10px; color: var(--text-muted);
+  margin: 4px 0 0; line-height: 1.6;
+}
+.reg-scope-group {
+  padding: 12px 14px;
+}
+.reg-scope-group + .reg-scope-group {
+  border-top: 1px dashed var(--border);
+}
+.reg-scope-group-label {
+  font-size: 11px; font-weight: 500;
+  margin: 0 0 8px;
+  display: flex; align-items: center; gap: 5px;
+}
+.reg-scope-group.see .reg-scope-group-label { color: #1E5687; }
+.reg-scope-group.hide .reg-scope-group-label { color: #237853; }
+.reg-scope-group-label i { font-size: 14px; }
+.reg-scope-item {
+  display: flex; align-items: flex-start; gap: 7px;
+  font-size: 11px; color: var(--text);
+  line-height: 1.6;
+  padding: 3px 0;
+}
+.reg-scope-item i {
+  font-size: 13px;
+  flex-shrink: 0; margin-top: 2px;
+}
+.reg-scope-group.see .reg-scope-item i { color: #1E5687; }
+.reg-scope-group.hide .reg-scope-item i { color: #237853; }
+.reg-scope-consent {
+  display: flex; align-items: flex-start; gap: 9px;
+  padding: 13px 14px;
+  background: var(--surface-warm);
+  border-top: 1px solid var(--border);
+  cursor: pointer;
+}
+.reg-scope-checkbox {
+  width: 22px; height: 22px;
+  border-radius: 6px;
+  border: 1.5px solid var(--border-strong);
+  background: var(--surface);
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s ease;
+}
+.reg-scope-checkbox i {
+  font-size: 14px; color: #FFFFFF;
+  opacity: 0;
+}
+.reg-scope-consent.checked .reg-scope-checkbox {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.reg-scope-consent.checked .reg-scope-checkbox i { opacity: 1; }
+.reg-scope-consent-text {
+  font-size: 12px; color: var(--text);
+  line-height: 1.6;
+}
+
+/* === 提携企業 確認モーダル === */
+.ptn-modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(40,34,28,0.5);
+  display: none;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 200;
+}
+.ptn-modal-overlay.show { display: flex; }
+.ptn-modal {
+  background: var(--bg);
+  width: 100%; max-width: 420px;
+  border-radius: 18px 18px 0 0;
+  padding: 22px 20px 28px;
+  max-height: 88%;
+  overflow-y: auto;
+}
+.ptn-modal-handle {
+  width: 36px; height: 4px;
+  background: var(--border-strong);
+  border-radius: 999px;
+  margin: 0 auto 16px;
+}
+.ptn-modal-org {
+  display: flex; align-items: center; gap: 11px;
+  margin-bottom: 14px;
+}
+.ptn-modal-org-logo {
+  width: 46px; height: 46px;
+  border-radius: 11px;
+  background: var(--surface-warm);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.ptn-modal-org-logo i { font-size: 22px; color: var(--accent); }
+.ptn-modal-org-name {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 15px; font-weight: 500;
+  color: var(--text); margin: 0;
+}
+.ptn-modal-org-sub {
+  font-size: 11px; color: var(--text-muted); margin: 2px 0 0;
+}
+.ptn-modal-lead {
+  font-size: 12px; color: var(--text-muted);
+  line-height: 1.7;
+  margin: 0 0 14px;
+}
+.ptn-modal-group {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 13px;
+  margin-bottom: 10px;
+}
+.ptn-modal-group-label {
+  font-size: 11px; font-weight: 500;
+  margin: 0 0 7px;
+  display: flex; align-items: center; gap: 5px;
+}
+.ptn-modal-group.see .ptn-modal-group-label { color: #1E5687; }
+.ptn-modal-group.hide .ptn-modal-group-label { color: #237853; }
+.ptn-modal-group-label i { font-size: 14px; }
+.ptn-modal-row {
+  display: flex; align-items: flex-start; gap: 7px;
+  font-size: 11px; color: var(--text);
+  line-height: 1.6; padding: 3px 0;
+}
+.ptn-modal-row i { font-size: 13px; flex-shrink: 0; margin-top: 2px; }
+.ptn-modal-group.see .ptn-modal-row i { color: #1E5687; }
+.ptn-modal-group.hide .ptn-modal-row i { color: #237853; }
+.ptn-modal-actions {
+  display: flex; gap: 9px;
+  margin-top: 16px;
+}
+.ptn-modal-btn {
+  flex: 1;
+  padding: 13px;
+  border-radius: 11px;
+  font-size: 13px; font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.ptn-modal-btn:active { transform: scale(0.98); }
+.ptn-modal-btn.cancel {
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  color: var(--text-muted);
+}
+.ptn-modal-btn.confirm {
+  background: var(--accent);
+  border: none;
+  color: #FFFFFF;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.ptn-modal-btn.confirm i { font-size: 15px; }
+.ptn-modal-done {
+  text-align: center;
+  padding: 12px 0 4px;
+}
+.ptn-modal-done-icon {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  background: var(--line-green, #06C755);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 12px;
+}
+.ptn-modal-done-icon i { font-size: 28px; color: #FFFFFF; }
+.ptn-modal-done-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 16px; font-weight: 500;
+  color: var(--text); margin: 0 0 6px;
+}
+.ptn-modal-done-text {
+  font-size: 12px; color: var(--text-muted);
+  line-height: 1.7; margin: 0 0 18px;
+}
+.ptn-modal-done-btn {
+  width: 100%;
+  padding: 13px;
+  background: var(--accent);
+  color: #FFFFFF;
+  border: none; border-radius: 11px;
+  font-size: 13px; font-weight: 500;
+  font-family: inherit; cursor: pointer;
+}
+
 /* === Service Provider (itowa) Display === */
 .reg-service-provider {
   margin: 14px 0 0;
@@ -8805,7 +9014,7 @@ body { min-height: 100vh; min-height: 100dvh; }
           <p class="ptn-card-cat">葬儀社</p>
           <p class="ptn-card-area"><i class="ti ti-map-pin"></i>北海道</p>
         </div>
-        <button class="ptn-card-add">登録する</button>
+        <button class="ptn-card-add" onclick="openPtnModal('株式会社あいプラン')">登録する</button>
       </div>
     </div>
 
@@ -8821,7 +9030,7 @@ body { min-height: 100vh; min-height: 100dvh; }
         <p class="ptn-card-cat">葬儀社</p>
         <p class="ptn-card-area"><i class="ti ti-map-pin"></i>長崎県</p>
       </div>
-      <button class="ptn-card-add">登録する</button>
+      <button class="ptn-card-add" onclick="openPtnModal('株式会社メモリード')">登録する</button>
     </div>
 
     <div class="ptn-card" data-ptn-near="1">
@@ -8833,7 +9042,7 @@ body { min-height: 100vh; min-height: 100dvh; }
         <p class="ptn-card-cat">葬儀社・墓地・霊園</p>
         <p class="ptn-card-area"><i class="ti ti-map-pin"></i>関東</p>
       </div>
-      <button class="ptn-card-add">登録する</button>
+      <button class="ptn-card-add" onclick="openPtnModal('株式会社ニチリョク')">登録する</button>
     </div>
 
     <!-- 介護事業者 -->
@@ -8848,7 +9057,7 @@ body { min-height: 100vh; min-height: 100dvh; }
         <p class="ptn-card-cat">介護事業者・訪問介護</p>
         <p class="ptn-card-area"><i class="ti ti-map-pin"></i>愛知県</p>
       </div>
-      <button class="ptn-card-add">登録する</button>
+      <button class="ptn-card-add" onclick="openPtnModal('○○ケアサービス')">登録する</button>
     </div>
 
     <div class="ptn-card" data-ptn-near="1">
@@ -8860,7 +9069,7 @@ body { min-height: 100vh; min-height: 100dvh; }
         <p class="ptn-card-cat">介護事業者・通所介護</p>
         <p class="ptn-card-area"><i class="ti ti-map-pin"></i>愛知県</p>
       </div>
-      <button class="ptn-card-add">登録する</button>
+      <button class="ptn-card-add" onclick="openPtnModal('○○デイサービスセンター')">登録する</button>
     </div>
 
     <div class="ptn-card" data-ptn-near="0">
@@ -8872,7 +9081,7 @@ body { min-height: 100vh; min-height: 100dvh; }
         <p class="ptn-card-cat">高齢者の暮らし支援</p>
         <p class="ptn-card-area"><i class="ti ti-map-pin"></i>大阪府</p>
       </div>
-      <button class="ptn-card-add">登録する</button>
+      <button class="ptn-card-add" onclick="openPtnModal('○○シニアサポート')">登録する</button>
     </div>
 
     <!-- 保険 -->
@@ -8887,7 +9096,7 @@ body { min-height: 100vh; min-height: 100dvh; }
         <p class="ptn-card-cat">生命保険</p>
         <p class="ptn-card-area"><i class="ti ti-map-pin"></i>愛知県</p>
       </div>
-      <button class="ptn-card-add">登録する</button>
+      <button class="ptn-card-add" onclick="openPtnModal('○○生命保険')">登録する</button>
     </div>
 
     <div class="ptn-card" data-ptn-near="0">
@@ -8899,7 +9108,7 @@ body { min-height: 100vh; min-height: 100dvh; }
         <p class="ptn-card-cat">保険相談・見直し</p>
         <p class="ptn-card-area"><i class="ti ti-map-pin"></i>東京都</p>
       </div>
-      <button class="ptn-card-add">登録する</button>
+      <button class="ptn-card-add" onclick="openPtnModal('○○保険サービス')">登録する</button>
     </div>
 
     <div class="ptn-card" data-ptn-near="0">
@@ -8911,7 +9120,7 @@ body { min-height: 100vh; min-height: 100dvh; }
         <p class="ptn-card-cat">葬儀保険・終身保険</p>
         <p class="ptn-card-area"><i class="ti ti-map-pin"></i>福岡県</p>
       </div>
-      <button class="ptn-card-add">登録する</button>
+      <button class="ptn-card-add" onclick="openPtnModal('○○少額短期保険')">登録する</button>
     </div>
 
     <!-- 暮らしのサポート -->
@@ -8926,7 +9135,7 @@ body { min-height: 100vh; min-height: 100dvh; }
         <p class="ptn-card-cat">花・供花</p>
         <p class="ptn-card-area"><i class="ti ti-map-pin"></i>愛知県</p>
       </div>
-      <button class="ptn-card-add">登録する</button>
+      <button class="ptn-card-add" onclick="openPtnModal('○○フラワー')">登録する</button>
     </div>
 
     <div class="ptn-card" data-ptn-near="0">
@@ -8938,7 +9147,7 @@ body { min-height: 100vh; min-height: 100dvh; }
         <p class="ptn-card-cat">相続・遺言の相談</p>
         <p class="ptn-card-area"><i class="ti ti-map-pin"></i>東京都</p>
       </div>
-      <button class="ptn-card-add">登録する</button>
+      <button class="ptn-card-add" onclick="openPtnModal('○○相続サポート')">登録する</button>
     </div>
 
     <div class="ptn-card" data-ptn-near="0">
@@ -8950,10 +9159,59 @@ body { min-height: 100vh; min-height: 100dvh; }
         <p class="ptn-card-cat">生前整理・遺品整理</p>
         <p class="ptn-card-area"><i class="ti ti-map-pin"></i>大阪府</p>
       </div>
-      <button class="ptn-card-add">登録する</button>
+      <button class="ptn-card-add" onclick="openPtnModal('○○生活整理サービス')">登録する</button>
     </div>
 
     <div style="height: 28px;"></div>
+
+    <!-- 提携企業 確認モーダル -->
+    <div class="ptn-modal-overlay" id="ptn-modal-overlay">
+      <div class="ptn-modal">
+        <div class="ptn-modal-handle"></div>
+
+        <!-- ステップ1：見える範囲の確認 -->
+        <div id="ptn-modal-step1">
+          <div class="ptn-modal-org">
+            <div class="ptn-modal-org-logo"><i class="ti ti-building"></i></div>
+            <div>
+              <p class="ptn-modal-org-name" id="ptn-modal-org-name">株式会社○○</p>
+              <p class="ptn-modal-org-sub">メモリーノート提携企業</p>
+            </div>
+          </div>
+          <p class="ptn-modal-lead">この企業を「ご縁」に登録すると、必要なお手続きがスムーズになります。登録の前に、この企業が見られる範囲をご確認ください。</p>
+
+          <div class="ptn-modal-group see">
+            <p class="ptn-modal-group-label"><i class="ti ti-eye"></i>この企業が見られること</p>
+            <div class="ptn-modal-row"><i class="ti ti-check"></i><span>お名前・生年月日（ご本人確認のため）</span></div>
+            <div class="ptn-modal-row"><i class="ti ti-check"></i><span>この企業とのやりとりの記録</span></div>
+          </div>
+          <div class="ptn-modal-group hide">
+            <p class="ptn-modal-group-label"><i class="ti ti-lock"></i>この企業には見られないこと</p>
+            <div class="ptn-modal-row"><i class="ti ti-lock"></i><span>日記・お写真</span></div>
+            <div class="ptn-modal-row"><i class="ti ti-lock"></i><span>メモやお気持ちの内容</span></div>
+            <div class="ptn-modal-row"><i class="ti ti-lock"></i><span>ご家族の情報・ご家族とのやりとり</span></div>
+            <div class="ptn-modal-row"><i class="ti ti-lock"></i><span>「いつか伝える」に保管された手紙</span></div>
+          </div>
+
+          <div class="ptn-modal-actions">
+            <button class="ptn-modal-btn cancel" onclick="closePtnModal()">やめておく</button>
+            <button class="ptn-modal-btn confirm" onclick="ptnModalConfirm()">
+              <i class="ti ti-check"></i>確認して登録
+            </button>
+          </div>
+        </div>
+
+        <!-- ステップ2：登録完了 -->
+        <div id="ptn-modal-step2" style="display:none;">
+          <div class="ptn-modal-done">
+            <div class="ptn-modal-done-icon"><i class="ti ti-check"></i></div>
+            <p class="ptn-modal-done-title">ご縁に登録しました</p>
+            <p class="ptn-modal-done-text"><span id="ptn-modal-done-name">株式会社○○</span> を「ご縁」に登録しました。必要な時に、スムーズにお手続きいただけます。</p>
+            <button class="ptn-modal-done-btn" onclick="closePtnModal()">とじる</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   
@@ -9890,6 +10148,30 @@ body { min-height: 100vh; min-height: 100dvh; }
               連携企業は、あなたのメモリーノートの中身を見ることはできません。
               日記・ご家族の情報・お気持ちなど、すべて厳重に保護されます。
             </p>
+          </div>
+        </div>
+
+        <!-- 見える範囲の確認＋合意 -->
+        <div class="reg-scope">
+          <div class="reg-scope-head">
+            <p class="reg-scope-head-title"><i class="ti ti-eye"></i>葬儀社が見られる範囲のご確認</p>
+            <p class="reg-scope-head-sub">ご登録の前に、連携する葬儀社が何を見られて、何を見られないかをご確認ください。</p>
+          </div>
+          <div class="reg-scope-group see">
+            <p class="reg-scope-group-label"><i class="ti ti-eye"></i>葬儀社が見られること</p>
+            <div class="reg-scope-item"><i class="ti ti-check"></i><span>お名前・生年月日（ご本人確認のため）</span></div>
+            <div class="reg-scope-item"><i class="ti ti-check"></i><span>葬儀社とのやりとりの記録（イベント参加、お知らせの受信など）</span></div>
+          </div>
+          <div class="reg-scope-group hide">
+            <p class="reg-scope-group-label"><i class="ti ti-lock"></i>葬儀社には見られないこと</p>
+            <div class="reg-scope-item"><i class="ti ti-lock"></i><span>日記・お写真</span></div>
+            <div class="reg-scope-item"><i class="ti ti-lock"></i><span>メモやお気持ちの内容</span></div>
+            <div class="reg-scope-item"><i class="ti ti-lock"></i><span>ご家族の情報・ご家族とのやりとり</span></div>
+            <div class="reg-scope-item"><i class="ti ti-lock"></i><span>「いつか伝える」に保管された手紙</span></div>
+          </div>
+          <div class="reg-scope-consent" id="reg-scope-consent" onclick="toggleRegScopeConsent()">
+            <div class="reg-scope-checkbox"><i class="ti ti-check"></i></div>
+            <span class="reg-scope-consent-text">上記の内容を確認しました。この範囲で葬儀社と連携することに同意して、登録を進めます。</span>
           </div>
         </div>
 
@@ -11626,6 +11908,28 @@ body { min-height: 100vh; min-height: 100dvh; }
       }
       label.style.display = visibleCount === 0 ? 'none' : 'flex';
     });
+  }
+
+  // === 登録画面：見える範囲の合意チェック ===
+  function toggleRegScopeConsent() {
+    var el = document.getElementById('reg-scope-consent');
+    if (el) el.classList.toggle('checked');
+  }
+
+  // === 提携企業 確認モーダル ===
+  function openPtnModal(orgName) {
+    document.getElementById('ptn-modal-org-name').textContent = orgName;
+    document.getElementById('ptn-modal-done-name').textContent = orgName;
+    document.getElementById('ptn-modal-step1').style.display = 'block';
+    document.getElementById('ptn-modal-step2').style.display = 'none';
+    document.getElementById('ptn-modal-overlay').classList.add('show');
+  }
+  function ptnModalConfirm() {
+    document.getElementById('ptn-modal-step1').style.display = 'none';
+    document.getElementById('ptn-modal-step2').style.display = 'block';
+  }
+  function closePtnModal() {
+    document.getElementById('ptn-modal-overlay').classList.remove('show');
   }
 
   // === やりとり履歴の検索 ===
