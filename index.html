@@ -5011,6 +5011,11 @@ body { min-height: 100vh; min-height: 100dvh; }
   color: var(--text);
   margin: 0;
 }
+.reg-partner-detail-desc {
+  font-size: 10px; color: var(--text-muted);
+  line-height: 1.6;
+  margin: 3px 0 0;
+}
 /* === 葬儀社管理画面イメージ === */
 .adm-demo-banner {
   background: linear-gradient(135deg, #E6F1FB 0%, #D3E5F5 100%);
@@ -5436,6 +5441,16 @@ body { min-height: 100vh; min-height: 100dvh; }
   background-repeat: no-repeat;
   background-position: right 12px center;
   padding-right: 32px;
+}
+.adm-qr-textarea {
+  resize: vertical;
+  line-height: 1.6;
+  min-height: 64px;
+}
+.adm-qr-hint {
+  font-size: 10px; color: var(--text-muted);
+  margin: 5px 2px 0;
+  line-height: 1.5;
 }
 .adm-qr-auto-value {
   padding: 11px 12px;
@@ -9324,6 +9339,11 @@ body { min-height: 100vh; min-height: 100dvh; }
         </select>
       </div>
       <div class="adm-qr-field">
+        <label class="adm-qr-label">イベント概要<span class="adm-qr-tag free">自由入力</span></label>
+        <textarea class="adm-qr-input adm-qr-textarea" id="adm-evt-desc" rows="3" placeholder="例：ご家族で葬儀会場のイメージを作成いただける見学会です。当日は祭壇のサンプルをご覧いただけます。">ご家族で葬儀会場のイメージを作成いただける見学会です。</textarea>
+        <p class="adm-qr-hint">利用者さまの登録画面に「イベント概要」として表示されます。</p>
+      </div>
+      <div class="adm-qr-field">
         <label class="adm-qr-label">日付<span class="adm-qr-tag auto">自動</span></label>
         <div class="adm-qr-auto-value">
           <i class="ti ti-clock"></i>
@@ -9429,6 +9449,14 @@ body { min-height: 100vh; min-height: 100dvh; }
               <div class="reg-partner-detail-text">
                 <p class="reg-partner-detail-label">連携企業</p>
                 <p class="reg-partner-detail-value">株式会社○○</p>
+              </div>
+            </div>
+            <div class="reg-partner-detail-item">
+              <div class="reg-partner-detail-icon"><i class="ti ti-calendar"></i></div>
+              <div class="reg-partner-detail-text">
+                <p class="reg-partner-detail-label">イベント概要</p>
+                <p class="reg-partner-detail-value">葬儀会場イメージ作成会</p>
+                <p class="reg-partner-detail-desc">ご家族で葬儀会場のイメージを作成いただける見学会です。</p>
               </div>
             </div>
             <div class="reg-partner-detail-item">
